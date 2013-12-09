@@ -9,6 +9,8 @@ window.client = {
     init: function () {
         'use strict';
         console.log("It's work!");
+
+        var category = new this.Views.CategorycollectionView();
     }
 };
 
