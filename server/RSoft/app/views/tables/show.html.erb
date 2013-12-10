@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orderid:</strong>
+  <%= @table.orderid %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @table.state %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @table.activity %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @table.capacity %>
+</p>
+
+<p>
+  <strong>Waiter:</strong>
+  <%= @table.waiter %>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>

@@ -1,4 +1,6 @@
 RSoft::Application.routes.draw do    
+  resources :tables
+
   resources :categories
 
   get "app/main"

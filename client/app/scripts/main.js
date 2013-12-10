@@ -10,7 +10,8 @@ window.client = {
         'use strict';
         console.log("It's work!");
 
-        var category = new this.Views.CategorycollectionView();
+        var category = new this.Views.CategorycollectionView(),
+            tables = new this.Views.TableCollectionView();
     }
 };
 
