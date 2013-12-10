@@ -1,4 +1,6 @@
 RSoft::Application.routes.draw do    
+  resources :order_items
+
   resources :tables
 
   resources :categories
