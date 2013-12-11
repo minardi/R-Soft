@@ -8,7 +8,16 @@ window.client = {
     Routers: {},
     init: function () {
         'use strict';
-        console.log("It's work!");
+        console.log('It"s work!');
+
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+        var menuitem = new client.Views.MenuItemCollectionView();
     }
 };
 
