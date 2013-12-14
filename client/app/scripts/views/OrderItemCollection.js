@@ -135,7 +135,6 @@ client.Views = client.Views || {};
     });
     
     //var go_items = new App.Views.Items();
-    
-    });
+
 
 })();

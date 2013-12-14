@@ -1,14 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-#menu-container{
-    width: 400px;
-    height: 700px;
-    border: 1px solid black;
-
-    margin: 5px;
-}
 .category-container{
     border: 1px solid black;
     margin: 7px 2px;
@@ -21,13 +10,6 @@ body{
     margin: 2px;
 }
 .category-content{
-    border: 1px solid black;
-    margin: 2px;
-}
-
-
-.item{
-    background-color: green;
     border: 1px solid black;
     margin: 2px;
 }

@@ -12,26 +12,25 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/app_style.css">
+
+        <link rel="stylesheet" href="styles/order_style.css">
         <link rel="stylesheet" href="styles/category_style.css">
-        <link rel="stylesheet" href="styles/table_style.css">
-		<link rel="stylesheet" href="styles/order_style.css">
-        <!-- endbuild -->
-        <!-- build:js scripts/vendor/modernizr.js -->
+        <link rel="stylesheet" href="styles/orderitems_style.css">
+        <link rel="stylesheet" href="styles/table_style.css">        
         <script src="bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
+        
     </head>
-    <body>
-
-    <div id="hall" class="tablehall">
-    
-    </div>
-    
-    <div id="menu-container">
-
-    </div>
+    <body> 
+        <h1>Restaurant application</h1>
+        <div id="app-container">
+            <div id="table-container">Table</div>
+            <div id="menu-container">Menu</div>
+            <div id="order-container">Order</div>
+        </div>       
 
         <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>        
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone/backbone-mediator.js"></script>
@@ -54,22 +53,25 @@
 
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
-        <!--<script src="scripts/templates.js"></script>-->
-        <script src="scripts/models/Order.js"></script>
-        <script src="scripts/views/Order.js"></script>
-        <script src="scripts/models/Category.js"></script>
-        <script src="scripts/collections/Category.js"></script>
-        <script src="scripts/views/Category.js"></script>
-        <script src="scripts/views/CategoryCollection.js"></script>
+        <script src="scripts/templates.js"></script>
+        <!-- Categories -->
+        <script src="scripts/models/CategoryModel.js"></script>
+        <script src="scripts/collections/CategoryCollection.js"></script>
+        <script src="scripts/views/CategoryView.js"></script>
+        <script src="scripts/views/CategoryViewCollection.js"></script>
+        <!-- Tables -->
         <script src="scripts/models/TableModel.js"></script>
         <script src="scripts/collections/TableCollection.js"></script>
         <script src="scripts/views/TableModelView.js"></script>
         <script src="scripts/views/TableCollectionView.js"></script>
+        <!-- Order -->
+        <script src="scripts/models/Order.js"></script>        
+        <script src="scripts/views/Order.js"></script>        
+        <!-- Order item -->
         <script src="scripts/models/OrderItem.js"></script>
         <script src="scripts/collections/OrderItems.js"></script>
         <script src="scripts/views/OrderItem.js"></script>
         <script src="scripts/views/OrderItemCollection.js"></script>
-        
         <!-- endbuild -->
 </body>
 </html>

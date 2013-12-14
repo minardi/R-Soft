@@ -25,7 +25,7 @@ client.Views = client.Views || {};
 			},
 			
 			className: "order_box",
-			template: _.template($("#order_tpl").html()),
+			//template: _.template($("#order_tpl").html()),
 			
 			
 			universalShow: function(id) {		
