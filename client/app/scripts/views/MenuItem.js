@@ -9,7 +9,7 @@ client.Views = client.Views || {};
 
         template: JST['app/scripts/templates/MenuItem.ejs'],
         events: {
-            'click': 'addMediatorPub'
+            'click .add_to_order': 'addMediatorPub'
         },
 
         render: function() {
@@ -18,7 +18,7 @@ client.Views = client.Views || {};
         },
 
         addMediatorPub : function() {
-            Backbone.Mediator.pub( 'addOrderItem', { 'name': this.name, 'price': this.price } );
+            Backbone.Mediator.pub( 'addOrderItem', { 'name': this.model.get('name'), 'price': this.model.get('price') } );
         }
 
     });

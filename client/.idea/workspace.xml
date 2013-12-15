@@ -35,7 +35,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="52" selection-start="1088" selection-end="1104" vertical-scroll-proportion="-7.1923075" vertical-offset="306" max-vertical-offset="1326">
+            <state line="64" column="42" selection-start="3156" selection-end="3156" vertical-scroll-proportion="-16.115385" vertical-offset="669" max-vertical-offset="1326">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="MenuItemCollection.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/collections/MenuItemCollection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="612">
+            <state line="9" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,16 @@
       <file leaf-file-name="MenuItem.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/MenuItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="544">
+            <state line="25" column="5" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="25" selection-start="173" selection-end="173" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="306">
               <folding />
             </state>
           </provider>
@@ -62,7 +71,16 @@
       <file leaf-file-name="MenuItemCollectionView.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/views/MenuItemCollectionView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="52" selection-start="378" selection-end="378" vertical-scroll-proportion="0.17662337" vertical-offset="136" max-vertical-offset="680">
+            <state line="27" column="37" selection-start="748" selection-end="748" vertical-scroll-proportion="0.8660377" vertical-offset="0" max-vertical-offset="680">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuItem.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="238">
               <folding />
             </state>
           </provider>
@@ -80,11 +98,12 @@
       <list>
         <option value="$PROJECT_DIR$/app/scripts/models/MenuItem.js" />
         <option value="$PROJECT_DIR$/app/scripts/main.js" />
-        <option value="$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/collections/MenuItemCollection.js" />
         <option value="$PROJECT_DIR$/app/scripts/views/MenuItem.js" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/views/MenuItemCollectionView.js" />
+        <option value="$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs" />
       </list>
     </option>
   </component>
@@ -188,73 +207,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -316,10 +269,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19180088" sideWeight="0.6607717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1193265" sideWeight="0.8938907" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3392283" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10610932" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -345,27 +298,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="221">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/models/MenuItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="10" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1309">
@@ -401,13 +333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.28412256" vertical-offset="0" max-vertical-offset="359">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.425974" vertical-offset="23" max-vertical-offset="561">
@@ -422,23 +347,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/collections/MenuItemCollection.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+        <state line="12" column="37" selection-start="333" selection-end="333" vertical-scroll-proportion="0.44541484" vertical-offset="0" max-vertical-offset="697">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/views/MenuItem.js">
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="52" selection-start="1088" selection-end="1104" vertical-scroll-proportion="-7.1923075" vertical-offset="306" max-vertical-offset="1326">
+        <state line="8" column="9" selection-start="252" selection-end="253" vertical-scroll-proportion="0.26930693" vertical-offset="0" max-vertical-offset="6018">
           <folding />
         </state>
       </provider>
@@ -450,9 +368,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="42" selection-start="3156" selection-end="3156" vertical-scroll-proportion="-16.115385" vertical-offset="669" max-vertical-offset="1326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/collections/MenuItemCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/views/MenuItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="5" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="25" selection-start="173" selection-end="173" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/templates/MenuItem.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="238">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/views/MenuItemCollectionView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="52" selection-start="378" selection-end="378" vertical-scroll-proportion="0.17662337" vertical-offset="136" max-vertical-offset="680">
+        <state line="27" column="37" selection-start="748" selection-end="748" vertical-scroll-proportion="0.8660377" vertical-offset="0" max-vertical-offset="680">
           <folding />
         </state>
       </provider>

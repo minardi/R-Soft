@@ -1,6 +1,30 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>client</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="styles/c645a165.main.css">
+        <!--&lt;!&ndash; build:js scripts/vendor/modernizr.js &ndash;&gt;-->
+        <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
+        <!--&lt;!&ndash; endbuild &ndash;&gt;-->
+    </head>
+    <body>
+
+        <script src="scripts/650f945d.vendor.js"></script>
+
+		
+        <script src="scripts/adc4b928.plugins.js"></script>
+
+		
+        <script src="scripts/74441aa4.main.js"></script>
+
+
 		
         <button type="button" id="publish">Add Items</button>
-		<div style="width: 450px">
+		<div style="width: 400px">
             <div id="Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
             <div id="Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
             <div id="Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
@@ -18,6 +42,9 @@
 					, "Sides" : $( "#Sides1" )
 				});
 			});
-
         Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
 		</script>
+
+		
+
+</body>

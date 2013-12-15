@@ -15,36 +15,15 @@
     </head>
     <body>
 
-    <button type = "button" id="publish">Add Items</button>
-
-    <div id = "Drinks1">Drinks:&nbsp; <br> </div>
-    <div id = "Desserts1">Desserts:&nbsp; <br> </div>
-    <div id = "Entrees1">Entrees:&nbsp; <br> </div>
-    <div id = "Bar1">Bar: <br> </div>
-    <div id = "Sides1">Sides: <br> </div>
-
-
-
-    <script>
-        $( "#publish" ).click(function() {
-            Backbone.Mediator.pub( "categories-ready", {
-                "Drinks": $( "#Drinks1" )
-                , "Desserts": $( "#Desserts1" )
-                , "Entrees": $( "#Entrees1" )
-                , "Bar": $( "#Bar1" )
-                , "Sides" : $( "#Sides1" )
-            });
-        });
-    </script>
-
-
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
 		<script src="bower_components/backbone/backbone-mediator.js"></script>
+		<script src="bower_components/csrf-token.js"></script>
         <!-- endbuild -->
 
+		
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/sass-bootstrap/js/affix.js"></script>
         <script src="bower_components/sass-bootstrap/js/alert.js"></script>
@@ -60,6 +39,7 @@
         <script src="bower_components/sass-bootstrap/js/tab.js"></script>
         <!-- endbuild -->
 
+		
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
@@ -68,5 +48,32 @@
         <script src="scripts/collections/MenuItemCollection.js"></script>
         <script src="scripts/views/MenuItemCollectionView.js"></script>
         <!-- endbuild -->
+
+
+		
+        <button type = "button" id="publish">Add Items</button>
+		<div style="width: 400px ">
+            <div id = "Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
+            <div id = "Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
+            <div id = "Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
+            <div id = "Bar1" style="background-color: #808080">Bar: <br> </div>
+            <div id = "Sides1" style="background-color: #808080">Sides: <br> </div>
+		</div>
+		
+		<script>
+			$( "#publish" ).click(function() {
+				Backbone.Mediator.publish( "categories-ready", {
+					"Drinks": $( "#Drinks1" )
+					, "Desserts": $( "#Desserts1" )
+					, "Entrees": $( "#Entrees1" )
+					, "Bar": $( "#Bar1" )
+					, "Sides" : $( "#Sides1" )
+				});
+			});
+        Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
+		</script>
+
+		
+
 </body>
 </html>

@@ -1,4 +1,6 @@
 RSoft::Application.routes.draw do    
+  resources :menu_items
+
   get "app/main"
   
   root "app#main"

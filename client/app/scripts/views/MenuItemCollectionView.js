@@ -9,26 +9,26 @@ client.Views = client.Views || {};
         initialize: function() {
             this.collection = new client.Collections.MenuItemCollection();
 
-            console.log(Backbone.Mediator.sub);
-            Backbone.Mediator.sub( "categories-ready", this.render, this );
+            Backbone.Mediator.subscribe ( 'categories-ready', this.render, this );
             this.elements = {};
         },
 
 
         addItem: function( item ) {
             var view = new client.Views.MenuItemView( { model: item } ),
-                key = item.get( "category" ),
+                key = item.get( 'category' ),
                 element = this.elements[ key ];
 
             element.append( view.render().el );
-            this.$el.append( view.render().el );
+
         },
+
 
         render: function( elements ) {
             this.elements = elements;
-
             this.collection.each( this.addItem, this );
         }
     });
+
 
 })();
