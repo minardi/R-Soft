@@ -10,7 +10,8 @@ window.client = {
         'use strict';
         console.log('It"s work!');
 
-        var menuitem = new client.Views.MenuItemCollectionView();
+        var menu_item = new client.Views.MenuItemCollectionView(),
+		menu_item_desc = new client.Views.MenuItemDescCollection();
     }
 };
 
