@@ -10,7 +10,12 @@ window.client = {
         'use strict';
         console.log('Hello from Backbone!');
         
-        var categories = new client.Views.CollectionView();
+        var categories = new client.Views.CollectionView(),
+        
+            orderview = new client.Views.OrderView({
+                el: $("#order-container"),
+                model: new client.Models.OrderModel()
+        });
     }
 };
 

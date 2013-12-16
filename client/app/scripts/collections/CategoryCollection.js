@@ -11,7 +11,9 @@ client.Collections = client.Collections || {};
         initialize: function() {
             //this.testAdding();
             //this.reset(this.models);
-            this.fetch({reset: true});
+            
+            this.fetch({reset: true}); 
+            
         },
         url: '/categories',
         testAdding: function() {

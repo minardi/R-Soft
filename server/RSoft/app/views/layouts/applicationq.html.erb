@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Helper4.0App</title>
+
+        <script src = "libs/json2.js"></script>
+        <script src = "libs/jquery.js"></script>
+        <script src = "libs/underscore.js"></script>
+        <script src = "libs/backbone.js"></script>
+        <script src = "libs/backbone-localstorage.js"></script>
+        <script src = "libs/backbone-mediator.js"></script>
+        <script src = "libs/Backbone.ModelBinder.min.js"></script>
+        
+        <script src = "Order/TestModuleView.js"></script>
+        <script src = "Order/OrderModel.js"></script>
+        <script src = "Order/OrderView.js"></script>
+
+        <script src = "Order/Run.js"></script>
+
+        <link rel = "stylesheet" href = "Order css/Order.css">
+
+        <script type = "text/template" id = "order_tpl" >
+
+        <div class = "order_box">
+
+            <p id="order_head"> Order</p>
+            <div id="order_items" class="order_items">                
+            </div>
+			
+            <input type = "button" id = "order_close" value = "Close order" /> 
+        </div>
+
+        </script>
+        
+         <script>      
+             
+            
+                $.ajaxSetup({                 
+                    headers:{
+                       'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+                    }                      
+                }); 
+                
+          
+        </script>   
+
+        
+        
+        
+        <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

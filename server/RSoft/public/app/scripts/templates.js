@@ -4,9 +4,9 @@ this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'category-name\'>\n\t' +
+__p += '<div class=\'category-name\'>\r\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\n</div>\n<div class=\'category-content\'></div>';
+'\r\n</div>\r\n<div class=\'category-content\'></div>';
 
 }
 return __p
@@ -16,7 +16,7 @@ this["JST"]["app/scripts/templates/CategoryViewCollection.ejs"] = function(obj) 
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p>Your content here.</p>\n\n';
+__p += '<p>Your content here.</p>\r\n\r\n';
 
 }
 return __p
@@ -26,7 +26,7 @@ this["JST"]["app/scripts/templates/Order.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = "order_box">\r\n\t<p id="order_head"> Order</p>\r\n\t\r\n\t<div id="order_items" class="order_items">\r\n\t\t<div class="sum">Order amount: <span id="sum"></span></div>\r\n\t</div>\t\r\n\t\r\n\t<input type = "button" id = "order_close" value = "Close order">  </input>\r\n</div>';
+__p += '\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';
 
 }
 return __p

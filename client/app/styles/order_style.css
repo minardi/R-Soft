@@ -2,25 +2,10 @@ body{
 overflow-x: none; 
 }
 
-#container{		
-	display: block;
-	height: 335px;	
-	width:1000px;
-	background-color: #00FF0F;	
-}
-
-#order_tpl{	
-	display: block;
-	height:200px;	
-	width:100px;
-	background-color: #F0000F;
-	margin:5px 5px 5px 5px;
-}
-
 #order_items{		
 	border-radius: 1px;		
 	border:1px solid #black;
-	height:230px;	
+	height:580px;	
 	width:auto;
 	background-color: #98FB98;	
 }
@@ -40,21 +25,6 @@ overflow-x: none;
 	color: #FF0000;
 }
 
-#testmodule{
-	margin:10px;
-		
-}
-
-#order_container{
-	border-radius: 8px;	
-	margin:20px 20px 20px 20px;
-	display: block;
-	height: 304px;	
-	width:204px;
-	background-color: #FFFFFF;
-	float:left;
-
-}
 p#order_head{	
 	text-align:center;
 	font-style:italic; 
@@ -66,6 +36,6 @@ p#order_head{
 	border:2px solid blue;
 	border-radius: 8px;	
 	display: block;
-	height:300px;	
-	width:200px;	
+	height:690px;	
+	width:390px;	
 }
