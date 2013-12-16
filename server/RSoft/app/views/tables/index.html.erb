@@ -1,0 +1,35 @@
+<h1>Listing tables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Orderid</th>
+      <th>State</th>
+      <th>Activity</th>
+      <th>Capacity</th>
+      <th>Waiter</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tables.each do |table| %>
+      <tr>
+        <td><%= table.orderid %></td>
+        <td><%= table.state %></td>
+        <td><%= table.activity %></td>
+        <td><%= table.capacity %></td>
+        <td><%= table.waiter %></td>
+        <td><%= link_to 'Show', table %></td>
+        <td><%= link_to 'Edit', edit_table_path(table) %></td>
+        <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Table', new_table_path %>

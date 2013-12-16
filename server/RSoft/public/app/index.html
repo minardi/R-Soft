@@ -6,45 +6,68 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="styles/c645a165.main.css">
+        <link rel="stylesheet" href="styles/main.css">
         <!--&lt;!&ndash; build:js scripts/vendor/modernizr.js &ndash;&gt;-->
         <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
         <!--&lt;!&ndash; endbuild &ndash;&gt;-->
     </head>
     <body>
+        <link rel="stylesheet" href="styles/app_style.css">
 
-        <script src="scripts/650f945d.vendor.js"></script>
+        <link rel="stylesheet" href="styles/order_style.css">
+        <link rel="stylesheet" href="styles/category_style.css">
+        <link rel="stylesheet" href="styles/orderitems_style.css">
+        <link rel="stylesheet" href="styles/table_style.css">  
+		<link rel="stylesheet" href="styles/menu_item.css">		
+        <!--<script src="bower_components/modernizr/modernizr.js"></script> -->
+        
+    
+    <body> 
+
+	<script src="scripts/vendor.js"></script>
 
 		
-        <script src="scripts/adc4b928.plugins.js"></script>
+        <script src="scripts/plugins.js"></script>
 
 		
-        <script src="scripts/74441aa4.main.js"></script>
-
-
+        <script src="scripts/main.js"></script>
 		
-        <button type="button" id="publish">Add Items</button>
-		<div style="width: 400px">
-            <div id="Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
-            <div id="Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
-            <div id="Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
-            <div id="Bar1" style="background-color: #808080">Bar: <br> </div>
-            <div id="Sides1" style="background-color: #808080">Sides: <br> </div>
+		
+		
+		
+		        <h1>Restaurant application</h1>
+        <div id="app-container">
+            <div id="table-container">Table</div>
+            <div id="menu-container">Menu<br>
+			
+			<!-- (!)To Sasha ->>> Remove it, when categories will be creatig -->
+			<!-- From there: -->
+				<button type="button" id="publish">Add Items</button>
+				<div>
+					<div id="Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
+					<div id="Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
+					<div id="Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
+					<div id="Bar1" style="background-color: #808080">Bar: <br> </div>
+					<div id="Sides1" style="background-color: #808080">Sides: <br> </div>
+				</div>
+		
+				<script>
+					$( "#publish" ).click(function() {
+						Backbone.Mediator.publish( "categories-ready", {
+							"Drinks": $( "#Drinks1" )
+							, "Desserts": $( "#Desserts1" )
+							, "Entrees": $( "#Entrees1" )
+							, "Bar": $( "#Bar1" )
+							, "Sides" : $( "#Sides1" )
+						});
+					});
+				Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
+				</script>
+				<!-- to here -->
+				
 		</div>
-		
-		<script>
-			$( "#publish" ).click(function() {
-				Backbone.Mediator.publish( "categories-ready", {
-					"Drinks": $( "#Drinks1" )
-					, "Desserts": $( "#Desserts1" )
-					, "Entrees": $( "#Entrees1" )
-					, "Bar": $( "#Bar1" )
-					, "Sides" : $( "#Sides1" )
-				});
-			});
-        Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
-		</script>
+            <div id="order-container">Order</div>
+        </div>    
 
-		
-
+</body>
 </body>

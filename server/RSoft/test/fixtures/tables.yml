@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  orderid: MyString
+  state: MyString
+  activity: MyString
+  capacity: MyString
+  waiter: MyString
+
+two:
+  orderid: MyString
+  state: MyString
+  activity: MyString
+  capacity: MyString
+  waiter: MyString

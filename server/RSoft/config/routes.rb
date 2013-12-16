@@ -1,5 +1,13 @@
 RSoft::Application.routes.draw do    
+  resources :orders
+
+  resources :order_items
+
+  resources :tables
+  
   resources :menu_items
+
+  resources :categories
 
   get "app/main"
   
@@ -59,3 +67,4 @@ RSoft::Application.routes.draw do
   #     resources :products
   #   end
 end
+

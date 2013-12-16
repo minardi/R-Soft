@@ -7,18 +7,31 @@
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+   
+
         <!-- endbuild -->
         <!--&lt;!&ndash; build:js scripts/vendor/modernizr.js &ndash;&gt;-->
         <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
         <!--&lt;!&ndash; endbuild &ndash;&gt;-->
     </head>
     <body>
+        <link rel="stylesheet" href="styles/app_style.css">
 
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+        <link rel="stylesheet" href="styles/order_style.css">
+        <link rel="stylesheet" href="styles/category_style.css">
+        <link rel="stylesheet" href="styles/orderitems_style.css">
+        <link rel="stylesheet" href="styles/table_style.css">  
+		<link rel="stylesheet" href="styles/menu_item.css">		
+        <!--<script src="bower_components/modernizr/modernizr.js"></script> -->
+        
+    </head>
+    <body> 
+
+	<!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jquery/jquery.js"></script>        
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+
 		<script src="bower_components/backbone/backbone-mediator.js"></script>
 		<script src="bower_components/csrf-token.js"></script>
         <!-- endbuild -->
@@ -43,40 +56,68 @@
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
+		
+        <!-- MenuItems -->
         <script src="scripts/views/MenuItem.js"></script>
         <script src="scripts/models/MenuItem.js"></script>
         <script src="scripts/collections/MenuItemCollection.js"></script>
         <script src="scripts/views/MenuItemCollectionView.js"></script>
-        <script src="scripts/models/menu_item_desc.js"></script>
+		<!-- Uncomment it, when the module will work-->
+        <!--<script src="scripts/models/menu_item_desc.js"></script>
         <script src="scripts/collections/menu_item_desc.js"></script>
-        <script src="scripts/views/menu_item_desc.js"></script>
+        <script src="scripts/views/menu_item_desc.js"></script> -->
+
+        <!-- Categories -->
+        <script src="scripts/models/CategoryModel.js"></script>
+        <script src="scripts/collections/CategoryCollection.js"></script>
+        <script src="scripts/views/CategoryView.js"></script>
+        <script src="scripts/views/CategoryViewCollection.js"></script>
+        <!-- Tables -->
+        <script src="scripts/models/TableModel.js"></script>
+        <script src="scripts/collections/TableCollection.js"></script>
+        <script src="scripts/views/TableModelView.js"></script>
+        <script src="scripts/views/TableCollectionView.js"></script>
+        <!-- Order -->
+        <script src="scripts/models/Order.js"></script>        
+        <script src="scripts/views/Order.js"></script>        
+        <!-- Order item -->
+        <script src="scripts/models/OrderItem.js"></script>
+        <script src="scripts/collections/OrderItems.js"></script>
+        <script src="scripts/views/OrderItem.js"></script>
+        <script src="scripts/views/OrderItemCollection.js"></script>
         <!-- endbuild -->
-
-
 		
-        <button type = "button" id="publish">Add Items</button>
-		<div style="width: 400px ">
-            <div id = "Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
-            <div id = "Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
-            <div id = "Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
-            <div id = "Bar1" style="background-color: #808080">Bar: <br> </div>
-            <div id = "Sides1" style="background-color: #808080">Sides: <br> </div>
+		
+		
+		
+		        <h1>Restaurant application</h1>
+        <div id="app-container">
+            <div id="table-container">Table</div>
+            <div id="menu-container">Menu<br>
+				<button type = "button" id="publish">Add Items</button>
+				<div>
+					<div id = "Drinks1" style="background-color: #808080">Drinks:&nbsp; <br> </div>
+					<div id = "Desserts1" style="background-color: #808080">Desserts:&nbsp; <br> </div>
+					<div id = "Entrees1" style="background-color: #808080">Entrees:&nbsp; <br> </div>
+					<div id = "Bar1" style="background-color: #808080">Bar: <br> </div>
+					<div id = "Sides1" style="background-color: #808080">Sides: <br> </div>
+				</div>
+		
+				<script>
+					$( "#publish" ).click(function() {
+						Backbone.Mediator.publish( "categories-ready", {
+							"Drinks": $( "#Drinks1" )
+							, "Desserts": $( "#Desserts1" )
+							, "Entrees": $( "#Entrees1" )
+							, "Bar": $( "#Bar1" )
+							, "Sides" : $( "#Sides1" )
+						});
+					});
+				Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
+				</script>
 		</div>
-		
-		<script>
-			$( "#publish" ).click(function() {
-				Backbone.Mediator.publish( "categories-ready", {
-					"Drinks": $( "#Drinks1" )
-					, "Desserts": $( "#Desserts1" )
-					, "Entrees": $( "#Entrees1" )
-					, "Bar": $( "#Bar1" )
-					, "Sides" : $( "#Sides1" )
-				});
-			});
-        Backbone.Mediator.sub("addOrderItem", function(params){console.log(params)});
-		</script>
-
-		
+            <div id="order-container">Order</div>
+        </div>    
 
 </body>
 </html>

@@ -1,0 +1,81 @@
+.order_items {
+	border: 2px solid black;
+	border-radius: 20px;
+	width: 420px;
+	height: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	font: normal 100% 'Open Sans', sans-serif;
+	font-size: 22px;
+	overflow-y: auto; 
+}
+.order_item{
+	margin: 10px 0 10px 10px;
+	padding-bottom: 3px;
+	border: 1px solid white;
+}
+.order_item:hover{
+	border-bottom: 1px solid black;
+}
+.add_amount, .order_item_amount, .remove_amount, .order_item_name, .order_item_price {
+	display:-moz-inline-box;
+    display:inline-block;
+}
+.order_item_name{
+	width: 200px;
+	margin-right: 5px;
+	font-style: italic;
+}
+
+.add_amount{
+	background: url(../img/add.png) no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+	margin-right: 3px;
+}
+.add_amount:hover{
+	cursor: pointer;
+	background: url(../img/addhover.png) no-repeat;
+	background-size: 25px;
+}
+.order_item_amount{
+	text-align: center;
+	width: 25px;
+	margin-right: 3px;
+}
+.remove_amount{
+	background: url(../img/remove.png) no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+	margin-right: 5px;
+}
+.remove_amount:hover{
+	cursor: pointer;
+	background: url(../img/removehover.png) no-repeat;
+	background-size: 25px;
+}
+.order_item_price{
+	width: 45px;
+	margin-right: 10px;
+	font-weight: bold;
+}
+.order_item_status{
+	width: 10px;
+	font-size: 8px;
+}
+.sum{
+	margin-top: 10px;
+	border-top: 3px solid gray;
+	padding-top: 5px;
+	font-weight: bold;
+}
+.close_item{	
+	background: url(../img/close.png) no-repeat;
+	background-size: 25px;
+}
+.close_item:hover{	
+	background: url(../img/closehover.png) no-repeat;
+	background-size: 25px;
+}

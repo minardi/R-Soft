@@ -9,7 +9,7 @@ client.Views = client.Views || {};
         initialize: function() {
             this.collection = new client.Collections.MenuItemCollection();
 
-            Backbone.Mediator.subscribe ( 'categories-ready', this.render, this );
+            Backbone.Mediator.subscribeOnce ( 'categories-ready', this.render, this );
             this.elements = {};
         },
 
