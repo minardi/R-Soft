@@ -23,7 +23,7 @@ client.Views = client.Views || {};
             
             
             universalShow: function(order) {
-               if (order.new) {
+               if (order.ordernew) {
                     this.newCreate();
                 } else {
                     this.existRender(order);
