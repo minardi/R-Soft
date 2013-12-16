@@ -5,107 +5,110 @@ client.Views = client.Views || {};
 (function () {
     'use strict';
 
-    //client.Views.OrderView = Backbone.View.extend({
-
-        //OrderView = Backbone.View.extend({
-
         client.Views.OrderView = Backbone.View.extend({
-
-            initialize: function() {
-                console.log("OrderView initialize");				
-                this.$el.html(this.template(this.model.toJSON()));
-                Backbone.Mediator.sub("table-active", this.universalShow, this);				
+            
+            initialize: function() {                               
+                this.$el.html(this.template());
+                
+                Backbone.Mediator.sub("table-active", this.universalShow, this);                
             },
 
-            template: JST['app/scripts/templates/Order.ejs'],
             
             events: {
                 "click #order_close": "close"
             },
-
-            //className: "order_box",
-            //template: _.template($("#order_tpl").html()),
-
-
-            universalShow: function(id) {
-                if (isFinite(id)) {
-                    this.existShow(id);
-                }else{
-                    this.newRender(id);
-                }
-                console.log("universalShow");
+            
+           
+            template: JST['app/scripts/templates/Order.ejs'],
+            
+            
+            universalShow: function(order) {
+               if (order.new) {
+                    this.newCreate();
+                } else {
+                    this.existRender(order);
+                };                
             },
 
-            newRender: function(order) {
+            
+            newCreate: function() { 
+                this.model = new client.Models.OrderModel();                      
                 
-                console.log("newRender is rendering");
-                this.$el.html(this.template());	
-                var el = this.$el.find("#order_items");
-                Backbone.Mediator.subscribeOnce("orderitem-add", this.orderSave, 1);
-                var order_id = "new",
-                    el = $("#order_items"),
+                this.$el.find("#order_items").css('visibility', 'visible');
+                this.$el.find("#order_close").css('visibility', 'hidden');
+                
+                this.newPub();                   
+            },
+
+            
+            newPub: function() {
+                var el = this.$el.find("#order_items"),
+                    order_id = "",                    
                     hash = {
                         "order_id": order_id,
-                        "el": el
+                        "el": el,
+                        "new": true
                     };
-                Backbone.Mediator.pub("order-show", hash);
+                    
+                Backbone.Mediator.subscribeOnce("orderitem-add", this.orderSave, this);
+                Backbone.Mediator.pub("order-show", hash);            
+            },
+            
+            
+            showSyncModel: function(order) {  
+                this.$el.find("#order_close").css('visibility', 'visible');               
             },
 
-            showSyncmodel: function(order) {
-                $("#order_close").css('visibility', 'visible');
-                console.log(order);
-            },
-
-            existShow: function(id) {
-                Backbone.Mediator.unsubscribe("orderitem-add", this.orderSave, 1);
-                var order = new client.Models.OrderModel();
-                this.$el.html(this.template(order.toJSON()));                         
+            
+            existRender: function(order) {
+                var el = this.$el.find("#order_items"),
+                    hash;                    
+				
+                this.model = new client.Models.OrderModel();   
+                this.model.existFetch(order.id);                
+                                
+                this.$el.find("#order_close").css('visibility', 'visible');
+                el.css('visibility', 'visible');                
+                           
+                hash = {
+                    "order_id": order.id,
+                    "el": el,
+                    "new": false
+                };
                 
-                var	el = $("#order_items"),
-                    hash = {
-                            "order_id": id,
-                            "el": el
-                        };
+                this.model.once("sync", this.showSyncModel, this);
+                Backbone.Mediator.unsubscribe("orderitem-add", this.orderSave, this);
                 Backbone.Mediator.pub("order-show", hash);
-                console.log(id);
-                order.url = "orders/"+id+".json";
-                order.fetch();
-                order.on("sync", this.showSyncmodel, order); //??
-            },
- 
-            close: function() {
-                console.log("close order");
-                Backbone.Mediator.unsubscribe("orderitem-add", this.orderSave, 1);
-                $("#order_close").css('visibility', 'hidden');
-                //(this.$el.find(".order-box")).remove();
-                //this.set({"status":"closed"});
-                //this.save();				
-                Backbone.Mediator.pub("order-close");			
+                
             },
 
-            orderSave: function(event) {		
-                var order = new client.Models.OrderModel();				
-                order.url = "orders.json";
+            
+            close: function(event) {        
+                this.$el.find("#order_close").css('visibility', 'hidden');
+                this.$el.find("#order_items").css('visibility', 'hidden');    
+                
+                this.model.set({status: "closed"});
+                this.model.saveClosed();
+                
+                Backbone.Mediator.unsubscribe("orderitem-add", this.orderSave, this);
+                Backbone.Mediator.pub("order-close");
+            },
 
-                order.save(
-                {error: function(){
-                    console.log("order.save ERROR");
-                }},
-                {success: function (order){
-                    console.log("orders.save SUCCESS!!! ");
-                    $("#order_close").css('visibility', 'visible');
-                    var order_id = order.get("id");
-
-                    Backbone.Mediator.pub("order-create", order_id);					
-                }}
-                );
-
+            
+            orderSave: function() {
+                this.model.saveNew();
+                this.model.once("sync", this.successSaveNew, this);
+            },
+            
+            
+            successSaveNew:function() { 
+                var order_id = this.model.get("id"); 
+                
+                this.$el.find("#order_close").css('visibility', 'visible');
+        
+                Backbone.Mediator.pub("order-create", order_id);
             }
             
         });
-
-
-
-    //});
 
 })();
