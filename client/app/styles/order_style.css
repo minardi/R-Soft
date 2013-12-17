@@ -1,0 +1,41 @@
+body{
+overflow-x: none; 
+}
+
+#order_items{		
+	border-radius: 1px;		
+	border:1px solid #black;
+	height:580px;	
+	width:auto;
+	background-color: #98FB98;	
+}
+
+#order_close{
+	visibility:hidden;
+	float:right;
+	font-family:Comic Sans MS;	
+	font-style:italic;
+	text-decoration:underline;
+	padding: 0;
+	border: none;
+	background: none;
+}
+
+#order_close:hover{
+	color: #FF0000;
+}
+
+p#order_head{	
+	text-align:center;
+	font-style:italic; 
+	margin:6px auto;
+}
+
+.order_box{
+	margin:0px;
+	border:2px solid blue;
+	border-radius: 8px;	
+	display: block;
+	height:690px;	
+	width:390px;	
+}

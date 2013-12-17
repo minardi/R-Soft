@@ -1,0 +1,87 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>client</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/app_style.css">
+
+		<link rel="stylesheet" href="styles/menu_item.css">
+        <link rel="stylesheet" href="styles/order_style.css">
+        <link rel="stylesheet" href="styles/category_style.css">
+        <link rel="stylesheet" href="styles/orderitems_style.css">
+        <link rel="stylesheet" href="styles/table_style.css">        
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        
+    </head>
+    <body>
+
+        <!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jquery/jquery.js"></script>  
+		<script src="bower_components/jquery/csrf-token.js"></script>  
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/backbone/backbone-mediator.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
+        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
+        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+        <script src="bower_components/sass-bootstrap/js/button.js"></script>
+        <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/templates.js"></script>
+		
+		<!-- MenuItems -->
+        <script src="scripts/views/MenuItem.js"></script>
+        <script src="scripts/models/MenuItem.js"></script>
+        <script src="scripts/collections/MenuItemCollection.js"></script>
+        <script src="scripts/views/MenuItemCollectionView.js"></script>
+        <!-- Categories -->
+        <script src="scripts/models/CategoryModel.js"></script>
+        <script src="scripts/collections/CategoryCollection.js"></script>
+        <script src="scripts/views/CategoryView.js"></script>
+        <script src="scripts/views/CategoryViewCollection.js"></script>
+        <!-- Tables -->
+        <script src="scripts/models/TableModel.js"></script>
+        <script src="scripts/collections/TableCollection.js"></script>
+        <script src="scripts/views/TableModelView.js"></script>
+        <script src="scripts/views/TableCollectionView.js"></script>
+        <!-- Order -->
+        <script src="scripts/models/Order.js"></script>        
+        <script src="scripts/views/Order.js"></script>        
+        <!-- Order item -->
+        <script src="scripts/models/OrderItemModel.js"></script>
+        <script src="scripts/collections/OrderItemCollection.js"></script>
+        <script src="scripts/views/OrderItemView.js"></script>
+        <script src="scripts/views/OrderItemCollectionView.js"></script>
+        <!-- endbuild -->
+		
+		
+        <h1>Restaurant application</h1>
+        <div id="app-container">
+            <div id="table-container">Table</div>
+            <div id="menu-container">Menu</div>
+            <div id="order-container">Order</div>
+        </div> 
+</body>
+</html>

@@ -1,0 +1,15 @@
+.category-container{
+    border: 1px solid black;
+    margin: 7px 2px;
+}
+.category-name{
+    font-size: 25px;
+    text-align: center;
+
+    border: 1px solid black;
+    margin: 2px;
+}
+.category-content{
+    border: 1px solid black;
+    margin: 2px;
+}

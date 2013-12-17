@@ -1,0 +1,107 @@
+.for_order_items {
+	width: 100%;
+	height: 350px;
+	margin: 10px auto;
+	padding: 10px;
+	font: normal 100% 'Open Sans', sans-serif;
+	font-size: 22px;
+	overflow-y: auto; 
+}
+.order_item{
+	padding-bottom: 3px;
+	border: 1px solid #98FB98;
+}
+.order_item:hover{
+	border-bottom: 1px solid black;
+}
+.add_amount, .order_item_amount, .remove_amount, .order_item_name, .order_item_price {
+	display:-moz-inline-box;
+    display:inline-block;
+}
+.order_item_name{
+	width: 200px;
+	margin-right: 5px;
+	font-style: italic;
+	text-align: left;
+}
+.add_amount{
+	background: url(../images/add.png) no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+	margin-right: 3px;
+}
+.add_amount:hover{
+	cursor: pointer;
+	background: url(../images/addhover.png) no-repeat;
+	background-size: 25px;
+}
+.order_item_amount{
+	text-align: center;
+	width: 25px;
+	margin-right: 3px;
+}
+.remove_amount{
+	background: url(../images/remove.png) no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+	margin-right: 5px;
+}
+.remove_amount:hover{
+	cursor: pointer;
+	background: url(../images/removehover.png) no-repeat;
+	background-size: 25px;
+}
+.order_item_price{
+	width: 45px;
+	margin-right: 10px;
+	font-weight: bold;
+}
+.order_item_status{
+	width: 10px;
+	font-size: 8px;
+}
+.sum{
+	margin-top: 10px;
+	border-top: 3px solid gray;
+	padding-top: 5px;
+	font-weight: bold;
+}
+.close_item{	
+	background: url(../images/close.png) no-repeat;
+	background-size: 25px;
+}
+.close_item:hover{	
+	background: url(../images/closehover.png) no-repeat;
+	background-size: 25px;
+}
+.preloader_block{
+	position:absolute;
+	top:0;
+	left:0;
+	width: 100%;
+    height: 100%;
+    background: #000;
+	zoom: 1;
+	z-index: 3;
+    opacity: 0.7;
+    display:-moz-inline-box; /*1*/
+    display:inline-block; /*1*/
+    text-align: center; /*1*/
+}
+.add_z_index{
+    z-index: 100;
+}
+.preloader{
+	vertical-align: middle; /*2*/
+	opacity: 1;
+}
+.helper {
+    display:-moz-inline-box; /*3*/
+    display:inline-block; /*3*/
+    height:100%;
+    width:0;
+    vertical-align:middle; /*3*/
+    zoom:1;
+}
