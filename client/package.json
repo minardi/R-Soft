@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.2",
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-coffee": "~0.7.0",
@@ -23,7 +23,7 @@
     "grunt-rev": "~0.1.0",
     "grunt-open": "~0.2.0",
     "load-grunt-tasks": "~0.1.0",
-    "connect-livereload": "~0.2.0",
+    "connect-livereload": "~0.3.1",
     "time-grunt": "~0.1.1",
     "jshint-stylish": "~0.1.3"
   },
