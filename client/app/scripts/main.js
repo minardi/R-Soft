@@ -18,7 +18,7 @@ window.client = {
         });
 
         Backbone.Mediator.sub('order-show', function(data) {
-                                                var go_items = new client.Views.OrderitemcollectionView({el: data.el});
+                                                var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
                                                 if (!isNaN(data.order_id)) {
                                                     go_items.collection.order_id = data.order_id;
                                                 } 

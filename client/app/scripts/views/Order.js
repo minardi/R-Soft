@@ -44,11 +44,11 @@ client.Views = client.Views || {};
             
             newPub: function() {
                 var el = this.$el.find("#order_items"),
-                    order_id = "",                    
+                    id = "",                    
                     hash = {
-                        "order_id": order_id,
-                        "el": el,
-                        "new": true
+                        order_id: id,
+                        elem: el,
+                        is_new: true
                     };
                     
                 Backbone.Mediator.subscribeOnce("orderitem-add", this.orderSave, this);
@@ -70,11 +70,11 @@ client.Views = client.Views || {};
                                 
                 this.$el.find("#order_close").css('visibility', 'visible');
                 el.css('visibility', 'visible');                
-                           
+                
                 hash = {
-                    "order_id": order.id,
-                    "el": el,
-                    "new": false
+                    order_id: order.id,
+                    elem: el,
+                    is_new: false
                 };
                 
                 this.model.once("sync", this.showSyncModel, this);
