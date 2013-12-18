@@ -15,7 +15,11 @@ window.client = {
             orderview = new client.Views.OrderView({
                 el: $("#order-container"),
                 model: new client.Models.OrderModel()
-        });
+            }),
+        
+            tables = new client.Views.TableCollectionView({
+                el: $("#table-container")
+            });
 
         Backbone.Mediator.sub('order-show', function(data) {
             var go_items = new client.Views.OrderitemcollectionView({el: data.elem});

@@ -5,8 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Category.create([{category_name:'Dricks'}])
-Category.create([{category_name:'Dessetrs'}])
-Category.create([{category_name:'Entrees'}])
-Category.create([{category_name:'Sides'}])
-Category.create([{category_name:'Bar'}])
+
+    Category.create([{category_name:'Dricks'}])
+    Category.create([{category_name:'Dessetrs'}])
+    Category.create([{category_name:'Entrees'}])
+    Category.create([{category_name:'Sides'}])
+    Category.create([{category_name:'Bar'}])
+
+    tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'4',waiter:'n/a'}])
+    tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'2',waiter:'n/a'}])
+    tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'6',waiter:'n/a'}])
+    tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'3',waiter:'n/a'}])
+    tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'5',waiter:'n/a'}])
+

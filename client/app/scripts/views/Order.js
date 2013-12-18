@@ -24,7 +24,7 @@ client.Views = client.Views || {};
             
             
             universalShow: function(order) {
-               if (order.ordernew) {
+               if (order.isnew) {
                     this.newCreate();
                 } else {
                     this.existRender(order);
@@ -66,16 +66,17 @@ client.Views = client.Views || {};
                     hash;                    
 				
                 this.model = new client.Models.OrderModel();   
-                this.model.existFetch(order.id);                
+                this.model.existFetch(order.orderid);                
                                 
                 this.$el.find("#order_close").css('visibility', 'visible');
                 el.css('visibility', 'visible');                
                 
                 hash = {
-                    order_id: order.id,
-                    elem: el,
-                    is_new: false
+                    "order_id": order.orderid,
+                    "el": el,
+                    "new": false
                 };
+                console.log(hash);
                 
                 this.model.once("sync", this.showSyncModel, this);
                 Backbone.Mediator.unsubscribe("orderitem-add", this.orderSave, this);

@@ -1,5 +1,27 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["app/scripts/templates/Category.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'category-name\'>\r\n\t' +
+((__t = ( category_name )) == null ? '' : __t) +
+'\r\n</div>\r\n\r\n<div class=\'category-content\'>\r\n</div>\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/CategoryCollection.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<p>Your content here.</p>\r\n\r\n';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

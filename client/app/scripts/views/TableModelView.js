@@ -21,62 +21,77 @@ client.Views = client.Views || {};
                             return "table_occupied_unactive";
                         };
                     },
-                    
-        template: _.template("<%=id%>"),
-                
+
+        template: JST['app/scripts/templates/TableModelView.ejs'],
+
         events: {
-                    "click": "tableChoose",
+                    "click": "tableChoose"
                 },
-                
-       
-                        
-        tableActivity: function(id) {
-                                if(this.model.id != id) {
-                                    if(this.$el.className === "table_vacant_active") {
-                                        this.$el.className = "table_vacant_unactive";
-                                    } else {
-                                        this.$el.className = "table_occupied_unactive";
-                                    }
-                                    this.model.set("activity", "false");
+
+
+
+        tableActivity:  function(id) {
+                            if(this.model.id != id) {
+                                if(this.el.className === "table_vacant_active") {
+                                    this.el.className = "table_vacant_unactive";
                                 }
-                            },
+                                if(this.el.className === "table_occupied_active") {
+                                    this.el.className = "table_occupied_unactive";
+                                }
+                                this.model.set("activity", "false");
+                            }
+                        },
         
         tableChoose: function(event) {
-                        Backbone.Mediator.pub("table-active", this.model.orderid);
+                        var orderidinfo;
+                        
+                        if (this.model.get("orderid") === "none") {
+                            orderidinfo = {
+                                            orderid: this.model.get("orderid"),
+                                            isnew: true
+                                        };
+                        } else {
+                            orderidinfo = {
+                                            orderid: Number(this.model.get("orderid")),
+                                            isnew: false
+                                        };
+                        }
+                        
+                        Backbone.Mediator.pub("table-active", orderidinfo);
                         Backbone.Mediator.pub("changeactivity", this.model.id);
                         console.log("Event 'table-active' published");
+                        
                         this.model.set("activity", "true");
-                        if(this.$el.className === "table_vacant_unactive") {
-                            this.$el.className = "table_vacant_active";
-                        } else {
-                            this.$el.className = "table_occupied_active";
+                        if(this.el.className === "table_vacant_unactive") {
+                            this.el.className = "table_vacant_active";
+                        } 
+                        if(this.el.className === "table_occupied_unactive") {
+                            this.el.className = "table_occupied_active";
                         }
                         event.stopPropagation();
                     },
-        
-        tableOccupy: function(orderid) {
+
+        tableOccupy: function(ordergetid) {
                         if (this.model.get("activity") === "true") {
-                            this.model.set("state", "occupied");
+                            console.log(ordergetid);
+                            this.model.set({orderid: ordergetid, state: "occupied"});
                             this.el.className = "table_occupied_active";
-                            this.model.orderid = orderid;
-                            this.model.url = "tables/" + this.model.id +".json";
+                            this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }
                     },
-                    
+
         tableRelease: function() {
                         if (this.model.get("activity") === "true") {
-                            this.model.set("state", "vacant");
-                            this.el.className = "table_vacant_active";
-                            this.model.orderid = "";
-                            this.model.url = "tables/" + this.model.id +".json";
+                            this.model.set({orderid: "none", state: "vacant", activity: "false"});
+                            this.el.className = "table_vacant_unactive";
+                            this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }
                     },
-                    
+
         render: function(model) {
-                    console.log(this.model);
-                    this.$el.html(this.template(this.model.toJSON()));                        
+                    this.$el.html(this.template(this.model.toJSON()));
                     return this;	
                 }
 
