@@ -7,7 +7,8 @@ client.Collections = client.Collections || {};
 
     client.Collections.TableCollection = Backbone.Collection.extend({
 
-        model: client.Models.TableModel
+        model: client.Models.TableModel,
+        url: "tables.json"
 
     });
 

@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+  tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'4',waiter:'n/a'}])
+  tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'2',waiter:'n/a'}])
+  tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'6',waiter:'n/a'}])
+  tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'3',waiter:'n/a'}])
+  tables = Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'5',waiter:'n/a'}])
