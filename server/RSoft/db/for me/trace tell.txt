@@ -1,0 +1,13 @@
+ Invoke db:migrate (first_time)
+ Invoke environment (first_time)
+ Execute environment
+ Invoke db:load_config (first_time)
+ Execute db:load_config
+ Execute db:migrate
+
+Вызовите дБ: мигрировать (first_time)
+  Вызовите среды (first_time)
+  Выполнить среды
+  Вызовите дБ: load_config (first_time)
+  Выполнить дБ: load_config
+  Выполнить дБ: мигрировать
