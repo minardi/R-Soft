@@ -10,7 +10,7 @@ window.client = {
         'use strict';
         console.log('Hello from Backbone!');
         
-        var categories = new client.Views.CollectionView(),
+        var categories = new client.Views.CategoryCollectionView(),
         
             orderview = new client.Views.OrderView({
                 el: $("#order-container"),
@@ -18,11 +18,11 @@ window.client = {
         });
 
         Backbone.Mediator.sub('order-show', function(data) {
-                                                var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
-                                                if (!isNaN(data.order_id)) {
-                                                    go_items.collection.order_id = data.order_id;
-                                                } 
-                                            }, this);
+            var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
+            if (!isNaN(data.order_id)) {
+                go_items.collection.order_id = data.order_id;
+            }
+        }, this);
     }
 };
 

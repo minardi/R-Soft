@@ -2,14 +2,14 @@
 
 client.Models = client.Models || {};
 
-(function () {
+(function (models) {
     'use strict';
 
-    client.Models.Model = Backbone.Model.extend({
+    models.CategoryModel = Backbone.Model.extend({
         defaults: {
             category_name: 'noname'
         },
         view: undefined
     });
 
-})();
+})(client.Models);

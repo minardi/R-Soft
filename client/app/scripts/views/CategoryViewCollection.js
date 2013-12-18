@@ -2,30 +2,30 @@
 
 client.Views = client.Views || {};
 
-(function () {
+(function (views, collections, mediator) {
     'use strict';
 
-    client.Views.CollectionView = Backbone.View.extend({
+    views.CategoryCollectionView = Backbone.View.extend({
 
-        //template: JST['app/scripts/templates/CategoryViewCollection.ejs']
         cattegories_obj: {},
         el: $('#menu-container'),
+
         initialize: function() {
             this.$el = $('#menu-container');
 
-            this.collection = new client.Collections.Collection();
+            this.collection = new collections.CategoryCollection();
             this.collection.on('reset', this.afterLoad, this);
         },
         afterLoad: function () {
             this.render();
-            Backbone.Mediator.pub('categories-ready', this.cattegories_obj);
+            mediator.pub('categories-ready', this.cattegories_obj);
         },
         render: function() {
             this.$el.html("Menu");
             this.collection.each(this.addOneCategory, this);
         },
         addOneCategory: function(model) {
-            var view = new client.Views.View({
+            var view = new client.Views.CategoryView({
                 'model': model
             });
             this.cattegories_obj[model.get('category_name')] = view.$el;
@@ -34,4 +34,4 @@ client.Views = client.Views || {};
 
     });
 
-})();
+})(client.Views, client.Collections, Backbone.Mediator);

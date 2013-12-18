@@ -2,10 +2,10 @@
 
 client.Views = client.Views || {};
 
-(function () {
+(function (views) {
     'use strict';
 
-    client.Views.View = Backbone.View.extend({
+    views.CategoryView = Backbone.View.extend({
         model:undefined,
         tagName: 'div',
         className: "category-container",        
@@ -18,4 +18,4 @@ client.Views = client.Views || {};
 
     });
 
-})();
+})(client.Views);
