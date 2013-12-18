@@ -1,0 +1,5 @@
+﻿ menu_item.create([{category:'Desserts',name:'wine',description:'white add other descriptions',price:4}])
+    menu_item.create([{category:'Sides',name:'wine',description:'white add other descriptions',price:4}])
+    menu_item.create([{category:'Drincks',name:'wine',description:'white add other descriptions',price:4}])
+    menu_item.create([{category:'Desserts',name:'wine',description:'white add other descriptions',price:4}])
+    menu_item.create([{category:'Sides',name:'wine',description:'white add other descriptions',price:4}])
