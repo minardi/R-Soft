@@ -2,6 +2,7 @@
 
 client.Views = client.Views || {};
 
+
 (function (views, collections, mediator) {
     'use strict';
 
@@ -14,17 +15,20 @@ client.Views = client.Views || {};
             this.$el = $('#menu-container');
 
             this.collection = new collections.CategoryCollection();
+
             this.collection.on('reset', this.afterLoad, this);
         },
         afterLoad: function () {
             this.render();
             mediator.pub('categories-ready', this.cattegories_obj);
+
         },
         render: function() {
             this.$el.html("Menu");
             this.collection.each(this.addOneCategory, this);
         },
         addOneCategory: function(model) {
+
             var view = new client.Views.CategoryView({
                 'model': model
             });

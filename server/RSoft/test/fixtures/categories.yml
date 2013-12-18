@@ -1,3 +1,4 @@
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -5,3 +6,4 @@ one:
 
 two:
   category_name: MyString
+

@@ -66,7 +66,7 @@ client.Views = client.Views || {};
                     hash;                    
 				
                 this.model = new client.Models.OrderModel();   
-                this.model.existFetch(order.orderid);                
+                this.model.existFetch(order.orderid);
                                 
                 this.$el.find("#order_close").css('visibility', 'visible');
                 el.css('visibility', 'visible');                

@@ -1,3 +1,4 @@
+
 RSoft::Application.routes.draw do    
   resources :tables
 

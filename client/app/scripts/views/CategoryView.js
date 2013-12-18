@@ -2,10 +2,12 @@
 
 client.Views = client.Views || {};
 
+
 (function (views) {
     'use strict';
 
     views.CategoryView = Backbone.View.extend({
+
         model:undefined,
         tagName: 'div',
         className: "category-container",        

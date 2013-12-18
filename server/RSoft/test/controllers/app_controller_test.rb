@@ -1,3 +1,4 @@
+
 require 'test_helper'
 
 class AppControllerTest < ActionController::TestCase
@@ -7,3 +8,4 @@ class AppControllerTest < ActionController::TestCase
   end
 
 end
+

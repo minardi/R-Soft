@@ -6,6 +6,7 @@ client.Models = client.Models || {};
     'use strict';
 
     models.CategoryModel = Backbone.Model.extend({
+    
         defaults: {
             category_name: 'noname'
         },

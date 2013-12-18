@@ -6,6 +6,7 @@ client.Models = client.Models || {};
     'use strict';
 
     client.Models.TableModel = Backbone.Model.extend({
+
         defaults: {
                     orderid: "none",
                     state: "vacant",    //occupied
@@ -13,6 +14,7 @@ client.Models = client.Models || {};
                     capacity: "n/a",
                     waiter: "n/a"
                 }
+
     });
 
 })();

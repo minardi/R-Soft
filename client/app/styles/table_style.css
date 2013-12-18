@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 p {	
 	text-align: center;
 	margin: 5px;
@@ -24,16 +25,19 @@ p {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
+
 .table_vacant_unactive {
     background-color: #ADFF2F;
     border-color: #000000;
 }
+
 
 .table_occupied_active {
     background-color: #FFA07A;
     border-color: #5F9EA0;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+
 
 .table_occupied_unactive {
     background-color: #FFA07A;

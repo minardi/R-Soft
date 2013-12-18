@@ -9,6 +9,7 @@ client.Views = client.Views || {};
         
         initialize: function() {
                         this.collection = new client.Collections.TableCollection();
+
                         this.collection.fetch();
                         this.collection.once("sync", this.render, this);
                         console.log("Fetching Collection Complete");

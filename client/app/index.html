@@ -13,28 +13,16 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/app_style.css">
-
+		<link rel="stylesheet" href="styles/menu_item.css">
         <link rel="stylesheet" href="styles/order_style.css">
         <link rel="stylesheet" href="styles/category_style.css">
         <link rel="stylesheet" href="styles/orderitems_style.css">
         <link rel="stylesheet" href="styles/table_style.css">        
         <script src="bower_components/modernizr/modernizr.js"></script>
         
-    </head>
-    <body>
-
-
-        <h1>Restaurant application</h1>
-        <div id="app-container">
-            <div id="table-container">
-                <p class = "table-header">Tables</p>
-            </div>
-            <div id="menu-container">Menu</div>
-            <div id="order-container">Order</div>
-        </div>       
-
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/jquery.js"></script>        
+                <!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jquery/jquery.js"></script>  
+		<script src="bower_components/jquery/csrf-token.js"></script>  
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone/backbone-mediator.js"></script>
@@ -58,6 +46,13 @@
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
+
+		
+		<!-- MenuItems -->
+        <script src="scripts/views/MenuItem.js"></script>
+        <script src="scripts/models/MenuItem.js"></script>
+        <script src="scripts/collections/MenuItemCollection.js"></script>
+        <script src="scripts/views/MenuItemCollectionView.js"></script>
         <!-- Categories -->
         <script src="scripts/models/CategoryModel.js"></script>
         <script src="scripts/collections/CategoryCollection.js"></script>
@@ -77,5 +72,17 @@
         <script src="scripts/views/OrderItemView.js"></script>
         <script src="scripts/views/OrderItemCollectionView.js"></script>
         <!-- endbuild -->
+    </head>
+    <body>
+    
+        <h1>Restaurant application</h1>
+        <div id="app-container">
+            <div id="table-container">
+                <p class = "table-header">Tables</p>
+            </div>
+            <div id="menu-container">Menu</div>
+            <div id="order-container">Order</div>
+        </div>       
+      
 </body>
 </html>

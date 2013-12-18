@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -18,7 +19,16 @@ ActiveRecord::Schema.define(version: 20131217120728) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
+  
+  create_table "menu_items", force: true do |t|
+    t.string   "category"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+    
   create_table "order_items", force: true do |t|
     t.string   "name"
     t.integer  "amount"

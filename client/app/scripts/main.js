@@ -1,6 +1,5 @@
 /*global client, $*/
 
-
 window.client = {
     Models: {},
     Collections: {},
@@ -10,8 +9,8 @@ window.client = {
         'use strict';
         console.log('Hello from Backbone!');
         
-        var categories = new client.Views.CategoryCollectionView(),
-        
+        var menu_item = new client.Views.MenuItemCollectionView(),        
+            categories = new client.Views.CategoryCollectionView(),        
             orderview = new client.Views.OrderView({
                 el: $("#order-container"),
                 model: new client.Models.OrderModel()
@@ -27,6 +26,7 @@ window.client = {
                 go_items.collection.order_id = data.order_id;
             }
         }, this);
+
     }
 };
 
