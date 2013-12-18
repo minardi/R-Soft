@@ -1,5 +1,7 @@
 
 RSoft::Application.routes.draw do    
+  resources :menu_items
+  
   resources :tables
 
   resources :orders
