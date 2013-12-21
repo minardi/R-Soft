@@ -46,9 +46,9 @@ client.Views = client.Views || {};
                 var el = this.$el.find("#order_items"),
                     id = "",                    
                     hash = {
-                        order_id: id,
-                        elem: el,
-                        is_new: true
+                        "order_id": id,
+                        "elem": el,
+                        "is_new": true
                     };
                     
                 Backbone.Mediator.subscribeOnce("orderitem-add", this.orderSave, this);
@@ -73,8 +73,8 @@ client.Views = client.Views || {};
                 
                 hash = {
                     "order_id": order.orderid,
-                    "el": el,
-                    "new": false
+                    "elem": el,
+                    "is_new": false
                 };
                 console.log(hash);
                 

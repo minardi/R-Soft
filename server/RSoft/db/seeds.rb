@@ -13,11 +13,11 @@
     Category.create([{category_name:'Sides'}])
     Category.create([{category_name:'Bar'}])
     
-    Table.create([{orderid:'nonee',state:'vacant',activity:'false',capacity:'4',waiter:'n/a'}])
-    Table.create([{orderid:'nonee',state:'vacant',activity:'false',capacity:'2',waiter:'n/a'}])
-    Table.create([{orderid:'nonee',state:'vacant',activity:'false',capacity:'6',waiter:'n/a'}])
-    Table.create([{orderid:'nonee',state:'vacant',activity:'false',capacity:'3',waiter:'n/a'}])
-    Table.create([{orderid:'nonee',state:'vacant',activity:'false',capacity:'5',waiter:'n/a'}])
+    Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'4',waiter:'n/a'}])
+    Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'2',waiter:'n/a'}])
+    Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'6',waiter:'n/a'}])
+    Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'3',waiter:'n/a'}])
+    Table.create([{orderid:'none',state:'vacant',activity:'false',capacity:'5',waiter:'n/a'}])
 
     MenuItem.create([{category:'Drincks',name:'wine',description:'white add other descriptions',price:40}])
     MenuItem.create([{category:'Drincks',name:'wine',description:'white add other descriptions',price:50}])   

@@ -11,15 +11,13 @@ client.Views = client.Views || {};
                         this.collection = new client.Collections.TableCollection();
 
                         this.collection.fetch();
-                        this.collection.once("sync", this.render, this);
-                        console.log("Fetching Collection Complete");
+                        this.collection.once("sync", this.render, this);                       
                     },
 
-        render: function() {
-                    console.log("Rendering Collection...");
+        render: function() {                  
                     this.collection.each(this.rendermodel, this);
-                    console.log(this.collection);
-                    console.log("Collection Rendered");
+                   
+                    Backbone.Mediator.pub("tables-rendered");
                 },
 
         rendermodel: function(tablemodel) {
