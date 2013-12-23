@@ -1,1 +1,1248 @@
-window.client={Models:{},Collections:{},Views:{},Routers:{},init:function(){"use strict";new client.Views.MenuItemCollectionView,new client.Views.CategoryCollectionView,new client.Views.OrderView({el:$("#order-container"),model:new client.Models.OrderModel}),new client.Views.TableCollectionView({el:$("#table-container")});Backbone.Mediator.sub("order-show",function(a){var b=new client.Views.OrderitemcollectionView({el:a.elem});isNaN(a.order_id)||(b.collection.order_id=a.order_id)},this),Backbone.Mediator.sub("tables-rendered",function(){new client.Routers.TablesRouter;Backbone.history.start({})})}},$(document).ready(function(){"use strict";client.init()}),this.JST=this.JST||{},this.JST["app/scripts/templates/Category.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+="<div class='category-name'>\r\n	"+(null==(__t=category_name)?"":__t)+"\r\n</div>\r\n\r\n<div class='category-content'>\r\n</div>\r\n\r\n";return __p},this.JST["app/scripts/templates/CategoryCollection.ejs"]=function(obj){obj||(obj={});{var __p="";_.escape}with(obj)__p+="<p>Your content here.</p>\r\n\r\n";return __p},this.JST["app/scripts/templates/CategoryView.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+="<div class='category-name'>\r\n	"+(null==(__t=category_name)?"":__t)+"\r\n</div>\r\n<div class='category-content'></div>";return __p},this.JST["app/scripts/templates/CategoryViewCollection.ejs"]=function(obj){obj||(obj={});{var __p="";_.escape}with(obj)__p+="<p>Your content here.</p>\r\n\r\n";return __p},this.JST["app/scripts/templates/MenuItem.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+='<div class = "menu_item_tpl">\r\n	<div class = "menu_item_name">'+(null==(__t=name)?"":__t)+'</div>\r\n	<div class = "menu_item_description">'+(null==(__t=description)?"":__t)+'</div>\r\n	<div class = "menu_item_price">'+(null==(__t=price)?"":__t)+' $</div>\r\n	<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';return __p},this.JST["app/scripts/templates/Order.ejs"]=function(obj){obj||(obj={});{var __p="";_.escape}with(obj)__p+='\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';return __p},this.JST["app/scripts/templates/OrderItem.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+='<div class="order_item_name">'+(null==(__t=name)?"":__t)+'</div>\r\n<div id="add_amount" class="add_amount"><br/></div>\r\n<div id="order_item_amount" class="order_item_amount">'+(null==(__t=amount)?"":__t)+'</div>\r\n<div id="remove_amount" class="remove_amount"><br/></div>\r\n<div class="order_item_price">'+(null==(__t=price)?"":__t)+'</div>\r\n<span class="order_item_status">'+(null==(__t=status)?"":__t)+"</span>";return __p},this.JST["app/scripts/templates/OrderItemCollection.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+='<div id="block_sum" class="sum">\r\n  	Order amount: <span id="sum">'+(null==(__t=sum)?"":__t)+'</span>\r\n</div>\r\n<div id="loader_block" class="preloader_block">\r\n  	<img src="app/images/preloader2.gif" class="preloader">\r\n  	<div class="helper"></div>\r\n</div>';return __p},this.JST["app/scripts/templates/TableCollectionView.ejs"]=function(obj){obj||(obj={});{var __p="";_.escape}with(obj)__p+="<p>Your content here.</p>\r\n\r\n";return __p},this.JST["app/scripts/templates/TableModelView.ejs"]=function(obj){obj||(obj={});{var __t,__p="";_.escape}with(obj)__p+=(null==(__t=id)?"":__t)+"\r\n\r\n";return __p},client.Views=client.Views||{},function(){"use strict";client.Views.MenuItemView=Backbone.View.extend({template:JST["app/scripts/templates/MenuItem.ejs"],events:{"click .add_to_order":"addMediatorPub"},render:function(){return this.$el.html(this.template(this.model.toJSON())),this},addMediatorPub:function(){Backbone.Mediator.pub("addOrderItem",{name:this.model.get("name"),price:this.model.get("price")})}})}(),client.Models=client.Models||{},function(){"use strict";client.Models.MenuItemModel=Backbone.Model.extend({defaults:{category:"N/A",name:"N/A",description:"N/A",price:"N/A"}})}(),client.Collections=client.Collections||{},function(){"use strict";client.Collections.MenuItemCollection=Backbone.Collection.extend({initialize:function(){this.fetch()},model:client.Models.MenuItemModel,url:"menu_items.json"})}(),client.Views=client.Views||{},function(){"use strict";client.Views.MenuItemCollectionView=Backbone.View.extend({initialize:function(){this.collection=new client.Collections.MenuItemCollection,Backbone.Mediator.subscribeOnce("categories-ready",this.render,this),this.elements={}},addItem:function(a){var b=new client.Views.MenuItemView({model:a}),c=a.get("category"),d=this.elements[c];d.append(b.render().el)},render:function(a){this.elements=a,this.collection.each(this.addItem,this)}})}(),client.Models=client.Models||{},function(a){"use strict";a.CategoryModel=Backbone.Model.extend({defaults:{category_name:"noname"},view:void 0})}(client.Models),client.Collections=client.Collections||{},function(a,b){"use strict";a.CategoryCollection=Backbone.Collection.extend({model:b.CategoryModel,url:"/categories",initialize:function(){this.fetch({reset:!0})}})}(client.Collections,client.Models),client.Views=client.Views||{},function(a){"use strict";a.CategoryView=Backbone.View.extend({model:void 0,tagName:"div",className:"category-container",template:JST["app/scripts/templates/CategoryView.ejs"],render:function(){return this.$el.html(this.template(this.model.toJSON())),this}})}(client.Views),client.Views=client.Views||{},function(a,b,c){"use strict";a.CategoryCollectionView=Backbone.View.extend({cattegories_obj:{},el:$("#menu-container"),initialize:function(){this.$el=$("#menu-container"),this.collection=new b.CategoryCollection,this.collection.on("reset",this.afterLoad,this)},afterLoad:function(){this.render(),c.pub("categories-ready",this.cattegories_obj)},render:function(){this.$el.html("Menu"),this.collection.each(this.addOneCategory,this)},addOneCategory:function(a){var b=new client.Views.CategoryView({model:a});this.cattegories_obj[a.get("category_name")]=b.$el,this.$el.append(b.render().$el)}})}(client.Views,client.Collections,Backbone.Mediator),client.Models=client.Models||{},function(){"use strict";client.Models.TableModel=Backbone.Model.extend({defaults:{orderid:"none",state:"vacant",activity:"false",capacity:"n/a",waiter:"n/a"}})}(),client.Collections=client.Collections||{},function(){"use strict";client.Collections.TableCollection=Backbone.Collection.extend({model:client.Models.TableModel,url:"tables.json"})}(),client.Views=client.Views||{},function(){"use strict";client.Views.TableModelView=Backbone.View.extend({initialize:function(){this.model.on("change",this.render,this),Backbone.Mediator.sub("order-create",this.tableOccupy,this),Backbone.Mediator.sub("order-close",this.tableRelease,this),Backbone.Mediator.sub("changeactivity",this.tableActivity,this)},className:function(){return"vacant"===this.model.get("state")?"table_vacant_unactive":"table_occupied_unactive"},template:JST["app/scripts/templates/TableModelView.ejs"],events:{click:"tableChoose"},tableActivity:function(a){this.model.id!=a&&("table_vacant_active"===this.el.className&&(this.el.className="table_vacant_unactive"),"table_occupied_active"===this.el.className&&(this.el.className="table_occupied_unactive"),this.model.set("activity","false"))},tableChoose:function(a){var b;b="none"===this.model.get("orderid")?{orderid:this.model.get("orderid"),isnew:!0,tableid:this.model.get("id")}:{orderid:Number(this.model.get("orderid")),isnew:!1,tableid:this.model.get("id")},Backbone.Mediator.pub("table-active",b),Backbone.Mediator.pub("changeactivity",this.model.id),this.model.set("activity","true"),"table_vacant_unactive"===this.el.className&&(this.el.className="table_vacant_active"),"table_occupied_unactive"===this.el.className&&(this.el.className="table_occupied_active"),a.stopPropagation()},tableOccupy:function(a){"true"===this.model.get("activity")&&(console.log(a),this.model.set({orderid:a,state:"occupied"}),this.el.className="table_occupied_active",this.model.url="tables/"+this.model.id+".json",this.model.save({silent:"true"}))},tableRelease:function(){"true"===this.model.get("activity")&&(this.model.set({orderid:"none",state:"vacant",activity:"false"}),this.el.className="table_vacant_unactive",this.model.url="tables/"+this.model.id+".json",this.model.save({silent:"true"}))},render:function(){return this.$el.html(this.template(this.model.toJSON())),this}})}(),client.Views=client.Views||{},function(){"use strict";client.Views.TableCollectionView=Backbone.View.extend({initialize:function(){this.collection=new client.Collections.TableCollection,this.collection.fetch(),this.collection.once("sync",this.render,this)},render:function(){this.collection.each(this.rendermodel,this),Backbone.Mediator.pub("tables-rendered")},rendermodel:function(a){var b=new client.Views.TableModelView({model:a});this.$el.append(b.render().el)}})}(),client.Routers=client.Routers||{},function(a,b){"use strict";a.TablesRouter=Backbone.Router.extend({initialize:function(){b.sub("table-active",this.changeUrl,this)},changeUrl:function(a){this.navigate("tables/"+a.tableid)},routes:{"(/)tables/:number":"myTrigger"},myTrigger:function(a){var b=$("#table-container").children()[a];$(b).trigger("click")}})}(client.Routers,Backbone.Mediator),client.Models=client.Models||{},function(a){"use strict";a.OrderModel=Backbone.Model.extend({initialize:function(){},defaults:{status:"opened"},saveNew:function(){this.url="orders.json",this.save()},existFetch:function(a){this.url="orders/"+a+".json",this.fetch()},saveClosed:function(){this.url="orders/"+this.id+".json",this.save()}})}(client.Models),client.Views=client.Views||{},function(a,b){"use strict";a.OrderView=Backbone.View.extend({initialize:function(){this.$el.html(this.template()),b.sub("table-active",this.universalShow,this)},events:{"click #order_close":"close"},template:JST["app/scripts/templates/Order.ejs"],universalShow:function(a){a.isnew?this.newCreate():this.existRender(a)},newCreate:function(){this.model=new client.Models.OrderModel,this.$el.find("#order_items").css("visibility","visible"),this.$el.find("#order_close").css("visibility","hidden"),this.newPub()},newPub:function(){var a=this.$el.find("#order_items"),c="",d={order_id:c,elem:a,is_new:!0};b.subscribeOnce("orderitem-add",this.orderSave,this),b.pub("order-show",d)},showSyncModel:function(){this.$el.find("#order_close").css("visibility","visible")},existRender:function(a){var c,d=this.$el.find("#order_items");this.model=new client.Models.OrderModel,this.model.existFetch(a.orderid),this.$el.find("#order_close").css("visibility","visible"),d.css("visibility","visible"),c={order_id:a.orderid,elem:d,is_new:!1},console.log(c),this.model.once("sync",this.showSyncModel,this),b.unsubscribe("orderitem-add",this.orderSave,this),b.pub("order-show",c)},close:function(){this.$el.find("#order_close").css("visibility","hidden"),this.$el.find("#order_items").css("visibility","hidden"),this.model.set({status:"closed"}),this.model.saveClosed(),b.unsubscribe("orderitem-add",this.orderSave,this),b.pub("order-close")},orderSave:function(){this.model.saveNew(),this.model.once("sync",this.successSaveNew,this)},successSaveNew:function(){var a=this.model.get("id");this.$el.find("#order_close").css("visibility","visible"),b.pub("order-create",a)}})}(client.Views,Backbone.Mediator),client.Models=client.Models||{},function(){"use strict";client.Models.OrderitemModel=Backbone.Model.extend({defaults:{name:"N/A",amount:1,price:0,status:"Not ready",order_id:0},url:"order_items.json",saveModel:function(){this.url="order_items/"+this.id+".json",this.save()}})}(),client.Collections=client.Collections||{},function(){"use strict";client.Collections.OrderitemsCollection=Backbone.Collection.extend({model:client.Models.OrderitemModel,url:"order_items.json",order_id:0,sum:0,initialize:function(){this.fetch({reset:!0}),Backbone.Mediator.subscribeOnce("order-create",this.changeOrderId,this)},changeOrderId:function(a){this.order_id=a,this.each(this.setOrderId,this)},setOrderId:function(a){a.set("order_id",this.order_id),a.url="order_items/"+a.id+".json",a.save({silent:!0})}})}(),client.Views=client.Views||{},function(){var a=$("#loader_block");client.Views.OrderitemView=Backbone.View.extend({id:"order_item",className:"order_item",template:JST["app/scripts/templates/OrderItem.ejs"],initialize:function(){this.model.on("destroy",this.removeView,this),Backbone.Mediator.sub("matching-items",this.incrMatchingAmount,this)},events:{"click #add_amount":"incrAmount","click #remove_amount":"decrAmount"},render:function(){var a=this.model.get("price"),b=this.model.get("amount"),c=a*b;return this.$el.html(this.template(this.model.toJSON())),this.publisher("add",c),this},publisher:function(a,b){Backbone.Mediator.pub("amount",{operation:a,difference:b})},incrAmount:function(a){a.stopPropagation(),a.preventDefault();var b=this.model.get("amount"),c=this.model.get("price"),d=this.$el.find("#remove_amount");b++,this.saveAmount(b),this.publisher("add",c),d.removeClass("close_item")},incrMatchingAmount:function(a){var b=a.get("amount"),c=a.get("price"),d=this.$el.find("#remove_amount");b++,this.saveAmount(b,a),this.publisher("add",c),d.removeClass("close_item"),this.$el.find("#order_item_amount").html(this.model.get("amount"))},decrAmount:function(b){b.stopPropagation(),b.preventDefault();var c=this.model.get("amount"),d=this.model.get("price"),e=this.$el.find("#remove_amount");c--,this.saveAmount(c),c>0?this.publisher("sub",d):0===c?(this.publisher("sub",d),e.addClass("close_item")):0>c&&(a.show(),console.log("This model:"),console.dir(this.model),this.model.url="order_items/"+this.model.id+".json",this.model.destroy())},saveAmount:function(b,c){a.show(),c?(c.set("amount",b),c.saveModel(b)):(this.model.set("amount",b),this.model.saveModel(b),this.$el.find("#order_item_amount").html(this.model.get("amount"))),a.hide()},removeView:function(){this.remove(),console.log("Was destroy"),a.hide()}})}(),client.Views=client.Views||{},function(){var a=$("#loader_block");client.Views.OrderitemcollectionView=Backbone.View.extend({template:JST["app/scripts/templates/OrderItemCollection.ejs"],initialize:function(){a.show(),this.collection=new client.Collections.OrderitemsCollection,this.collection.on("add",this.addItemToDB,this),this.collection.on("reset",this.renderCollectionFromDB,this),this.renderSum(),a.hide(),Backbone.Mediator.sub("amount",this.changeSum,this),Backbone.Mediator.sub("orderitem-add",this.addDataToModel,this),this.$el.addClass("for_order_items")},renderSum:function(){this.$el.html(this.template({sum:this.collection.sum}))},addDataToModel:function(a){var b=this.collection.findWhere({name:a.name});b?Backbone.Mediator.pub("matching-items",b):this.collection.add(new client.Models.OrderitemModel({name:a.name,price:a.price,order_id:this.collection.order_id}))},changeSum:function(a){var b=this.collection.sum,c={add:function(){b+=Number(a.difference)},sub:function(){b-=Number(a.difference)}};c[a.operation](),this.collection.sum=b,b=b.toFixed(2),this.$el.find("#sum").html(String(b))},addItemToDB:function(b){var c=new client.Views.OrderitemView({model:b});console.log("Begin adding item TO DB..."),console.log(this.collection),a.show(),b.save({silent:!0},{success:function(){a.hide(),console.log("Finish adding item TO DB!")}}),this.$el.prepend(c.render().el)},addItemsFromDB:function(a){if(a.get("order_id")===this.collection.order_id){var b=new client.Views.OrderitemView({model:a});this.$el.prepend(b.render().el)}},renderCollectionFromDB:function(){var a=this.$el.find("#block_sum");a.find("#sum").html(""),this.$el.html(""),this.$el.append(a),console.log("Begin adding items FROM DB..."),this.collection.each(this.addItemsFromDB,this),console.log(this.collection),console.log("Finish adding items FROM DB!")}})}();
+/*global client, $*/
+
+window.client = {
+    Models: {},
+    Collections: {},
+    Views: {},
+    Routers: {},
+    init: function () {
+        'use strict';
+
+       
+        var menu_item = new client.Views.MenuItemCollectionView(),
+			description = new client.Views.MenuItemDescCollView(),        
+            categories = new client.Views.CategoryCollectionView(),        
+            
+            orderview = new client.Views.OrderView({
+                el: $("#order-container"),
+                model: new client.Models.OrderModel()
+            }),        
+        
+            tables = new client.Views.TableCollectionView({
+                el: $("#table-container")
+            });
+
+        console.log('Hello from Backbone!');
+  /*      
+        var menu_item = new client.Views.MenuItemCollectionView(), 
+			description = new client.Views.MenuItemDescCollView(),		
+            categories = new client.Views.CategoryCollectionView();
+     
+            orderview = new client.Views.OrderView({
+>>>>>>> a812169ed4fde0795de689c26e9d8309bc627d73
+                el: $("#order-container"),
+                model: new client.Models.OrderModel()
+            }),        
+        
+            tables = new client.Views.TableCollectionView({
+                el: $("#table-container")
+            });
+    */           
+        
+        Backbone.Mediator.sub('order-show', function(data) {
+            var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
+            if (!isNaN(data.order_id)) {
+                go_items.collection.order_id = data.order_id;
+            }
+        }, this);
+
+        
+        Backbone.Mediator.sub("tables-rendered", function() {
+            var route = new client.Routers.TablesRouter();
+            Backbone.history.start({
+                //pushState: true
+            });
+        });
+    }
+};
+
+$(document).ready(function () {
+    'use strict';
+    client.init();
+});
+
+this["JST"] = this["JST"] || {};
+
+this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'category-name\'>\r\n\t' +
+((__t = ( category_name )) == null ? '' : __t) +
+'\r\n</div>';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/MenuItem.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class = "menu_item_tpl">\r\n\t<div class = "scale_cont">\r\n\t\t<div class = "menu_item_name">' +
+((__t = ( name )) == null ? '' : __t) +
+'</div>\r\n\t\t<div class = "menu_item_price">' +
+((__t = ( price )) == null ? '' : __t) +
+' $</div>\r\n\t\t</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/MenuItemDesc.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class = \'desc\' >\r\n\t<div class = "wrap">\r\n\t\t<div class = "desc_name">' +
+((__t = ( name )) == null ? '' : __t) +
+'</div>\r\n\t\t<div class = "desc_description">' +
+((__t = ( description )) == null ? '' : __t) +
+'</div>\r\n\t</div>\r\n\t<div class = "desc_pic"><img src="images/' +
+((__t = ( id )) == null ? '' : __t) +
+'.jpg"></div>\r\n</div>\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/Order.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/OrderItem.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="order_item_name">' +
+((__t = (name)) == null ? '' : __t) +
+'</div>\r\n<div id="add_amount" class="add_amount"><br/></div>\r\n<div id="order_item_amount" class="order_item_amount">' +
+((__t = (amount)) == null ? '' : __t) +
+'</div>\r\n<div id="remove_amount" class="remove_amount"><br/></div>\r\n<div class="order_item_price">' +
+((__t = (price)) == null ? '' : __t) +
+'</div>\r\n<span class="order_item_status">' +
+((__t = (status)) == null ? '' : __t) +
+'</span>';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div id="block_sum" class="sum">\r\n  \tOrder amount: <span id="sum">' +
+((__t = (sum)) == null ? '' : __t) +
+'</span>\r\n</div>\r\n<div id="loader_block" class="preloader_block">\r\n  \t<img src="app/images/preloader2.gif" class="preloader">\r\n  \t<div class="helper"></div>\r\n</div>';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<p>Your content here.</p>\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/TableModelView.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p +=
+((__t = ( id )) == null ? '' : __t) +
+'\r\n\r\n';
+
+}
+return __p
+};
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.MenuItemView = Backbone.View.extend({
+
+        template: JST['app/scripts/templates/MenuItem.ejs'],
+        events: {
+            'click .add_to_order': 'sendMenuItemToOrder',
+			'click .menu_item_name': 'addDescView'
+        },
+
+        render: function() {
+            this.$el.html( this.template( this.model.toJSON() ) );
+            return this;
+        },
+
+        sendMenuItemToOrder : function() {
+			console.log( this.model.get( 'name' ) + ' sent to Order' );
+            Backbone.Mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
+        },
+		
+		addDescView: function(){ //sent mediator dlya descr
+//			console.log( 'name: ' + this.model.get( 'name' ) );
+//			console.log( this.el );
+			Backbone.Mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
+		}
+
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function () {
+    'use strict';
+
+    client.Models.MenuItemModel = Backbone.Model.extend({
+        defaults: {
+            category : 'N/A',
+            name : 'N/A',
+            description : 'N/A',
+            price : 'N/A'
+        }
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Collections = client.Collections || {};
+
+(function () {
+    'use strict';
+
+    client.Collections.MenuItemCollection = Backbone.Collection.extend({
+        initialize: function() {
+//            this.fetch( /*{reset: true}*/ );
+
+            this.add( new client.Models.MenuItemModel( { "category": "Drinks"
+				, "name": "Capuccino"
+				, "description": "1" 
+				, "price": "5"} ) );
+            this.add( new client.Models.MenuItemModel( { "category": "Desserts"
+				, "name": "Ice Cream"
+				, "description": "2"
+				,  "price": "4"} ) );
+            this.add( new client.Models.MenuItemModel( { "category": "Desserts"
+				, "name": "Cream Pie"
+				, "description": "3"
+				,  "price": "4"} ) );
+            this.add( new client.Models.MenuItemModel( { "category": "Entrees"
+				, "name": "Soup"
+				, "description": "4"
+				, "price": "10"} ));
+            this.add( new client.Models.MenuItemModel( { "category": "Drinks"
+				, "name": "Esspreso"
+				, "description": "5"
+				, "price": "5"} ) );
+            this.add( new client.Models.MenuItemModel( { "category": "Sides"
+				, "name": "Cheese"
+				, "description": "6"
+				, "price": "10"} ) );          
+			this.add( new client.Models.MenuItemModel( { "category": "Bar"
+				, "name": "Mochitto"
+				, "description": "7"
+				, "price": "3"}));
+            this.add( new client.Models.MenuItemModel( { "category": "Bar"
+				, "name": "Green Mexican"
+				,"description": "8"
+				, "price": "5"}));
+            this.add( new client.Models.MenuItemModel( { "category": "Bar"
+				, "name": "B-52"
+				, "description": "9"
+				, "price": "3"})); 
+        }, 
+
+        model: client.Models.MenuItemModel,
+ //       url: 'menu_items.json'
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.MenuItemCollectionView = Backbone.View.extend({
+        initialize: function() {
+            this.collection = new client.Collections.MenuItemCollection();
+            Backbone.Mediator.subscribeOnce ( 'categories-ready', this.render, this );
+            this.elements = {};
+//			console.log(this.collection);
+        },
+		
+		
+        addItem: function( item ) {
+	//	console.log(item);
+            var view = new client.Views.MenuItemView( { model: item } ),
+                key = item.get( 'category' ),
+                element = this.elements[ key ];
+			if(element){
+				element.append( view.render().el );
+			} else {
+				console.log( "The category: " + item.get( 'category') + "didn't create" );			
+			}
+
+        },
+
+
+        render: function( elements ) {
+//		console.log(elements);
+            this.elements = elements;
+            this.collection.each( this.addItem, this );
+        }
+    });
+
+
+})();
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function (models) {
+    'use strict';
+
+    models.CategoryModel = Backbone.Model.extend({
+    
+        defaults: {
+            category_name: 'noname'
+        },
+        view: undefined
+    });
+
+})(client.Models);
+
+/*global client, Backbone*/
+
+client.Collections = client.Collections || {};
+
+(function (collections, models) {
+    'use strict';
+
+    collections.CategoryCollection = Backbone.Collection.extend({
+
+        model: models.CategoryModel,
+        url: '/categories',
+
+        initialize: function() {
+		    this.add(new models.CategoryModel({'category_name': 'Drinks'}));
+            this.add(new models.CategoryModel({'category_name': 'Desserts'}));
+            this.add(new models.CategoryModel({'category_name': 'Entrees'}));
+            this.add(new models.CategoryModel({'category_name': 'Sides'}));
+            this.add(new models.CategoryModel({'category_name': 'Bar'}));
+//            this.fetch({reset: true});
+        }
+
+    });
+
+})(client.Collections, client.Models);
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+
+(function (views) {
+    'use strict';
+
+    views.CategoryView = Backbone.View.extend({
+
+        model:undefined,
+        tagName: 'div',
+        className: "category-container",        
+        template: JST['app/scripts/templates/CategoryView.ejs'],
+        
+        render: function() {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+
+    });
+
+})(client.Views);
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+
+(function (views, collections, mediator) {
+    'use strict';
+
+    views.CategoryCollectionView = Backbone.View.extend({
+
+        cattegories_obj: {},
+        el: $('#menu-container'),
+
+        initialize: function() {
+            this.$el = $('#menu-container');
+
+            this.collection = new collections.CategoryCollection();
+
+//            this.collection.on('reset', this.afterLoad, this);
+			this.afterLoad();
+        },
+        afterLoad: function () {
+            this.render();
+            mediator.pub('categories-ready', this.cattegories_obj);
+
+        },
+        render: function() {
+            this.$el.html("Menu");
+            this.collection.each(this.addOneCategory, this);
+        },
+        addOneCategory: function(model) {
+
+            var view = new client.Views.CategoryView({
+                'model': model
+            });
+            this.cattegories_obj[model.get('category_name')] = view.$el;			
+            this.$el.append(view.render().$el);
+        }
+
+    });
+
+})(client.Views, client.Collections, Backbone.Mediator);
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function () {
+    'use strict';
+
+    client.Models.TableModel = Backbone.Model.extend({
+
+        defaults: {
+                    orderid: "none",
+                    state: "vacant",    //occupied
+                    activity: "false",
+                    capacity: "n/a",
+                    waiter: "n/a"
+                }
+
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Collections = client.Collections || {};
+
+(function () {
+    'use strict';
+
+    client.Collections.TableCollection = Backbone.Collection.extend({
+
+        model: client.Models.TableModel,
+        url: "tables.json"
+
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.TableModelView = Backbone.View.extend({
+    
+        initialize: function() {
+                        this.model.on("change", this.render, this);
+                        Backbone.Mediator.sub("order-create", this.tableOccupy, this);
+                        Backbone.Mediator.sub("order-close", this.tableRelease, this);
+                        Backbone.Mediator.sub("changeactivity", this.tableActivity, this);
+                    },
+                                 
+        className:  function() {
+                        if (this.model.get("state") === "vacant") {
+                            return "table_vacant_unactive";
+                        } else {
+                            return "table_occupied_unactive";
+                        };
+                    },
+
+        template: JST['app/scripts/templates/TableModelView.ejs'],
+
+        events: {
+                    "click": "tableChoose"
+                },
+
+
+        tableActivity:  function(id) {
+                            if(this.model.id != id) {
+                                if(this.el.className === "table_vacant_active") {
+                                    this.el.className = "table_vacant_unactive";
+                                }
+                                if(this.el.className === "table_occupied_active") {
+                                    this.el.className = "table_occupied_unactive";
+                                }
+                                this.model.set("activity", "false");
+                            }
+                        },
+        
+        tableChoose: function(event) {
+                        var orderidinfo;   
+                        
+                        if (this.model.get("orderid") === "none") {
+                            orderidinfo = {
+                                            "orderid": this.model.get("orderid"),
+                                            "isnew": true,
+                                            "tableid": this.model.get("id")
+                                        };
+                        } else {
+                            orderidinfo = {
+                                            "orderid": Number(this.model.get("orderid")),
+                                            "isnew": false,
+                                            "tableid": this.model.get("id"),
+                                        };
+                        }
+                        
+                        Backbone.Mediator.pub("table-active", orderidinfo);
+                        Backbone.Mediator.pub("changeactivity", this.model.id);
+                        //console.log("Event 'table-active' published");    
+                        
+                        this.model.set("activity", "true");
+                        if(this.el.className === "table_vacant_unactive") {
+                            this.el.className = "table_vacant_active";
+                        } 
+                        if(this.el.className === "table_occupied_unactive") {
+                            this.el.className = "table_occupied_active";
+                        }
+                                               
+                        event.stopPropagation();
+                    },
+
+        tableOccupy: function(ordergetid) {
+                        if (this.model.get("activity") === "true") {
+                            console.log(ordergetid);
+                            this.model.set({orderid: ordergetid, state: "occupied"});
+                            this.el.className = "table_occupied_active";
+                            this.model.url = "tables/" + this.model.id + ".json";
+                            this.model.save({silent: "true"});
+                        }
+                    },
+
+        tableRelease: function() {
+                        if (this.model.get("activity") === "true") {
+                            this.model.set({orderid: "none", state: "vacant", activity: "false"});
+                            this.el.className = "table_vacant_unactive";
+                            this.model.url = "tables/" + this.model.id + ".json";
+                            this.model.save({silent: "true"});
+                        }
+                    },
+
+        render: function(model) {
+                    this.$el.html(this.template(this.model.toJSON()));
+ 
+                    return this;	
+                }
+
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.TableCollectionView = Backbone.View.extend({
+        
+        initialize: function() {
+                        this.collection = new client.Collections.TableCollection();
+
+                        this.collection.fetch();
+                        this.collection.once("sync", this.render, this);                       
+                    },
+
+        render: function() {                  
+                    this.collection.each(this.rendermodel, this);
+                   
+                    Backbone.Mediator.pub("tables-rendered");
+                },
+
+        rendermodel: function(tablemodel) {
+                        var view = new client.Views.TableModelView({model: tablemodel});
+                        this.$el.append(view.render().el);
+                    }
+
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Routers = client.Routers || {};
+
+(function (routers, mediator) {
+    'use strict';
+
+    routers.TablesRouter = Backbone.Router.extend({
+     
+        initialize: function() {           
+            mediator.sub("table-active", this.changeUrl, this);
+        },
+       
+       
+        changeUrl: function(table) {          
+            this.navigate("tables/" + table.tableid
+                //, {trigger: true}
+            ); 
+
+            /*
+            this.navigate("table" + table.tableid
+                //, {trigger: true}
+            ); 
+            */
+          
+        },
+        
+        routes: {
+            "(/)tables/:number"        : "myTrigger"          
+        },
+        
+        myTrigger: function(number) {
+            var elem = $("#table-container").children()[number];
+                      
+            $(elem).trigger("click");
+        }
+            
+    });
+
+})(client.Routers, Backbone.Mediator);
+
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function (models) {
+    'use strict';
+
+    models.OrderModel = Backbone.Model.extend({
+
+        initialize: function() {
+            
+        },
+	
+    
+        defaults: {        
+            status: "opened"
+        },   
+    
+    
+        saveNew: function() {
+            this.url = "orders.json";        
+            this.save();           
+        },
+        
+      
+        existFetch: function(id) {  
+            this.url = "orders/"+id+".json"; 
+            this.fetch();
+        },
+    
+    
+        saveClosed: function() {  
+            this.url = "orders/"+this.id+".json";
+            this.save();        
+        }    
+
+    });
+
+})(client.Models);
+
+
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function (views, mediator) {
+    'use strict';
+
+        views.OrderView = Backbone.View.extend({
+            
+            initialize: function() {                               
+                this.$el.html(this.template());
+                
+                mediator.sub("table-active", this.universalShow, this);                
+            },
+
+            
+            events: {
+                "click #order_close": "close"
+            },
+            
+           
+            template: JST['app/scripts/templates/Order.ejs'],
+            
+            
+            universalShow: function(order) {
+               if (order.isnew) {
+                    this.newCreate();
+                } else {
+                    this.existRender(order);
+                };                
+            },
+
+            
+            newCreate: function() { 
+                this.model = new client.Models.OrderModel();                      
+                
+                this.$el.find("#order_items").css('visibility', 'visible');
+                this.$el.find("#order_close").css('visibility', 'hidden');
+                
+                this.newPub();                   
+            },
+
+            
+            newPub: function() {
+                var el = this.$el.find("#order_items"),
+                    id = "",                    
+                    hash = {
+                        "order_id": id,
+                        "elem": el,
+                        "is_new": true
+                    };
+                    
+                mediator.subscribeOnce("orderitem-add", this.orderSave, this);
+                mediator.pub("order-show", hash);            
+            },
+            
+            
+            showSyncModel: function(order) {  
+                this.$el.find("#order_close").css('visibility', 'visible');               
+            },
+
+            
+            existRender: function(order) {
+                var el = this.$el.find("#order_items"),
+                    hash;                    
+				
+                this.model = new client.Models.OrderModel();   
+                this.model.existFetch(order.orderid);
+                                
+                this.$el.find("#order_close").css('visibility', 'visible');
+                el.css('visibility', 'visible');                
+                
+                hash = {
+                    "order_id": order.orderid,
+                    "elem": el,
+                    "is_new": false
+                };
+                console.log(hash);
+                
+                this.model.once("sync", this.showSyncModel, this);
+                mediator.unsubscribe("orderitem-add", this.orderSave, this);
+                mediator.pub("order-show", hash);
+                
+            },
+
+            
+            close: function(event) {        
+                this.$el.find("#order_close").css('visibility', 'hidden');
+                this.$el.find("#order_items").css('visibility', 'hidden');    
+                
+                this.model.set({status: "closed"});
+                this.model.saveClosed();
+                
+                mediator.unsubscribe("orderitem-add", this.orderSave, this);
+                mediator.pub("order-close");
+            },
+
+            
+            orderSave: function() {
+                this.model.saveNew();
+                this.model.once("sync", this.successSaveNew, this);
+            },
+            
+            
+            successSaveNew:function() { 
+                var order_id = this.model.get("id"); 
+                
+                this.$el.find("#order_close").css('visibility', 'visible');
+        
+                mediator.pub("order-create", order_id);
+            }
+            
+        });
+
+})(client.Views, Backbone.Mediator);
+
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function () {
+    'use strict';
+
+    client.Models.OrderitemModel = Backbone.Model.extend({
+    	defaults: {
+            name: "N/A",
+            amount: 1,
+            price: 0,
+            status: "Not ready",
+            order_id: 0
+        },
+        url : "order_items.json",
+        saveModel: function(amount_value) {
+                this.url = "order_items/" + this.id +".json";       
+/*?*/           this.save(/*{amount: amount_value}, {patch: true}*/);
+        }
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Collections = client.Collections || {};
+
+(function () {
+    'use strict';
+
+    client.Collections.OrderitemsCollection = Backbone.Collection.extend({
+
+        model: client.Models.OrderitemModel,
+        url: "order_items.json",
+        order_id: 0,
+        sum: 0,
+        initialize: function() {
+            this.fetch({reset: true});
+            Backbone.Mediator.subscribeOnce("order-create", this.changeOrderId, this);
+        },
+
+        changeOrderId: function(order_id) {
+            this.order_id = order_id;
+            this.each(this.setOrderId, this);
+        },
+        setOrderId: function(item) {
+            item.set('order_id', this.order_id);
+            item.url = "order_items/" + item.id +".json";                
+            item.save({silent: true});
+        }
+
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    var preloader_block = $('#loader_block');
+
+    client.Views.OrderitemView = Backbone.View.extend({
+        id: "order_item",
+        className: "order_item",
+        template: JST['app/scripts/templates/OrderItem.ejs'],
+
+        initialize: function() {
+            
+            //this.model.on("change", this.saveAmount, this);
+            this.model.on("destroy", this.removeView, this);
+            Backbone.Mediator.sub('matching-items', this.incrMatchingAmount, this);
+        },
+
+        events: {
+                "click #add_amount": "incrAmount",
+                "click #remove_amount": "decrAmount"
+        },
+
+        render: function() {
+            var price = this.model.get('price'),
+                amount = this.model.get('amount'),
+                difference_price = price * amount;
+
+            this.$el.html(this.template(this.model.toJSON()));
+
+            this.publisher("add", difference_price);
+
+            return this;
+        },
+
+        publisher: function(operation, difference) {
+             Backbone.Mediator.pub("amount", {
+                                            "operation": operation,
+                                            "difference": difference
+                                            }
+            );
+        },
+
+        incrAmount: function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            var amount = this.model.get('amount'),
+                price = this.model.get('price'),
+                decr_block = this.$el.find('#remove_amount');
+                
+            amount++;
+
+            this.saveAmount(amount);
+            this.publisher("add", price);
+
+            decr_block.removeClass('close_item');
+        },
+        
+        incrMatchingAmount: function(changing_model) {
+            var amount = changing_model.get('amount'),
+                price = changing_model.get('price'),
+                decr_block = this.$el.find('#remove_amount');
+                
+            amount++;
+
+            this.saveAmount(amount, changing_model);
+            this.publisher("add", price);
+            
+            decr_block.removeClass('close_item');
+            this.$el.find('#order_item_amount').html(this.model.get('amount'));
+        },
+        decrAmount: function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var amount = this.model.get('amount'),
+                price = this.model.get('price'),
+                decr_block = this.$el.find('#remove_amount');
+                
+            amount--;
+
+            this.saveAmount(amount);
+
+            if (amount > 0) {
+                    this.publisher("sub", price);
+            } else if (amount === 0) {
+                    this.publisher("sub", price);
+                    decr_block.addClass('close_item');
+            } else if (amount < 0){
+                    preloader_block.show();
+                    console.log('This model:');
+                    console.dir(this.model);
+                    this.model.url = "order_items/" + this.model.id +".json";
+                    this.model.destroy(/*{wait: true}*/);
+            }
+        },
+
+        saveAmount: function(amount_value, model) {
+            preloader_block.show();
+
+            if (!model) {
+                this.model.set('amount', amount_value);             
+                this.model.saveModel(amount_value);
+                this.$el.find('#order_item_amount').html(this.model.get('amount'));
+            } else {
+                model.set('amount', amount_value);              
+                model.saveModel(amount_value);
+            }
+            
+            preloader_block.hide();
+        },
+
+        removeView: function() {
+            this.remove();
+            console.log('Was destroy');
+            preloader_block.hide();
+        }
+
+    });
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    var preloader_block = $('#loader_block');
+
+    client.Views.OrderitemcollectionView = Backbone.View.extend({
+
+        template: JST['app/scripts/templates/OrderItemCollection.ejs'],
+
+        initialize: function() {
+            //this.preloader_block = this.$el.find('#loader_block');
+            preloader_block.show();
+
+            this.collection = new client.Collections.OrderitemsCollection();
+
+            this.collection.on('add', this.addItemToDB, this);
+            this.collection.on("reset", this.renderCollectionFromDB, this); // No reset in v. >= 1.0!!!
+
+            this.renderSum();
+            preloader_block.hide();
+            
+            Backbone.Mediator.sub("amount", this.changeSum, this);
+            Backbone.Mediator.sub("orderitem-add", this.addDataToModel, this);
+
+            this.$el.addClass('for_order_items');
+        },
+
+        renderSum: function() {
+            this.$el.html(this.template({sum: this.collection.sum}));
+        },
+
+        addDataToModel: function(item_data) {
+            var checking_model = this.collection.findWhere({'name': item_data.name});
+
+            if (checking_model) {
+                Backbone.Mediator.pub('matching-items', checking_model);
+            } else {
+                this.collection.add(new client.Models.OrderitemModel({
+                    "name": item_data.name,
+                    "price": item_data.price,
+                    "order_id": this.collection.order_id
+                    }));
+                    //Use this.changesum(data)
+                    /*Backbone.Mediator.pub("amount", {
+                                        "operation": "add",
+                                        "difference": item_data.price
+                                        }
+                    );*/
+            }
+        },
+
+        changeSum: function(changing_data) {
+            var sum = this.collection.sum,
+                changing = {
+                            "add": function() {
+                                        sum += Number(changing_data.difference);
+                                    },
+                            "sub": function() {
+                                        sum -= Number(changing_data.difference);
+                                    }
+                };
+
+            changing[changing_data.operation]();
+            this.collection.sum = sum;
+
+            sum = sum.toFixed(2);
+            this.$el.find("#sum").html(String(sum));
+        },
+
+        //Work with DB
+        addItemToDB: function(item) {
+            var view = new client.Views.OrderitemView({model: item,
+                                                           //sub_el: this.preloader_block,
+                                             });
+            
+            console.log('Begin adding item TO DB...');
+            console.log(this.collection);
+            preloader_block.show();
+            
+/*Use event instead of save-callbacks!*/
+            item.save({silent: true},
+                {success: function() {
+                            preloader_block.hide();
+                            console.log('Finish adding item TO DB!');
+                            //elem.prepend(view.render().el);
+                        }
+                } 
+            );
+            this.$el.prepend(view.render().el);
+        },
+        
+        addItemsFromDB: function(item) {
+            if (item.get('order_id') === this.collection.order_id) {
+                var view = new client.Views.OrderitemView({model: item
+                                                  });
+                this.$el.prepend(view.render().el);
+            }
+        },
+        
+        renderCollectionFromDB: function() {
+            var save_block_sum = this.$el.find('#block_sum');
+            
+//Use template
+            save_block_sum.find('#sum').html('');
+            this.$el.html('');
+            this.$el.append(save_block_sum);
+            
+            console.log('Begin adding items FROM DB...');
+            this.collection.each(this.addItemsFromDB, this);
+            console.log(this.collection);
+            console.log('Finish adding items FROM DB!');
+        }
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Models = client.Models || {};
+
+(function () {
+    'use strict';
+
+    client.Models.MenuItemDescModel = Backbone.Model.extend({
+	       defaults: {
+		    name: 'N/A',
+            description : 'N/A',
+			uri_image: 'N/A'
+        }
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.MenuItemDescView = Backbone.View.extend({
+
+        template: JST['app/scripts/templates/MenuItemDesc.ejs'],
+        events: {
+            'click': 'del'
+        },
+
+        del: function(){
+            this.$el.remove();
+        },
+
+        render: function() {
+            this.$el.html( this.template( this.model.toJSON() ) );
+            return this;
+        }
+
+    });
+
+})();
+
+/*global client, Backbone*/
+
+client.Collections = client.Collections || {};
+
+(function () {
+    'use strict';
+
+    client.Collections.MenuItemDescCollection = Backbone.Collection.extend({
+       initialize: function() {		
+		//            this.fetch();
+
+            this.add( new client.Models.MenuItemDescModel( { "id": "1"
+				,"name": "Capuccino"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs." 
+				, "uri_image": "images/1.jpg"} ) );
+            this.add( new client.Models.MenuItemDescModel( { "id": "2"
+				,"name": "Ice Cream"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				,  "uri_image": "images/2.jpg"} ) );
+            this.add( new client.Models.MenuItemDescModel( { "id": "3"
+				, "name": "Cream Pie"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				,  "uri_image": "images/3.jpg"} ) );
+            this.add( new client.Models.MenuItemDescModel( { "id": "4"
+				,  "name": "Soup"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/4.jpg"} ) );
+            this.add( new client.Models.MenuItemDescModel( { "id": "5"
+				, "name": "Esspreso"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/5.jpg"} ) );
+            this.add( new client.Models.MenuItemDescModel( { "id": "6"
+				,  "name": "Cheese"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/6.jpg"} ) );          
+			this.add( new client.Models.MenuItemDescModel( { "id": "7"
+				,  "name": "Mochitto"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/6.jpg"}));
+            this.add( new client.Models.MenuItemDescModel( { "id": "8"
+				,  "name": "Green Mexican"
+				,"description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/7.jpg"}));
+            this.add( new client.Models.MenuItemDescModel( { "id": "9"
+				,  "name": "B-52"
+				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "uri_image": "images/8.jpg3"})); 
+        }, 
+		
+
+        model: client.Models.MenuItemDescModel//,
+ //       url: 'menu_item_descs.json'
+        });
+
+})();
+
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.MenuItemDescCollView = Backbone.View.extend({
+	    initialize: function() {
+//	this.element = $('#test');
+        this.collection = new client.Collections.MenuItemDescCollection();
+	    Backbone.Mediator.sub ( 'addMenuItemDesc', this.render /*createDesc*/, this );
+		},
+			
+		element: {},
+        id: 0,
+
+			
+			render: function( menu_item ) {
+				console.log( menu_item );
+				this.element = $(menu_item.el);
+                this.id = menu_item.id;
+				this.collection.each( this.checkName, this );
+			},
+
+            checkName: function(model){
+                if(model.get('id')== this.id){
+                    this.addItem(model);
+                } else {
+                    console.log('Description doesn"t create');
+                }
+    },
+			
+			
+			addItem: function( desc ) {
+                console.log(this.element);
+				var view = new client.Views.MenuItemDescView( { model: desc } );
+				this.element.append( view.render().$el );
+        }
+
+/*		
+        createDesc: function( menu_item ) { //cantains name and el. of menu_item
+            var the_model = this.collection.where( menu_item.name );
+			console.log(the_model);
+			if ( the_model != [] ) {
+				var view = new client.Views.MenuItemDescView( { model: this.collection[0] } );
+				menu_item.$el.append( view.render().el );				
+			} else {
+				console.log("description for the menu_item is not found!");
+			}
+        }*/
+    });
+})();

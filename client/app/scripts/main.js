@@ -12,8 +12,16 @@ window.client = {
         var menu_item = new client.Views.MenuItemCollectionView(),
 			description = new client.Views.MenuItemDescCollView(),        
             categories = new client.Views.CategoryCollectionView(),        
+            
             orderview = new client.Views.OrderView({
-=======
+                el: $("#order-container"),
+                model: new client.Models.OrderModel()
+            }),        
+        
+            tables = new client.Views.TableCollectionView({
+                el: $("#table-container")
+            });
+
         console.log('Hello from Backbone!');
   /*      
         var menu_item = new client.Views.MenuItemCollectionView(), 

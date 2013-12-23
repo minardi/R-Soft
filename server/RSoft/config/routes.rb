@@ -17,6 +17,11 @@ RSoft::Application.routes.draw do
   root "app#main"
   
   get "/table(:id)", to: "app#main"
+  
+  #get "/table/:id", to: "app#main"
+  
+  #get "/*splat", to: "app#page404"    ????????
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

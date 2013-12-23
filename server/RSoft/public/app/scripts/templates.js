@@ -1,44 +1,12 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/scripts/templates/Category.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class=\'category-name\'>\r\n\t' +
-((__t = ( category_name )) == null ? '' : __t) +
-'\r\n</div>\r\n\r\n<div class=\'category-content\'>\r\n</div>\r\n\r\n';
-
-}
-return __p
-};
-
-this["JST"]["app/scripts/templates/CategoryCollection.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<p>Your content here.</p>\r\n\r\n';
-
-}
-return __p
-};
-
 this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'category-name\'>\r\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\r\n</div>\r\n<div class=\'category-content\'></div>';
-
-}
-return __p
-};
-
-this["JST"]["app/scripts/templates/CategoryViewCollection.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<p>Your content here.</p>\r\n\r\n';
+'\r\n</div>';
 
 }
 return __p
@@ -48,13 +16,27 @@ this["JST"]["app/scripts/templates/MenuItem.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = "menu_item_tpl">\r\n\t<div class = "menu_item_name">' +
+__p += '<div class = "menu_item_tpl">\r\n\t<div class = "scale_cont">\r\n\t\t<div class = "menu_item_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\r\n\t<div class = "menu_item_description">' +
-((__t = ( description )) == null ? '' : __t) +
-'</div>\r\n\t<div class = "menu_item_price">' +
+'</div>\r\n\t\t<div class = "menu_item_price">' +
 ((__t = ( price )) == null ? '' : __t) +
-' $</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
+' $</div>\r\n\t\t</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/MenuItemDesc.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class = \'desc\' >\r\n\t<div class = "wrap">\r\n\t\t<div class = "desc_name">' +
+((__t = ( name )) == null ? '' : __t) +
+'</div>\r\n\t\t<div class = "desc_description">' +
+((__t = ( description )) == null ? '' : __t) +
+'</div>\r\n\t</div>\r\n\t<div class = "desc_pic"><img src="images/' +
+((__t = ( id )) == null ? '' : __t) +
+'.jpg"></div>\r\n</div>\r\n\r\n';
 
 }
 return __p

@@ -13,9 +13,16 @@ client.Routers = client.Routers || {};
        
        
         changeUrl: function(table) {          
-          this.navigate("tables/" + table.tableid
-          //, {trigger: true}
-          );         
+            this.navigate("tables/" + table.tableid
+                //, {trigger: true}
+            ); 
+
+            /*
+            this.navigate("table" + table.tableid
+                //, {trigger: true}
+            ); 
+            */
+          
         },
         
         routes: {
