@@ -9,7 +9,8 @@ client.Views = client.Views || {};
 
         template: JST['app/scripts/templates/MenuItem.ejs'],
         events: {
-            'click .add_to_order': 'addMediatorPub'
+            'click .add_to_order': 'sendMenuItemToOrder',
+			'click .menu_item_name': 'addDescView'
         },
 
         render: function() {
@@ -17,9 +18,16 @@ client.Views = client.Views || {};
             return this;
         },
 
-        addMediatorPub : function() {
-            Backbone.Mediator.pub( 'addOrderItem', { 'name': this.model.get('name'), 'price': this.model.get('price') } );
-        }
+        sendMenuItemToOrder : function() {
+			console.log( this.model.get( 'name' ) + ' sent to Order' );
+            Backbone.Mediator.pub( 'addOrderItem', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
+        },
+		
+		addDescView: function(){ //sent mediator dlya descr
+//			console.log( 'name: ' + this.model.get( 'name' ) );
+//			console.log( this.el );
+			Backbone.Mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
+		}
 
     });
 

@@ -9,9 +9,11 @@ window.client = {
         'use strict';
         console.log('Hello from Backbone!');
         
-        var menu_item = new client.Views.MenuItemCollectionView(),        
-            categories = new client.Views.CategoryCollectionView(),        
-            orderview = new client.Views.OrderView({
+        var menu_item = new client.Views.MenuItemCollectionView(), 
+			description = new client.Views.MenuItemDescCollView(),		
+            categories = new client.Views.CategoryCollectionView();
+     
+            /*orderview = new client.Views.OrderView({
                 el: $("#order-container"),
                 model: new client.Models.OrderModel()
             }),
@@ -26,7 +28,7 @@ window.client = {
                 go_items.collection.order_id = data.order_id;
             }
         }, this);
-
+*/
     }
 };
 

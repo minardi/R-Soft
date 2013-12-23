@@ -16,7 +16,8 @@ client.Views = client.Views || {};
 
             this.collection = new collections.CategoryCollection();
 
-            this.collection.on('reset', this.afterLoad, this);
+//            this.collection.on('reset', this.afterLoad, this);
+			this.afterLoad();
         },
         afterLoad: function () {
             this.render();
@@ -32,7 +33,7 @@ client.Views = client.Views || {};
             var view = new client.Views.CategoryView({
                 'model': model
             });
-            this.cattegories_obj[model.get('category_name')] = view.$el;
+            this.cattegories_obj[model.get('category_name')] = view.$el;			
             this.$el.append(view.render().$el);
         }
 
