@@ -1,0 +1,15 @@
+.desc{
+	position :relative;
+	background-color: #dcdcdc;
+    border-style: solid;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+	border-width: 2px;
+	height: 450px;
+	width:394px;
+}
+.desc_pic{}
+.desc_name{}
+.desc_description{}
