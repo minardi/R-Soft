@@ -21,24 +21,7 @@ window.client = {
             tables = new client.Views.TableCollectionView({
                 el: $("#table-container")
             });
-
-        console.log('Hello from Backbone!');
-  /*      
-        var menu_item = new client.Views.MenuItemCollectionView(), 
-			description = new client.Views.MenuItemDescCollView(),		
-            categories = new client.Views.CategoryCollectionView();
-     
-            orderview = new client.Views.OrderView({
->>>>>>> a812169ed4fde0795de689c26e9d8309bc627d73
-                el: $("#order-container"),
-                model: new client.Models.OrderModel()
-            }),        
-        
-            tables = new client.Views.TableCollectionView({
-                el: $("#table-container")
-            });
-    */           
-        
+       
         Backbone.Mediator.sub('order-show', function(data) {
             var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
             if (!isNaN(data.order_id)) {

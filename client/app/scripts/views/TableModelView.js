@@ -54,7 +54,7 @@ client.Views = client.Views || {};
                             orderidinfo = {
                                             "orderid": Number(this.model.get("orderid")),
                                             "isnew": false,
-                                            "tableid": this.model.get("id"),
+                                            "tableid": Number(this.model.get("id"))
                                         };
                         }
                         

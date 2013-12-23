@@ -21,24 +21,7 @@ window.client = {
             tables = new client.Views.TableCollectionView({
                 el: $("#table-container")
             });
-
-        console.log('Hello from Backbone!');
-  /*      
-        var menu_item = new client.Views.MenuItemCollectionView(), 
-			description = new client.Views.MenuItemDescCollView(),		
-            categories = new client.Views.CategoryCollectionView();
-     
-            orderview = new client.Views.OrderView({
->>>>>>> a812169ed4fde0795de689c26e9d8309bc627d73
-                el: $("#order-container"),
-                model: new client.Models.OrderModel()
-            }),        
-        
-            tables = new client.Views.TableCollectionView({
-                el: $("#table-container")
-            });
-    */           
-        
+       
         Backbone.Mediator.sub('order-show', function(data) {
             var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
             if (!isNaN(data.order_id)) {
@@ -516,7 +499,7 @@ client.Views = client.Views || {};
                             orderidinfo = {
                                             "orderid": Number(this.model.get("orderid")),
                                             "isnew": false,
-                                            "tableid": this.model.get("id"),
+                                            "tableid": Number(this.model.get("id"))
                                         };
                         }
                         
@@ -610,7 +593,7 @@ client.Routers = client.Routers || {};
        
        
         changeUrl: function(table) {          
-            this.navigate("tables/" + table.tableid
+            this.navigate("table/" + table.tableid
                 //, {trigger: true}
             ); 
 
@@ -623,7 +606,7 @@ client.Routers = client.Routers || {};
         },
         
         routes: {
-            "(/)tables/:number"        : "myTrigger"          
+            "(/)table/:number" : "myTrigger"          
         },
         
         myTrigger: function(number) {
@@ -723,12 +706,10 @@ client.Views = client.Views || {};
 
             
             newPub: function() {
-                var el = this.$el.find("#order_items"),
-                    id = "",                    
-                    hash = {
-                        "order_id": id,
-                        "elem": el,
-                        "is_new": true
+                var el = this.$el.find("#order_items"),                                        
+                    hash = {                        
+                        elem: el,
+                        is_new: true
                     };
                     
                 mediator.subscribeOnce("orderitem-add", this.orderSave, this);
@@ -752,9 +733,9 @@ client.Views = client.Views || {};
                 el.css('visibility', 'visible');                
                 
                 hash = {
-                    "order_id": order.orderid,
-                    "elem": el,
-                    "is_new": false
+                    order_id: order.orderid,
+                    elem: el,
+                    is_new: false
                 };
                 console.log(hash);
                 

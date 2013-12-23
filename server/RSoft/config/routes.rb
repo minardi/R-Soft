@@ -1,6 +1,6 @@
 
 RSoft::Application.routes.draw do    
-  resources :menu_items
+  resources :menu_items    
   
   resources :tables
 
@@ -16,9 +16,8 @@ RSoft::Application.routes.draw do
   
   root "app#main"
   
-  get "/table(:id)", to: "app#main"
-  
-  #get "/table/:id", to: "app#main"
+  get "/table/:id", to: "app#main"
+
   
   #get "/*splat", to: "app#page404"    ????????
   

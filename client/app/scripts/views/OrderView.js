@@ -43,12 +43,10 @@ client.Views = client.Views || {};
 
             
             newPub: function() {
-                var el = this.$el.find("#order_items"),
-                    id = "",                    
-                    hash = {
-                        "order_id": id,
-                        "elem": el,
-                        "is_new": true
+                var el = this.$el.find("#order_items"),                                        
+                    hash = {                        
+                        elem: el,
+                        is_new: true
                     };
                     
                 mediator.subscribeOnce("orderitem-add", this.orderSave, this);
@@ -72,9 +70,9 @@ client.Views = client.Views || {};
                 el.css('visibility', 'visible');                
                 
                 hash = {
-                    "order_id": order.orderid,
-                    "elem": el,
-                    "is_new": false
+                    order_id: order.orderid,
+                    elem: el,
+                    is_new: false
                 };
                 console.log(hash);
                 
