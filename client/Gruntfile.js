@@ -331,11 +331,11 @@ module.exports = function (grunt) {
         'jst',
         'compass:dist',
         'useminPrepare',
-        'imagemin',
+ //       'imagemin',
         'htmlmin',
         'concat',
         'cssmin',
-        'uglify',
+  //      'uglify',
         'copy',
         'rev',
         'usemin'

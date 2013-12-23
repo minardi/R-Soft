@@ -11,7 +11,12 @@ client.Collections = client.Collections || {};
         url: '/categories',
 
         initialize: function() {
-            this.fetch({reset: true});
+		    this.add(new models.CategoryModel({'category_name': 'Drinks'}));
+            this.add(new models.CategoryModel({'category_name': 'Desserts'}));
+            this.add(new models.CategoryModel({'category_name': 'Entrees'}));
+            this.add(new models.CategoryModel({'category_name': 'Sides'}));
+            this.add(new models.CategoryModel({'category_name': 'Bar'}));
+//            this.fetch({reset: true});
         }
 
     });

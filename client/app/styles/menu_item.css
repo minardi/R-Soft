@@ -52,33 +52,29 @@ C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `<main>'
   
   
 .menu_item_tpl{
-  position: relative;
-  padding-left: 4;
-  padding-right: 4;
   background-color: #ffffff;
   text-align: justify;
   vertical-align: middle;
 }
 
-.menu_item_name{
-  width: 30%;
-  display: inline-block;
+.wrap{
+	display: inline-block;
 }
 
-.menu_item_description{
-  width: 30%;
+.add_to_order{
+	width:32px;
+	display: inline-block;
+}
+
+
+.menu_item_name{
   display: inline-block;
+  width: 55%;
 }
 
 .menu_item_price{
-  width: 10%;
   display: inline-block;
-  right: 32px;
-}
-.add_to_order{
-  width: 32px;
-  display: inline-block;
-  right: 1px;  
+  width: 25%;
 }
 
 

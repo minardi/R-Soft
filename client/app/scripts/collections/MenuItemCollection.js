@@ -7,48 +7,48 @@ client.Collections = client.Collections || {};
 
     client.Collections.MenuItemCollection = Backbone.Collection.extend({
         initialize: function() {
-            this.fetch();
-/*
+//            this.fetch( /*{reset: true}*/ );
+
             this.add( new client.Models.MenuItemModel( { "category": "Drinks"
 				, "name": "Capuccino"
-				, "description": "desc" 
+				, "description": "1" 
 				, "price": "5"} ) );
             this.add( new client.Models.MenuItemModel( { "category": "Desserts"
 				, "name": "Ice Cream"
-				, "description": "desc"
+				, "description": "2"
 				,  "price": "4"} ) );
             this.add( new client.Models.MenuItemModel( { "category": "Desserts"
 				, "name": "Cream Pie"
-				, "description": "desc"
+				, "description": "3"
 				,  "price": "4"} ) );
             this.add( new client.Models.MenuItemModel( { "category": "Entrees"
 				, "name": "Soup"
-				, "description": "desc"
+				, "description": "4"
 				, "price": "10"} ));
             this.add( new client.Models.MenuItemModel( { "category": "Drinks"
 				, "name": "Esspreso"
-				, "description": "desc"
+				, "description": "5"
 				, "price": "5"} ) );
             this.add( new client.Models.MenuItemModel( { "category": "Sides"
 				, "name": "Cheese"
-				, "description": "desc"
+				, "description": "6"
 				, "price": "10"} ) );          
 			this.add( new client.Models.MenuItemModel( { "category": "Bar"
 				, "name": "Mochitto"
-				, "description": "desc"
+				, "description": "7"
 				, "price": "3"}));
             this.add( new client.Models.MenuItemModel( { "category": "Bar"
 				, "name": "Green Mexican"
-				,"description": "desc"
+				,"description": "8"
 				, "price": "5"}));
             this.add( new client.Models.MenuItemModel( { "category": "Bar"
 				, "name": "B-52"
-				, "description": "desc"
-				, "price": "3"})); */
+				, "description": "9"
+				, "price": "3"})); 
         }, 
 
         model: client.Models.MenuItemModel,
-        url: 'menu_items.json'
+ //       url: 'menu_items.json'
     });
 
 })();

@@ -17,10 +17,11 @@
         <link rel="stylesheet" href="styles/order_style.css">
         <link rel="stylesheet" href="styles/category_style.css">
         <link rel="stylesheet" href="styles/orderitems_style.css">
-        <link rel="stylesheet" href="styles/table_style.css">        
+        <link rel="stylesheet" href="styles/table_style.css">  
+		<link rel="stylesheet" href="styles/menu_item_desc.css">  		
         <script src="bower_components/modernizr/modernizr.js"></script>
         
-                <!-- build:js scripts/vendor.js -->
+        <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/jquery.js"></script>  
 		<script src="bower_components/jquery/csrf-token.js"></script>  
         <script src="bower_components/underscore/underscore.js"></script>
@@ -71,7 +72,14 @@
         <script src="scripts/models/OrderItemModel.js"></script>
         <script src="scripts/collections/OrderItemCollection.js"></script>
         <script src="scripts/views/OrderItemView.js"></script>
-        <script src="scripts/views/OrderItemCollectionView.js"></script>       
+        <script src="scripts/views/OrderItemCollectionView.js"></script>
+     
+        <!-- DescView item -->		
+        <script src="scripts/models/MenuItemDesc.js"></script>
+        <script src="scripts/views/MenuItemDesc.js"></script>
+        <script src="scripts/collections/MenuItemDescCollection.js"></script>
+        <script src="scripts/views/MenuItemDescCollView.js"></script>
+
         <!-- endbuild -->
     </head>
     <body>
@@ -83,7 +91,6 @@
             </div>
             <div id="menu-container">Menu</div>
             <div id="order-container">Order</div>
-        </div>       
-      
+        </div>          
 </body>
 </html>
