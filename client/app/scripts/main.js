@@ -20,7 +20,10 @@ window.client = {
         
             tables = new client.Views.TableCollectionView({
                 el: $("#table-container")
-            });
+            }),
+
+            order_items = new client.Views.OrderitemcollectionView();
+
 
         console.log('Hello from Backbone!');
   /*      
@@ -39,12 +42,12 @@ window.client = {
             });
     */           
         
-        Backbone.Mediator.sub('order-show', function(data) {
-            var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
-            if (!isNaN(data.order_id)) {
-                go_items.collection.order_id = data.order_id;
+        /*Backbone.Mediator.sub('order-show', function(order_data) {
+            var go_items = new client.Views.OrderitemcollectionView({el: order_data.elem}, {is_new: order_data.is_new});
+            if (!order_data.is_new) {
+                go_items.collection.order_id = order_data.order_id;
             }
-        }, this);
+        }, this);*/
 
         
         Backbone.Mediator.sub("tables-rendered", function() {

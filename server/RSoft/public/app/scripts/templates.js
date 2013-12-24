@@ -4,9 +4,9 @@ this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'category-name\'>\r\n\t' +
+__p += '<div class=\'category-name\'>\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\r\n</div>';
+'\n</div>';
 
 }
 return __p
@@ -16,11 +16,11 @@ this["JST"]["app/scripts/templates/MenuItem.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = "menu_item_tpl">\r\n\t<div class = "scale_cont">\r\n\t\t<div class = "menu_item_name">' +
+__p += '<div class = "menu_item_tpl">\n\t<div class = "scale_cont">\n\t\t<div class = "menu_item_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\r\n\t\t<div class = "menu_item_price">' +
+'</div>\n\t\t<div class = "menu_item_price">' +
 ((__t = ( price )) == null ? '' : __t) +
-' $</div>\r\n\t\t</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
+' $</div>\n\t\t</div>\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\n</div>\n\n\n';
 
 }
 return __p
@@ -30,13 +30,13 @@ this["JST"]["app/scripts/templates/MenuItemDesc.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = \'desc\' >\r\n\t<div class = "wrap">\r\n\t\t<div class = "desc_name">' +
+__p += '<div class = \'desc\' >\n\t<div class = "wrap">\n\t\t<div class = "desc_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\r\n\t\t<div class = "desc_description">' +
+'</div>\n\t\t<div class = "desc_description">' +
 ((__t = ( description )) == null ? '' : __t) +
-'</div>\r\n\t</div>\r\n\t<div class = "desc_pic"><img src="images/' +
+'</div>\n\t</div>\n\t<div class = "desc_pic"><img src="images/' +
 ((__t = ( id )) == null ? '' : __t) +
-'.jpg"></div>\r\n</div>\r\n\r\n';
+'.jpg"></div>\n</div>\n\n';
 
 }
 return __p
@@ -46,7 +46,7 @@ this["JST"]["app/scripts/templates/Order.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';
+__p += '\n    <p id="order_head"> Order</p>\n\n    <div id="order_items" class="order_items">\n    </div>\n    \n    <input type = "button" id = "order_close" value = "Close order">  </input>\n';
 
 }
 return __p
@@ -58,11 +58,11 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="order_item_name">' +
 ((__t = (name)) == null ? '' : __t) +
-'</div>\r\n<div id="add_amount" class="add_amount"><br/></div>\r\n<div id="order_item_amount" class="order_item_amount">' +
+'</div>\n<div id="add_amount" class="add_amount"><br/></div>\n<div id="order_item_amount" class="order_item_amount">' +
 ((__t = (amount)) == null ? '' : __t) +
-'</div>\r\n<div id="remove_amount" class="remove_amount"><br/></div>\r\n<div class="order_item_price">' +
+'</div>\n<div id="remove_amount" class="remove_amount"><br/></div>\n<div class="order_item_price">' +
 ((__t = (price)) == null ? '' : __t) +
-'</div>\r\n<span class="order_item_status">' +
+'</div>\n<span class="order_item_status">' +
 ((__t = (status)) == null ? '' : __t) +
 '</span>';
 
@@ -74,9 +74,9 @@ this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="block_sum" class="sum">\r\n  \tOrder amount: <span id="sum">' +
+__p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
-'</span>\r\n</div>\r\n<div id="loader_block" class="preloader_block">\r\n  \t<img src="app/images/preloader2.gif" class="preloader">\r\n  \t<div class="helper"></div>\r\n</div>';
+'</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="app/images/preloader2.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
 
 }
 return __p
@@ -86,7 +86,7 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p>Your content here.</p>\r\n\r\n';
+__p += '<p>Your content here.</p>\n\n';
 
 }
 return __p
@@ -98,7 +98,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\r\n\r\n';
+'\n\n';
 
 }
 return __p

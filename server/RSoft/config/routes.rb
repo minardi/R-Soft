@@ -17,6 +17,7 @@ RSoft::Application.routes.draw do
   root "app#main"
   
   get "/table(:id)", to: "app#main"
+  get 'order_items/by_order/:order_id' => 'order_items#by_order_id'
   
   #get "/table/:id", to: "app#main"
   

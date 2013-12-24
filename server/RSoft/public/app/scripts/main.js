@@ -20,7 +20,10 @@ window.client = {
         
             tables = new client.Views.TableCollectionView({
                 el: $("#table-container")
-            });
+            }),
+
+            order_items = new client.Views.OrderitemcollectionView();
+
 
         console.log('Hello from Backbone!');
   /*      
@@ -39,12 +42,12 @@ window.client = {
             });
     */           
         
-        Backbone.Mediator.sub('order-show', function(data) {
-            var go_items = new client.Views.OrderitemcollectionView({el: data.elem});
-            if (!isNaN(data.order_id)) {
-                go_items.collection.order_id = data.order_id;
+        /*Backbone.Mediator.sub('order-show', function(order_data) {
+            var go_items = new client.Views.OrderitemcollectionView({el: order_data.elem}, {is_new: order_data.is_new});
+            if (!order_data.is_new) {
+                go_items.collection.order_id = order_data.order_id;
             }
-        }, this);
+        }, this);*/
 
         
         Backbone.Mediator.sub("tables-rendered", function() {
@@ -67,9 +70,9 @@ this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'category-name\'>\r\n\t' +
+__p += '<div class=\'category-name\'>\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\r\n</div>';
+'\n</div>';
 
 }
 return __p
@@ -79,11 +82,11 @@ this["JST"]["app/scripts/templates/MenuItem.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = "menu_item_tpl">\r\n\t<div class = "scale_cont">\r\n\t\t<div class = "menu_item_name">' +
+__p += '<div class = "menu_item_tpl">\n\t<div class = "scale_cont">\n\t\t<div class = "menu_item_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\r\n\t\t<div class = "menu_item_price">' +
+'</div>\n\t\t<div class = "menu_item_price">' +
 ((__t = ( price )) == null ? '' : __t) +
-' $</div>\r\n\t\t</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
+' $</div>\n\t\t</div>\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\n</div>\n\n\n';
 
 }
 return __p
@@ -93,13 +96,13 @@ this["JST"]["app/scripts/templates/MenuItemDesc.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = \'desc\' >\r\n\t<div class = "wrap">\r\n\t\t<div class = "desc_name">' +
+__p += '<div class = \'desc\' >\n\t<div class = "wrap">\n\t\t<div class = "desc_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\r\n\t\t<div class = "desc_description">' +
+'</div>\n\t\t<div class = "desc_description">' +
 ((__t = ( description )) == null ? '' : __t) +
-'</div>\r\n\t</div>\r\n\t<div class = "desc_pic"><img src="images/' +
+'</div>\n\t</div>\n\t<div class = "desc_pic"><img src="images/' +
 ((__t = ( id )) == null ? '' : __t) +
-'.jpg"></div>\r\n</div>\r\n\r\n';
+'.jpg"></div>\n</div>\n\n';
 
 }
 return __p
@@ -109,7 +112,7 @@ this["JST"]["app/scripts/templates/Order.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';
+__p += '\n    <p id="order_head"> Order</p>\n\n    <div id="order_items" class="order_items">\n    </div>\n    \n    <input type = "button" id = "order_close" value = "Close order">  </input>\n';
 
 }
 return __p
@@ -121,11 +124,11 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="order_item_name">' +
 ((__t = (name)) == null ? '' : __t) +
-'</div>\r\n<div id="add_amount" class="add_amount"><br/></div>\r\n<div id="order_item_amount" class="order_item_amount">' +
+'</div>\n<div id="add_amount" class="add_amount"><br/></div>\n<div id="order_item_amount" class="order_item_amount">' +
 ((__t = (amount)) == null ? '' : __t) +
-'</div>\r\n<div id="remove_amount" class="remove_amount"><br/></div>\r\n<div class="order_item_price">' +
+'</div>\n<div id="remove_amount" class="remove_amount"><br/></div>\n<div class="order_item_price">' +
 ((__t = (price)) == null ? '' : __t) +
-'</div>\r\n<span class="order_item_status">' +
+'</div>\n<span class="order_item_status">' +
 ((__t = (status)) == null ? '' : __t) +
 '</span>';
 
@@ -137,9 +140,9 @@ this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="block_sum" class="sum">\r\n  \tOrder amount: <span id="sum">' +
+__p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
-'</span>\r\n</div>\r\n<div id="loader_block" class="preloader_block">\r\n  \t<img src="app/images/preloader2.gif" class="preloader">\r\n  \t<div class="helper"></div>\r\n</div>';
+'</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="app/images/preloader2.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
 
 }
 return __p
@@ -149,7 +152,7 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p>Your content here.</p>\r\n\r\n';
+__p += '<p>Your content here.</p>\n\n';
 
 }
 return __p
@@ -161,7 +164,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\r\n\r\n';
+'\n\n';
 
 }
 return __p
@@ -723,10 +726,8 @@ client.Views = client.Views || {};
 
             
             newPub: function() {
-                var el = this.$el.find("#order_items"),
-                    id = "",                    
+                var el = this.$el.find("#order_items"),                    
                     hash = {
-                        "order_id": id,
                         "elem": el,
                         "is_new": true
                     };
@@ -812,9 +813,11 @@ client.Models = client.Models || {};
             order_id: 0
         },
         url : "order_items.json",
+
         saveModel: function(amount_value) {
+                console.log('In model saving');
                 this.url = "order_items/" + this.id +".json";       
-/*?*/           this.save(/*{amount: amount_value}, {patch: true}*/);
+/*?*/           this.save(/*{amount: amount_value}, {patch: true}*/{wait:true}, {silent: true});
         }
     });
 
@@ -834,18 +837,35 @@ client.Collections = client.Collections || {};
         order_id: 0,
         sum: 0,
         initialize: function() {
-            this.fetch({reset: true});
             Backbone.Mediator.subscribeOnce("order-create", this.changeOrderId, this);
         },
 
-        changeOrderId: function(order_id) {
-            this.order_id = order_id;
+        parse: function(response) {
+            var result = [];
+
+            for (var i=0; i<response.length;i++) {
+
+                    if (response[i].order_id === this.order_id) {
+                        result.push(response[i]);
+                    }
+            }
+
+            console.log("-----------------");
+            console.log(result);
+            console.log("-----------------");
+
+            return result;
+        },
+
+        changeOrderId: function(changed_id) {
+            this.order_id = changed_id;
             this.each(this.setOrderId, this);
         },
+        
         setOrderId: function(item) {
             item.set('order_id', this.order_id);
             item.url = "order_items/" + item.id +".json";                
-            item.save({silent: true});
+            item.save({wait:true}, {silent: true});
         }
 
     });
@@ -857,15 +877,12 @@ client.Collections = client.Collections || {};
 client.Views = client.Views || {};
 
 (function () {
-    var preloader_block = $('#loader_block');
-
     client.Views.OrderitemView = Backbone.View.extend({
         id: "order_item",
         className: "order_item",
         template: JST['app/scripts/templates/OrderItem.ejs'],
 
         initialize: function() {
-            
             //this.model.on("change", this.saveAmount, this);
             this.model.on("destroy", this.removeView, this);
             Backbone.Mediator.sub('matching-items', this.incrMatchingAmount, this);
@@ -942,33 +959,33 @@ client.Views = client.Views || {};
                     this.publisher("sub", price);
                     decr_block.addClass('close_item');
             } else if (amount < 0){
-                    preloader_block.show();
+                    //this.preloader_block.show();
                     console.log('This model:');
                     console.dir(this.model);
                     this.model.url = "order_items/" + this.model.id +".json";
-                    this.model.destroy(/*{wait: true}*/);
+                    this.model.destroy({wait: true});
             }
-        },
-
-        saveAmount: function(amount_value, model) {
-            preloader_block.show();
-
-            if (!model) {
-                this.model.set('amount', amount_value);             
-                this.model.saveModel(amount_value);
-                this.$el.find('#order_item_amount').html(this.model.get('amount'));
-            } else {
-                model.set('amount', amount_value);              
-                model.saveModel(amount_value);
-            }
-            
-            preloader_block.hide();
         },
 
         removeView: function() {
             this.remove();
             console.log('Was destroy');
-            preloader_block.hide();
+            //this.preloader_block.hide();
+        },
+
+        saveAmount: function(amount_value, changing_model) {
+            //this.preloader_block.show();
+
+            if (!changing_model) {
+                this.model.set('amount', amount_value);             
+                this.model.saveModel(amount_value);
+                this.$el.find('#order_item_amount').html(this.model.get('amount'));
+            } else {
+                changing_model.set('amount', amount_value);              
+                changing_model.saveModel(amount_value);
+            }
+            
+            //this.preloader_block.hide();
         }
 
     });
@@ -979,52 +996,81 @@ client.Views = client.Views || {};
 client.Views = client.Views || {};
 
 (function () {
-    var preloader_block = $('#loader_block');
 
     client.Views.OrderitemcollectionView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/OrderItemCollection.ejs'],
 
         initialize: function() {
-            //this.preloader_block = this.$el.find('#loader_block');
-            preloader_block.show();
+            var global_this = this;
 
-            this.collection = new client.Collections.OrderitemsCollection();
+            Backbone.Mediator.sub('order-show', 
+                                  function(order_data) {
+                                        global_this.el = order_data.elem;
+                                        global_this.el.addClass('for_order_items');
 
-            this.collection.on('add', this.addItemToDB, this);
-            this.collection.on("reset", this.renderCollectionFromDB, this); // No reset in v. >= 1.0!!!
+                                        global_this.collection = new client.Collections.OrderitemsCollection();
 
-            this.renderSum();
-            preloader_block.hide();
+                                        global_this.renderSum();
+                                        global_this.collection.once("reset", this.renderCollectionFromDB, this);
+
+                                        if (!order_data.is_new) {
+                                            global_this.collection.order_id = order_data.order_id;
+                                            global_this.collection.fetch({reset: true});
+                                        }
+
+                                        
+                                  }, 
+                                  this);
+
             
-            Backbone.Mediator.sub("amount", this.changeSum, this);
             Backbone.Mediator.sub("orderitem-add", this.addDataToModel, this);
-
-            this.$el.addClass('for_order_items');
+            Backbone.Mediator.sub("amount", this.changeSum, this);
         },
 
         renderSum: function() {
-            this.$el.html(this.template({sum: this.collection.sum}));
+            this.el.html(this.template({sum: this.collection.sum}));
+            this.preloader_block = this.el.find('#loader_block');
+            this.preloader_block.hide();
         },
 
         addDataToModel: function(item_data) {
             var checking_model = this.collection.findWhere({'name': item_data.name});
 
+
             if (checking_model) {
+                console.log(checking_model);
                 Backbone.Mediator.pub('matching-items', checking_model);
             } else {
+                this.collection.once('add', this.addItemToDB, this);
+
                 this.collection.add(new client.Models.OrderitemModel({
-                    "name": item_data.name,
-                    "price": item_data.price,
-                    "order_id": this.collection.order_id
+                        "name": item_data.name,
+                        "price": item_data.price,
+                        "order_id": this.collection.order_id
                     }));
-                    //Use this.changesum(data)
-                    /*Backbone.Mediator.pub("amount", {
-                                        "operation": "add",
-                                        "difference": item_data.price
-                                        }
-                    );*/
             }
+        },
+
+        addItemToDB: function(item) {
+            this.preloader_block.show();    
+
+            console.log('Begin adding item TO DB...');
+
+            item.once('sync', this.renderItem, this);
+            item.save({silent: true},
+                      {wait:true}
+            );
+        },
+        
+        renderItem: function(item) {
+            var view = new client.Views.OrderitemView({ model: item });
+
+            this.el.prepend(view.render().el);
+            this.preloader_block.hide();
+
+            console.log(this.collection);
+            console.log('Finish adding item TO DB!');
         },
 
         changeSum: function(changing_data) {
@@ -1042,51 +1088,23 @@ client.Views = client.Views || {};
             this.collection.sum = sum;
 
             sum = sum.toFixed(2);
-            this.$el.find("#sum").html(String(sum));
-        },
-
-        //Work with DB
-        addItemToDB: function(item) {
-            var view = new client.Views.OrderitemView({model: item,
-                                                           //sub_el: this.preloader_block,
-                                             });
-            
-            console.log('Begin adding item TO DB...');
-            console.log(this.collection);
-            preloader_block.show();
-            
-/*Use event instead of save-callbacks!*/
-            item.save({silent: true},
-                {success: function() {
-                            preloader_block.hide();
-                            console.log('Finish adding item TO DB!');
-                            //elem.prepend(view.render().el);
-                        }
-                } 
-            );
-            this.$el.prepend(view.render().el);
+            this.el.find("#sum").html(String(sum));
         },
         
         addItemsFromDB: function(item) {
-            if (item.get('order_id') === this.collection.order_id) {
-                var view = new client.Views.OrderitemView({model: item
-                                                  });
-                this.$el.prepend(view.render().el);
-            }
+                var view = new client.Views.OrderitemView({ model: item });
+                this.el.prepend(view.render().el);
         },
         
         renderCollectionFromDB: function() {
-            var save_block_sum = this.$el.find('#block_sum');
-            
-//Use template
-            save_block_sum.find('#sum').html('');
-            this.$el.html('');
-            this.$el.append(save_block_sum);
-            
+            this.preloader_block.show();
+
             console.log('Begin adding items FROM DB...');
             this.collection.each(this.addItemsFromDB, this);
             console.log(this.collection);
             console.log('Finish adding items FROM DB!');
+
+            this.preloader_block.hide();
         }
     });
 

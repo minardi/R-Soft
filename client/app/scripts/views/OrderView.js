@@ -43,10 +43,8 @@ client.Views = client.Views || {};
 
             
             newPub: function() {
-                var el = this.$el.find("#order_items"),
-                    id = "",                    
+                var el = this.$el.find("#order_items"),                    
                     hash = {
-                        "order_id": id,
                         "elem": el,
                         "is_new": true
                     };

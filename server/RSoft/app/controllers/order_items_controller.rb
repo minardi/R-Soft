@@ -13,6 +13,11 @@ class OrderItemsController < ApplicationController
   def show
   end
 
+  # GET /order_items/by_order/:order_id
+  def by_order_id
+    @order_item = OrderItem.find_by_order_id(params[:order_id])
+  end
+
   # GET /order_items/new
   def new
     @order_item = OrderItem.new
