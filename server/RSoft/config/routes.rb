@@ -1,5 +1,6 @@
 
 RSoft::Application.routes.draw do    
+  devise_for :users
   resources :menu_items
   
   resources :tables

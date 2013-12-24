@@ -25,6 +25,18 @@
     MenuItem.create([{category:'Desserts',name:'pudding',description:'Desserts descriptions',price:30}])
     MenuItem.create([{category:'Sides',name:'some Side',description:'Sides descriptions',price:15}])
     MenuItem.create([{category:'Sides',name:'some Side2',description:'Sides descriptions',price:35}])
+
+    waiter = User.new
+    waiter.email = 'waiter@rsoft.ru'
+    waiter.password = '1234'
+    waiter.password_confirmation = '1234'
+    waiter.save!
+
+    admin = User.new
+    admin.email = 'admin@rsoft.ru'
+    admin.password = '1234'
+    admin.password_confirmation = '1234'
+    admin.save!
     
     
 
