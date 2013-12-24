@@ -13,19 +13,24 @@ client.Views = client.Views || {};
 
             Backbone.Mediator.sub('order-show', 
                                   function(order_data) {
-                                        global_this.el = order_data.elem;
-                                        global_this.el.addClass('for_order_items');
-
-                                        global_this.collection = new client.Collections.OrderitemsCollection();
-
-                                        global_this.renderSum();
-                                        global_this.collection.once("reset", this.renderCollectionFromDB, this);
+										this.el = order_data.elem;
+                                        this.el.addClass('for_order_items');
+										
+										if (this.collection) {
+											this.collection.reset();
+											delete this.collection;
+										}
+                                        this.collection = new client.Collections.OrderitemsCollection();
+										
+                                        this.renderSum();
+                                        this.collection.once("reset", this.renderCollectionFromDB, this);
 
                                         if (!order_data.is_new) {
-                                            global_this.collection.order_id = order_data.order_id;
-                                            global_this.collection.fetch({reset: true});
-                                        }
+											console.log("---------in fetch--------");											
+                                            this.collection.order_id = order_data.order_id;
+                                            this.collection.fetch({reset: true});
 
+                                        }
                                         
                                   }, 
                                   this);
@@ -43,7 +48,6 @@ client.Views = client.Views || {};
 
         addDataToModel: function(item_data) {
             var checking_model = this.collection.findWhere({'name': item_data.name});
-
 
             if (checking_model) {
                 console.log(checking_model);
@@ -65,14 +69,14 @@ client.Views = client.Views || {};
             console.log('Begin adding item TO DB...');
 
             item.once('sync', this.renderItem, this);
-            item.save({silent: true},
-                      {wait:true}
-            );
+            item.save({wait:true});
         },
         
         renderItem: function(item) {
             var view = new client.Views.OrderitemView({ model: item });
-
+			
+			Backbone.Mediator.pub("change-order-id");
+			
             this.el.prepend(view.render().el);
             this.preloader_block.hide();
 

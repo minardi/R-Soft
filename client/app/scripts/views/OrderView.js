@@ -49,7 +49,7 @@ client.Views = client.Views || {};
                         "is_new": true
                     };
                     
-                mediator.subscribeOnce("orderitem-add", this.orderSave, this);
+                mediator.subscribeOnce("change-order-id", this.orderSave, this);
                 mediator.pub("order-show", hash);            
             },
             
@@ -77,7 +77,7 @@ client.Views = client.Views || {};
                 console.log(hash);
                 
                 this.model.once("sync", this.showSyncModel, this);
-                mediator.unsubscribe("orderitem-add", this.orderSave, this);
+                mediator.unsubscribe("change-order-id", this.orderSave, this);
                 mediator.pub("order-show", hash);
                 
             },
@@ -90,7 +90,7 @@ client.Views = client.Views || {};
                 this.model.set({status: "closed"});
                 this.model.saveClosed();
                 
-                mediator.unsubscribe("orderitem-add", this.orderSave, this);
+                mediator.unsubscribe("change-order-id", this.orderSave, this);
                 mediator.pub("order-close");
             },
 
