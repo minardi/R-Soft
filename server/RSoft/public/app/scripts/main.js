@@ -46,7 +46,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'category-name\'>\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\n</div>';
+'\n</div>\n<div class=\'category-content\'></div>';
 
 }
 return __p
@@ -351,10 +351,18 @@ client.Views = client.Views || {};
         className: "category-container", 
 
         template: JST['app/scripts/templates/CategoryView.ejs'],
-        
+
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
+
+            this.content = this.$el.find('.category-content');
+            this.$el.find('.category-name').on('click', {content: this.content}, this.slideCategories);
+
             return this;
+        },
+
+        slideCategories: function(event) {
+            event.data.content.slideToggle();
         }
 
     });
@@ -393,12 +401,12 @@ client.Views = client.Views || {};
         },
         
         addOneCategory: function(model) {
-
             var view = new client.Views.CategoryView({
                 'model': model
             });
-            this.cattegories_obj[model.get('category_name')] = view.$el;			
+
             this.$el.append(view.render().$el);
+            this.cattegories_obj[model.get('category_name')] = view.content;
         }
 
     });

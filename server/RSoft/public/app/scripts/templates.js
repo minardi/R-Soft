@@ -6,7 +6,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'category-name\'>\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\n</div>';
+'\n</div>\n<div class=\'category-content\'></div>';
 
 }
 return __p

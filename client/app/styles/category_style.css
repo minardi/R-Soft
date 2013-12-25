@@ -9,8 +9,9 @@
     border: 1px solid black;
     margin: 2px;
     background-color: #98FB98;
+    cursor: pointer;
 }
 .category-content{
     border: 1px solid black;
-    margin: 2px;
+    margin: 2px;    
 }

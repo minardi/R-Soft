@@ -30,12 +30,12 @@ client.Views = client.Views || {};
         },
         
         addOneCategory: function(model) {
-
             var view = new client.Views.CategoryView({
                 'model': model
             });
-            this.cattegories_obj[model.get('category_name')] = view.$el;			
+
             this.$el.append(view.render().$el);
+            this.cattegories_obj[model.get('category_name')] = view.content;
         }
 
     });
