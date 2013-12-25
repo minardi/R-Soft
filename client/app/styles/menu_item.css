@@ -64,6 +64,7 @@ C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `<main>'
 .add_to_order{
 	width:32px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 

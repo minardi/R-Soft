@@ -9,6 +9,7 @@
 	border-width: 2px;
 	height: 450px;
 	width:394px;
+	cursor: pointer;
 }
 .desc_pic{}
 .desc_name{}

@@ -86,7 +86,7 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="tablemap-container"></div>\r\n\r\n';
+__p += '<div id="tablemap-container"></div>\n\n';
 
 }
 return __p

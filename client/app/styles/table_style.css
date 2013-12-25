@@ -15,6 +15,7 @@ p {
 	height: 100px;
 	width: 100px;
 	margin: 16px;
+	cursor: pointer;
 }
 
 .table_vacant_active {
