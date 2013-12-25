@@ -108,7 +108,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\r\n\r\n';
+'\n\n';
 
 }
 return __p

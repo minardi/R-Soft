@@ -9,8 +9,7 @@ client.Models = client.Models || {};
     
         defaults: {
             category_name: 'noname'
-        },
-        view: undefined
+        },        
     });
 
 })(client.Models);

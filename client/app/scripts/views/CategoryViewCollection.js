@@ -16,18 +16,19 @@ client.Views = client.Views || {};
 
             this.collection = new collections.CategoryCollection();
 
-//            this.collection.on('reset', this.afterLoad, this);
-			this.afterLoad();
+            this.collection.on('reset', this.afterLoad, this);			
         },
+
         afterLoad: function () {
             this.render();
             mediator.pub('categories-ready', this.cattegories_obj);
-
         },
+
         render: function() {
             this.$el.html("Menu");
             this.collection.each(this.addOneCategory, this);
         },
+        
         addOneCategory: function(model) {
 
             var view = new client.Views.CategoryView({

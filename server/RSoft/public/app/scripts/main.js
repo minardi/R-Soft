@@ -148,7 +148,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\r\n\r\n';
+'\n\n';
 
 }
 return __p
@@ -312,8 +312,7 @@ client.Models = client.Models || {};
     
         defaults: {
             category_name: 'noname'
-        },
-        view: undefined
+        },        
     });
 
 })(client.Models);
@@ -330,13 +329,8 @@ client.Collections = client.Collections || {};
         model: models.CategoryModel,
         url: '/categories',
 
-        initialize: function() {
-		    this.add(new models.CategoryModel({'category_name': 'Drinks'}));
-            this.add(new models.CategoryModel({'category_name': 'Desserts'}));
-            this.add(new models.CategoryModel({'category_name': 'Entrees'}));
-            this.add(new models.CategoryModel({'category_name': 'Sides'}));
-            this.add(new models.CategoryModel({'category_name': 'Bar'}));
-//            this.fetch({reset: true});
+        initialize: function() {		    
+            this.fetch({reset: true});
         }
 
     });
@@ -352,10 +346,10 @@ client.Views = client.Views || {};
     'use strict';
 
     views.CategoryView = Backbone.View.extend({
-
-        model: undefined,
+        
         tagName: 'div',
-        className: "category-container",        
+        className: "category-container", 
+
         template: JST['app/scripts/templates/CategoryView.ejs'],
         
         render: function() {
@@ -385,18 +379,19 @@ client.Views = client.Views || {};
 
             this.collection = new collections.CategoryCollection();
 
-//            this.collection.on('reset', this.afterLoad, this);
-			this.afterLoad();
+            this.collection.on('reset', this.afterLoad, this);			
         },
+
         afterLoad: function () {
             this.render();
             mediator.pub('categories-ready', this.cattegories_obj);
-
         },
+
         render: function() {
             this.$el.html("Menu");
             this.collection.each(this.addOneCategory, this);
         },
+        
         addOneCategory: function(model) {
 
             var view = new client.Views.CategoryView({

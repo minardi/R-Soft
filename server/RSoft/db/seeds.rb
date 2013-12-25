@@ -7,7 +7,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-    Category.create([{category_name:'Drincks'}])
+    Category.create([{category_name:'Drinks'}])
     Category.create([{category_name:'Desserts'}])
     Category.create([{category_name:'Entrees'}])
     Category.create([{category_name:'Sides'}])
