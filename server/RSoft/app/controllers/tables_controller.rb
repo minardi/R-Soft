@@ -69,6 +69,6 @@ class TablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
-      params.require(:table).permit(:orderid, :state, :activity, :capacity, :waiter)
+      params.require(:table).permit(:orderid, :state, :activity, :capacity, :waiter, :xchord, :ychord)
     end
 end

@@ -4,8 +4,10 @@ class CreateTables < ActiveRecord::Migration
       t.string :orderid
       t.string :state
       t.string :activity
-      t.string :capacity
+      t.integer :capacity
       t.string :waiter
+      t.integer :xchord
+      t.integer :ychord
 
       t.timestamps
     end

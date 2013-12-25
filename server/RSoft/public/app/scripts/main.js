@@ -25,35 +25,11 @@ window.client = {
             order_items = new client.Views.OrderitemcollectionView();
 
 
-        console.log('Hello from Backbone!');
-  /*      
-        var menu_item = new client.Views.MenuItemCollectionView(), 
-			description = new client.Views.MenuItemDescCollView(),		
-            categories = new client.Views.CategoryCollectionView();
-     
-            orderview = new client.Views.OrderView({
->>>>>>> a812169ed4fde0795de689c26e9d8309bc627d73
-                el: $("#order-container"),
-                model: new client.Models.OrderModel()
-            }),        
-        
-            tables = new client.Views.TableCollectionView({
-                el: $("#table-container")
-            });
-    */           
-        
-        /*Backbone.Mediator.sub('order-show', function(order_data) {
-            var go_items = new client.Views.OrderitemcollectionView({el: order_data.elem}, {is_new: order_data.is_new});
-            if (!order_data.is_new) {
-                go_items.collection.order_id = order_data.order_id;
-            }
-        }, this);*/
-
         
         Backbone.Mediator.sub("tables-rendered", function() {
             var route = new client.Routers.TablesRouter();
             Backbone.history.start({
-                //pushState: true
+                
             });
         });
     }
@@ -152,7 +128,17 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p>Your content here.</p>\n\n';
+__p += '<div id="tablemap-container"></div>\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/TableMapModelView.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div id="bgdark" class="darkbg"></div>\n<div id="tablemap" class="table_map">\n    <input type="button" id="hidetablemap" value="Hide Map">\n</div>';
 
 }
 return __p
@@ -164,7 +150,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\n\n';
+'\r\n\r\n';
 
 }
 return __p
@@ -439,8 +425,10 @@ client.Models = client.Models || {};
                     orderid: "none",
                     state: "vacant",    //occupied
                     activity: "false",
-                    capacity: "n/a",
-                    waiter: "n/a"
+                    capacity: 0,
+                    waiter: "n/a",
+                    xchord: 0,
+                    ychord: 0
                 }
 
     });
@@ -471,7 +459,7 @@ client.Views = client.Views || {};
     'use strict';
 
     client.Views.TableModelView = Backbone.View.extend({
-    
+        
         initialize: function() {
                         this.model.on("change", this.render, this);
                         Backbone.Mediator.sub("order-create", this.tableOccupy, this);
@@ -494,6 +482,7 @@ client.Views = client.Views || {};
                 },
 
 
+
         tableActivity:  function(id) {
                             if(this.model.id != id) {
                                 if(this.el.className === "table_vacant_active") {
@@ -507,25 +496,22 @@ client.Views = client.Views || {};
                         },
         
         tableChoose: function(event) {
-                        var orderidinfo;   
+                        var orderidinfo;
                         
                         if (this.model.get("orderid") === "none") {
                             orderidinfo = {
-                                            "orderid": this.model.get("orderid"),
-                                            "isnew": true,
-                                            "tableid": this.model.get("id")
+                                            orderid: this.model.get("orderid"),
+                                            isnew: true
                                         };
                         } else {
                             orderidinfo = {
-                                            "orderid": Number(this.model.get("orderid")),
-                                            "isnew": false,
-                                            "tableid": this.model.get("id"),
+                                            orderid: Number(this.model.get("orderid")),
+                                            isnew: false
                                         };
                         }
                         
                         Backbone.Mediator.pub("table-active", orderidinfo);
                         Backbone.Mediator.pub("changeactivity", this.model.id);
-                        //console.log("Event 'table-active' published");    
                         
                         this.model.set("activity", "true");
                         if(this.el.className === "table_vacant_unactive") {
@@ -534,7 +520,6 @@ client.Views = client.Views || {};
                         if(this.el.className === "table_occupied_unactive") {
                             this.el.className = "table_occupied_active";
                         }
-                                               
                         event.stopPropagation();
                     },
 
@@ -559,9 +544,57 @@ client.Views = client.Views || {};
 
         render: function(model) {
                     this.$el.html(this.template(this.model.toJSON()));
- 
+					this.el.setAttribute("id", "table_" + this.model.id);
                     return this;	
-                }
+                },
+                    
+        maprender:  function(model) {
+                        this.$el.html(this.template(this.model.toJSON()));
+                        this.el.style.left = this.model.get("xchord")+"px";
+                        this.el.style.top = this.model.get("ychord")+"px";
+                        this.el.style.position = "fixed";
+												
+                        return this;	
+                    }
+
+    });
+
+})();
+
+/*global client, Backbone, JST*/
+
+client.Views = client.Views || {};
+
+(function () {
+    'use strict';
+
+    client.Views.TableMapModelView = Backbone.View.extend({
+    
+        initialize: function() {
+                        this.collection = new client.Collections.TableCollection();
+                        this.collection.fetch();
+                        this.collection.once("sync", this.render, this);
+                    },
+
+        template: JST['app/scripts/templates/TableMapModelView.ejs'],
+        
+        events: {
+                    "click #hidetablemap": "tableMapHide"
+                },
+                
+        tableMapHide: function() {
+                        this.el.remove();
+                    },
+                    
+        render:  function() {
+                        this.$el.append(this.template);
+                        this.collection.each(this.rendermodel, this);
+                    },
+        
+        rendermodel: function(tablemodel) {
+                            var view = new client.Views.TableModelView({model: tablemodel});
+                            this.$el.append(view.maprender().el);
+                        }  
 
     });
 
@@ -580,19 +613,33 @@ client.Views = client.Views || {};
                         this.collection = new client.Collections.TableCollection();
 
                         this.collection.fetch();
-                        this.collection.once("sync", this.render, this);                       
+                        this.collection.once("sync", this.render, this);
                     },
+        
+        template: JST['app/scripts/templates/TableCollectionView.ejs'],
+        
+        events: {
+                    "click #showtablemap": "tableMapShow"
+                },
 
-        render: function() {                  
+        tableMapShow: function() {
+                        this.$el.append(this.template);
+                        var tablemap = new client.Views.TableMapModelView({
+                            el: $("#tablemap-container")
+                        });
+                    },
+        
+        render: function() {
                     this.collection.each(this.rendermodel, this);
-                   
-                    Backbone.Mediator.pub("tables-rendered");
+					
+					Backbone.Mediator.pub("tables-rendered");
                 },
 
         rendermodel: function(tablemodel) {
                         var view = new client.Views.TableModelView({model: tablemodel});
                         this.$el.append(view.render().el);
-                    }
+                    },
+                             
 
     });
 
@@ -608,29 +655,22 @@ client.Routers = client.Routers || {};
     routers.TablesRouter = Backbone.Router.extend({
      
         initialize: function() {           
-            mediator.sub("table-active", this.changeUrl, this);
+            mediator.sub("changeactivity", this.changeUrl, this);
         },
        
        
-        changeUrl: function(table) {          
-            this.navigate("tables/" + table.tableid
+        changeUrl: function(table_id) {          
+            this.navigate("table/" + table_id
                 //, {trigger: true}
-            ); 
-
-            /*
-            this.navigate("table" + table.tableid
-                //, {trigger: true}
-            ); 
-            */
-          
+            );           
         },
         
         routes: {
-            "(/)tables/:number"        : "myTrigger"          
+            "(/)table/:number" : "myTrigger"          
         },
         
         myTrigger: function(number) {
-            var elem = $("#table-container").children()[number];
+            var elem = $("#table-container").find("#table_"+ number);
                       
             $(elem).trigger("click");
         }

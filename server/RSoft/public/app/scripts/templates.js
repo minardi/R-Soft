@@ -86,7 +86,17 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p>Your content here.</p>\n\n';
+__p += '<div id="tablemap-container"></div>\r\n\r\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/TableMapModelView.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div id="bgdark" class="darkbg"></div>\n<div id="tablemap" class="table_map">\n    <input type="button" id="hidetablemap" value="Hide Map">\n</div>';
 
 }
 return __p
@@ -98,7 +108,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\n\n';
+'\r\n\r\n';
 
 }
 return __p

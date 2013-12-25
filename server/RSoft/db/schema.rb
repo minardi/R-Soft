@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 20131224153908) do
     t.string   "orderid"
     t.string   "state"
     t.string   "activity"
-    t.string   "capacity"
+    t.integer  "capacity"
     t.string   "waiter"
+    t.integer  "xchord"
+    t.integer  "ychord"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

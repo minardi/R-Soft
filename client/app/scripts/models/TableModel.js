@@ -11,8 +11,10 @@ client.Models = client.Models || {};
                     orderid: "none",
                     state: "vacant",    //occupied
                     activity: "false",
-                    capacity: "n/a",
-                    waiter: "n/a"
+                    capacity: 0,
+                    waiter: "n/a",
+                    xchord: 0,
+                    ychord: 0
                 }
 
     });

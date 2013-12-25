@@ -8,29 +8,22 @@ client.Routers = client.Routers || {};
     routers.TablesRouter = Backbone.Router.extend({
      
         initialize: function() {           
-            mediator.sub("table-active", this.changeUrl, this);
+            mediator.sub("changeactivity", this.changeUrl, this);
         },
        
        
-        changeUrl: function(table) {          
-            this.navigate("tables/" + table.tableid
+        changeUrl: function(table_id) {          
+            this.navigate("table/" + table_id
                 //, {trigger: true}
-            ); 
-
-            /*
-            this.navigate("table" + table.tableid
-                //, {trigger: true}
-            ); 
-            */
-          
+            );           
         },
         
         routes: {
-            "(/)tables/:number"        : "myTrigger"          
+            "(/)table/:number" : "myTrigger"          
         },
         
         myTrigger: function(number) {
-            var elem = $("#table-container").children()[number];
+            var elem = $("#table-container").find("#table_"+ number);
                       
             $(elem).trigger("click");
         }
