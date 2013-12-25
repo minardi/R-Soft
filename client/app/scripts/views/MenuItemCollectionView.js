@@ -19,12 +19,12 @@ client.Views = client.Views || {};
             var view = new client.Views.MenuItemView( { model: item } ),
                 key = item.get( 'category' ),
                 element = this.elements[ key ];
-			if(element){
+				
+			if(element) {
 				element.append( view.render().el );
 			} else {
-				console.log( "The category: " + item.get( 'category') + "didn't create" );			
+				console.warn( "The category: " + item.get( 'category') + "didn't create" );			
 			}
-
         },
 
 

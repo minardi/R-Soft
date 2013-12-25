@@ -35,19 +35,10 @@ client.Views = client.Views || {};
 			addItem: function( desc ) {
                 console.log(this.element);
 				var view = new client.Views.MenuItemDescView( { model: desc } );
-				this.element.append( view.render().$el );
+
+//				this.element.append( view.render().$el );
+				this.element.html( view.render().$el ); // WARN!!
         }
 
-/*		
-        createDesc: function( menu_item ) { //cantains name and el. of menu_item
-            var the_model = this.collection.where( menu_item.name );
-			console.log(the_model);
-			if ( the_model != [] ) {
-				var view = new client.Views.MenuItemDescView( { model: this.collection[0] } );
-				menu_item.$el.append( view.render().el );				
-			} else {
-				console.log("description for the menu_item is not found!");
-			}
-        }*/
     });
 })();

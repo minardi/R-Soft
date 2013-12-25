@@ -35,7 +35,7 @@ client.Views = client.Views || {};
             newCreate: function() { 
                 this.model = new client.Models.OrderModel();                      
                 
-                this.$el.find("#order_items").css('visibility', 'visible');
+                this.$el.find("#order_items").css('visibility', 'visible'); //use class
                 this.$el.find("#order_close").css('visibility', 'hidden');
                 
                 this.newPub();                   
@@ -67,7 +67,7 @@ client.Views = client.Views || {};
                 this.model.existFetch(order.orderid);
                                 
                 this.$el.find("#order_close").css('visibility', 'visible');
-                el.css('visibility', 'visible');                
+                el.css('visibility', 'visible'); // create hash el's                
                 
                 hash = {
                     "order_id": order.orderid,

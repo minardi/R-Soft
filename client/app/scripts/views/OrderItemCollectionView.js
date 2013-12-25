@@ -9,9 +9,8 @@ client.Views = client.Views || {};
         template: JST['app/scripts/templates/OrderItemCollection.ejs'],
 
         initialize: function() {
-            var global_this = this;
-
-            Backbone.Mediator.sub('order-show', 
+            Backbone.Mediator.sub('order-show',
+								//in method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                   function(order_data) {
 										this.el = order_data.elem;
                                         this.el.addClass('for_order_items');
@@ -54,8 +53,8 @@ client.Views = client.Views || {};
                 Backbone.Mediator.pub('matching-items', checking_model);
             } else {
                 this.collection.once('add', this.addItemToDB, this);
-
-                this.collection.add(new client.Models.OrderitemModel({
+                this.collection.add(//in variable
+						new client.Models.OrderitemModel({
                         "name": item_data.name,
                         "price": item_data.price,
                         "order_id": this.collection.order_id
@@ -103,8 +102,8 @@ client.Views = client.Views || {};
         },
         
         addItemsFromDB: function(item) {
-                var view = new client.Views.OrderitemView({ model: item });
-                this.el.prepend(view.render().el);
+			var view = new client.Views.OrderitemView({ model: item });
+			this.el.prepend(view.render().el);
         },
         
         renderCollectionFromDB: function() {

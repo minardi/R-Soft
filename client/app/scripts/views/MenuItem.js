@@ -19,7 +19,7 @@ client.Views = client.Views || {};
         },
 
         sendMenuItemToOrder : function() {
-			console.log( this.model.get( 'name' ) + ' sent to Order' );
+//			console.log( this.model.get( 'name' ) + ' sent to Order' );
             Backbone.Mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
         },
 		

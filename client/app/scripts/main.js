@@ -28,14 +28,12 @@ window.client = {
         
         Backbone.Mediator.sub("tables-rendered", function() {
             var route = new client.Routers.TablesRouter();
-            Backbone.history.start({
-                
-            });
+            Backbone.history.start();
         });
     }
 };
 
-$(document).ready(function () {
+$(function () {
     'use strict';
     client.init();
 });

@@ -28,14 +28,12 @@ window.client = {
         
         Backbone.Mediator.sub("tables-rendered", function() {
             var route = new client.Routers.TablesRouter();
-            Backbone.history.start({
-                
-            });
+            Backbone.history.start();
         });
     }
 };
 
-$(document).ready(function () {
+$(function () {
     'use strict';
     client.init();
 });
@@ -176,7 +174,7 @@ client.Views = client.Views || {};
         },
 
         sendMenuItemToOrder : function() {
-			console.log( this.model.get( 'name' ) + ' sent to Order' );
+//			console.log( this.model.get( 'name' ) + ' sent to Order' );
             Backbone.Mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
         },
 		
@@ -284,12 +282,12 @@ client.Views = client.Views || {};
             var view = new client.Views.MenuItemView( { model: item } ),
                 key = item.get( 'category' ),
                 element = this.elements[ key ];
-			if(element){
+				
+			if(element) {
 				element.append( view.render().el );
 			} else {
-				console.log( "The category: " + item.get( 'category') + "didn't create" );			
+				console.warn( "The category: " + item.get( 'category') + "didn't create" );			
 			}
-
         },
 
 
@@ -355,7 +353,7 @@ client.Views = client.Views || {};
 
     views.CategoryView = Backbone.View.extend({
 
-        model:undefined,
+        model: undefined,
         tagName: 'div',
         className: "category-container",        
         template: JST['app/scripts/templates/CategoryView.ejs'],
@@ -468,11 +466,9 @@ client.Views = client.Views || {};
                     },
                                  
         className:  function() {
-                        if (this.model.get("state") === "vacant") {
-                            return "table_vacant_unactive";
-                        } else {
-                            return "table_occupied_unactive";
-                        };
+                        return (this.model.get("state") === "vacant")?
+									"table_vacant_unactive":
+									"table_occupied_unactive";
                     },
 
         template: JST['app/scripts/templates/TableModelView.ejs'],
@@ -513,7 +509,8 @@ client.Views = client.Views || {};
                         Backbone.Mediator.pub("table-active", orderidinfo);
                         Backbone.Mediator.pub("changeactivity", this.model.id);
                         
-                        this.model.set("activity", "true");
+                        //create hash for active and unactive classes
+						this.model.set("activity", "true");
                         if(this.el.className === "table_vacant_unactive") {
                             this.el.className = "table_vacant_active";
                         } 
@@ -525,9 +522,9 @@ client.Views = client.Views || {};
 
         tableOccupy: function(ordergetid) {
                         if (this.model.get("activity") === "true") {
-                            console.log(ordergetid);
-                            this.model.set({orderid: ordergetid, state: "occupied"});
-                            this.el.className = "table_occupied_active";
+							this.el.className = "table_occupied_active";
+                            
+							this.model.set({orderid: ordergetid, state: "occupied"});
                             this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }
@@ -535,8 +532,9 @@ client.Views = client.Views || {};
 
         tableRelease: function() {
                         if (this.model.get("activity") === "true") {
+							this.el.className = "table_vacant_unactive";
+							
                             this.model.set({orderid: "none", state: "vacant", activity: "false"});
-                            this.el.className = "table_vacant_unactive";
                             this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }
@@ -624,18 +622,18 @@ client.Views = client.Views || {};
 
         tableMapShow: function() {
                         this.$el.append(this.template);
-                        var tablemap = new client.Views.TableMapModelView({
+                        var table_map = new client.Views.TableMapModelView({
                             el: $("#tablemap-container")
                         });
                     },
         
         render: function() {
-                    this.collection.each(this.rendermodel, this);
+                    this.collection.each(this.renderModel, this);
 					
 					Backbone.Mediator.pub("tables-rendered");
                 },
 
-        rendermodel: function(tablemodel) {
+        renderModel: function(tablemodel) {
                         var view = new client.Views.TableModelView({model: tablemodel});
                         this.$el.append(view.render().el);
                     },
@@ -660,9 +658,7 @@ client.Routers = client.Routers || {};
        
        
         changeUrl: function(table_id) {          
-            this.navigate("table/" + table_id
-                //, {trigger: true}
-            );           
+            this.navigate("table/" + table_id);           
         },
         
         routes: {
@@ -672,7 +668,7 @@ client.Routers = client.Routers || {};
         myTrigger: function(number) {
             var elem = $("#table-container").find("#table_"+ number);
                       
-            $(elem).trigger("click");
+            $(elem).trigger("click"); //write mediator.sub to tablesview
         }
             
     });
@@ -688,31 +684,23 @@ client.Models = client.Models || {};
     'use strict';
 
     models.OrderModel = Backbone.Model.extend({
-
-        initialize: function() {
-            
-        },
-	
     
         defaults: {        
             status: "opened"
         },   
-    
-    
+        
         saveNew: function() {
             this.url = "orders.json";        
             this.save();           
         },
-        
-      
+              
         existFetch: function(id) {  
             this.url = "orders/"+id+".json"; 
             this.fetch();
         },
-    
-    
+        
         saveClosed: function() {  
-            this.url = "orders/"+this.id+".json";
+            this.url = "orders/"+ this.id +".json";
             this.save();        
         }    
 
@@ -758,7 +746,7 @@ client.Views = client.Views || {};
             newCreate: function() { 
                 this.model = new client.Models.OrderModel();                      
                 
-                this.$el.find("#order_items").css('visibility', 'visible');
+                this.$el.find("#order_items").css('visibility', 'visible'); //use class
                 this.$el.find("#order_close").css('visibility', 'hidden');
                 
                 this.newPub();                   
@@ -790,7 +778,7 @@ client.Views = client.Views || {};
                 this.model.existFetch(order.orderid);
                                 
                 this.$el.find("#order_close").css('visibility', 'visible');
-                el.css('visibility', 'visible');                
+                el.css('visibility', 'visible'); // create hash el's                
                 
                 hash = {
                     "order_id": order.orderid,
@@ -855,9 +843,8 @@ client.Models = client.Models || {};
         url : "order_items.json",
 
         saveModel: function(amount_value) {
-                console.log('In model saving');
-                this.url = "order_items/" + this.id +".json";       
-/*?*/           this.save(/*{amount: amount_value}, {patch: true}*/{wait:true}, {silent: true});
+			this.url = "order_items/" + this.id +".json";       
+			this.save({wait:true}, {silent: true});
         }
     });
 
@@ -876,23 +863,20 @@ client.Collections = client.Collections || {};
         url: "order_items.json",
         order_id: 0,
         sum: 0,
+		
         initialize: function() {
             Backbone.Mediator.subscribeOnce("order-create", this.changeOrderId, this);
         },
 
         parse: function(response) {
-            var result = [];
+            var result = [],
+				i;
 
-            for (var i=0; i<response.length;i++) {
-
-                    if (response[i].order_id === this.order_id) {
-                        result.push(response[i]);
-                    }
+            for (i = 0; i < response.length; i++) {
+				if (response[i].order_id === this.order_id) {
+					result.push(response[i]);
+				}
             }
-
-            console.log("-----------------");
-            console.log(result);
-            console.log("-----------------");
 
             return result;
         },
@@ -904,8 +888,7 @@ client.Collections = client.Collections || {};
         
         setOrderId: function(item) {
             item.set('order_id', this.order_id);
-            item.url = "order_items/" + item.id +".json";                
-            item.save({wait:true}, {silent: true});
+            item.saveModel();
         }
 
     });
@@ -920,10 +903,10 @@ client.Views = client.Views || {};
     client.Views.OrderitemView = Backbone.View.extend({
         id: "order_item",
         className: "order_item",
+		
         template: JST['app/scripts/templates/OrderItem.ejs'],
 
         initialize: function() {
-            //this.model.on("change", this.saveAmount, this);
             this.model.on("destroy", this.removeView, this);
             Backbone.Mediator.sub('matching-items', this.incrMatchingAmount, this);
         },
@@ -982,6 +965,7 @@ client.Views = client.Views || {};
             decr_block.removeClass('close_item');
             this.$el.find('#order_item_amount').html(this.model.get('amount'));
         },
+		
         decrAmount: function(e) {
             e.stopPropagation();
             e.preventDefault();
@@ -1000,7 +984,6 @@ client.Views = client.Views || {};
                     decr_block.addClass('close_item');
             } else if (amount < 0){
                     //this.preloader_block.show();
-                    console.log('This model:');
                     console.dir(this.model);
                     this.model.url = "order_items/" + this.model.id +".json";
                     this.model.destroy({wait: true});
@@ -1009,7 +992,6 @@ client.Views = client.Views || {};
 
         removeView: function() {
             this.remove();
-            console.log('Was destroy');
             //this.preloader_block.hide();
         },
 
@@ -1042,9 +1024,8 @@ client.Views = client.Views || {};
         template: JST['app/scripts/templates/OrderItemCollection.ejs'],
 
         initialize: function() {
-            var global_this = this;
-
-            Backbone.Mediator.sub('order-show', 
+            Backbone.Mediator.sub('order-show',
+								//in method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                   function(order_data) {
 										this.el = order_data.elem;
                                         this.el.addClass('for_order_items');
@@ -1087,8 +1068,8 @@ client.Views = client.Views || {};
                 Backbone.Mediator.pub('matching-items', checking_model);
             } else {
                 this.collection.once('add', this.addItemToDB, this);
-
-                this.collection.add(new client.Models.OrderitemModel({
+                this.collection.add(//in variable
+						new client.Models.OrderitemModel({
                         "name": item_data.name,
                         "price": item_data.price,
                         "order_id": this.collection.order_id
@@ -1136,8 +1117,8 @@ client.Views = client.Views || {};
         },
         
         addItemsFromDB: function(item) {
-                var view = new client.Views.OrderitemView({ model: item });
-                this.el.prepend(view.render().el);
+			var view = new client.Views.OrderitemView({ model: item });
+			this.el.prepend(view.render().el);
         },
         
         renderCollectionFromDB: function() {
@@ -1163,9 +1144,9 @@ client.Models = client.Models || {};
 
     client.Models.MenuItemDescModel = Backbone.Model.extend({
 	       defaults: {
-		    name: 'N/A',
-            description : 'N/A',
-			uri_image: 'N/A'
+				name: 'N/A',
+				description : 'N/A',
+				uri_image: 'N/A'
         }
     });
 
@@ -1292,19 +1273,10 @@ client.Views = client.Views || {};
 			addItem: function( desc ) {
                 console.log(this.element);
 				var view = new client.Views.MenuItemDescView( { model: desc } );
-				this.element.append( view.render().$el );
+
+//				this.element.append( view.render().$el );
+				this.element.html( view.render().$el ); // WARN!!
         }
 
-/*		
-        createDesc: function( menu_item ) { //cantains name and el. of menu_item
-            var the_model = this.collection.where( menu_item.name );
-			console.log(the_model);
-			if ( the_model != [] ) {
-				var view = new client.Views.MenuItemDescView( { model: this.collection[0] } );
-				menu_item.$el.append( view.render().el );				
-			} else {
-				console.log("description for the menu_item is not found!");
-			}
-        }*/
     });
 })();

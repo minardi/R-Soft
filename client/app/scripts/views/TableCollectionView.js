@@ -22,18 +22,18 @@ client.Views = client.Views || {};
 
         tableMapShow: function() {
                         this.$el.append(this.template);
-                        var tablemap = new client.Views.TableMapModelView({
+                        var table_map = new client.Views.TableMapModelView({
                             el: $("#tablemap-container")
                         });
                     },
         
         render: function() {
-                    this.collection.each(this.rendermodel, this);
+                    this.collection.each(this.renderModel, this);
 					
 					Backbone.Mediator.pub("tables-rendered");
                 },
 
-        rendermodel: function(tablemodel) {
+        renderModel: function(tablemodel) {
                         var view = new client.Views.TableModelView({model: tablemodel});
                         this.$el.append(view.render().el);
                     },

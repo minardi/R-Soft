@@ -15,7 +15,7 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items/by_order/:order_id
   def by_order_id
-    @order_item = OrderItem.find_by_order_id(params[:order_id])
+    @order_items = OrderItem.find(:all, :conditions => "order_id =" + params[:order_id])
   end
 
   # GET /order_items/new

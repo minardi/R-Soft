@@ -15,11 +15,9 @@ client.Views = client.Views || {};
                     },
                                  
         className:  function() {
-                        if (this.model.get("state") === "vacant") {
-                            return "table_vacant_unactive";
-                        } else {
-                            return "table_occupied_unactive";
-                        };
+                        return (this.model.get("state") === "vacant")?
+									"table_vacant_unactive":
+									"table_occupied_unactive";
                     },
 
         template: JST['app/scripts/templates/TableModelView.ejs'],
@@ -60,7 +58,8 @@ client.Views = client.Views || {};
                         Backbone.Mediator.pub("table-active", orderidinfo);
                         Backbone.Mediator.pub("changeactivity", this.model.id);
                         
-                        this.model.set("activity", "true");
+                        //create hash for active and unactive classes
+						this.model.set("activity", "true");
                         if(this.el.className === "table_vacant_unactive") {
                             this.el.className = "table_vacant_active";
                         } 
@@ -72,9 +71,9 @@ client.Views = client.Views || {};
 
         tableOccupy: function(ordergetid) {
                         if (this.model.get("activity") === "true") {
-                            console.log(ordergetid);
-                            this.model.set({orderid: ordergetid, state: "occupied"});
-                            this.el.className = "table_occupied_active";
+							this.el.className = "table_occupied_active";
+                            
+							this.model.set({orderid: ordergetid, state: "occupied"});
                             this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }
@@ -82,8 +81,9 @@ client.Views = client.Views || {};
 
         tableRelease: function() {
                         if (this.model.get("activity") === "true") {
+							this.el.className = "table_vacant_unactive";
+							
                             this.model.set({orderid: "none", state: "vacant", activity: "false"});
-                            this.el.className = "table_vacant_unactive";
                             this.model.url = "tables/" + this.model.id + ".json";
                             this.model.save({silent: "true"});
                         }

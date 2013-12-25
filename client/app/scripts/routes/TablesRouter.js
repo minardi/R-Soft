@@ -13,9 +13,7 @@ client.Routers = client.Routers || {};
        
        
         changeUrl: function(table_id) {          
-            this.navigate("table/" + table_id
-                //, {trigger: true}
-            );           
+            this.navigate("table/" + table_id);           
         },
         
         routes: {
@@ -25,7 +23,7 @@ client.Routers = client.Routers || {};
         myTrigger: function(number) {
             var elem = $("#table-container").find("#table_"+ number);
                       
-            $(elem).trigger("click");
+            $(elem).trigger("click"); //write mediator.sub to tablesview
         }
             
     });

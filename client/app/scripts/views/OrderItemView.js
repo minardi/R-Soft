@@ -6,10 +6,10 @@ client.Views = client.Views || {};
     client.Views.OrderitemView = Backbone.View.extend({
         id: "order_item",
         className: "order_item",
+		
         template: JST['app/scripts/templates/OrderItem.ejs'],
 
         initialize: function() {
-            //this.model.on("change", this.saveAmount, this);
             this.model.on("destroy", this.removeView, this);
             Backbone.Mediator.sub('matching-items', this.incrMatchingAmount, this);
         },
@@ -68,6 +68,7 @@ client.Views = client.Views || {};
             decr_block.removeClass('close_item');
             this.$el.find('#order_item_amount').html(this.model.get('amount'));
         },
+		
         decrAmount: function(e) {
             e.stopPropagation();
             e.preventDefault();
@@ -86,7 +87,6 @@ client.Views = client.Views || {};
                     decr_block.addClass('close_item');
             } else if (amount < 0){
                     //this.preloader_block.show();
-                    console.log('This model:');
                     console.dir(this.model);
                     this.model.url = "order_items/" + this.model.id +".json";
                     this.model.destroy({wait: true});
@@ -95,7 +95,6 @@ client.Views = client.Views || {};
 
         removeView: function() {
             this.remove();
-            console.log('Was destroy');
             //this.preloader_block.hide();
         },
 

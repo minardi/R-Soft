@@ -72,6 +72,9 @@ C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `<main>'
   display: inline-block;
   width: 70%;
 }
+.menu_item_name:hover{
+	color:red;
+}
 
 .menu_item_price{
   display: inline-block;

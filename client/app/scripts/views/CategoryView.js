@@ -8,7 +8,7 @@ client.Views = client.Views || {};
 
     views.CategoryView = Backbone.View.extend({
 
-        model:undefined,
+        model: undefined,
         tagName: 'div',
         className: "category-container",        
         template: JST['app/scripts/templates/CategoryView.ejs'],

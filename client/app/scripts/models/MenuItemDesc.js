@@ -7,9 +7,9 @@ client.Models = client.Models || {};
 
     client.Models.MenuItemDescModel = Backbone.Model.extend({
 	       defaults: {
-		    name: 'N/A',
-            description : 'N/A',
-			uri_image: 'N/A'
+				name: 'N/A',
+				description : 'N/A',
+				uri_image: 'N/A'
         }
     });
 
