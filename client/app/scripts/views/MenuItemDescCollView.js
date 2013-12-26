@@ -7,9 +7,9 @@ client.Views = client.Views || {};
 
     client.Views.MenuItemDescCollView = Backbone.View.extend({
 	    initialize: function() {
-//	this.element = $('#test');
-        this.collection = new client.Collections.MenuItemDescCollection();
-	    Backbone.Mediator.sub ( 'addMenuItemDesc', this.render /*createDesc*/, this );
+            //	this.element = $('#test');
+            this.collection = new client.Collections.MenuItemDescCollection();
+            Backbone.Mediator.sub ( 'addMenuItemDesc', this.render /*createDesc*/, this );
 		},
 			
 		element: {},
@@ -17,7 +17,6 @@ client.Views = client.Views || {};
 
 			
 			render: function( menu_item ) {
-				console.log( menu_item );
 				this.element = $(menu_item.el);
                 this.id = menu_item.id;
 				this.collection.each( this.checkName, this );
@@ -27,16 +26,15 @@ client.Views = client.Views || {};
                 if(model.get('id')== this.id){
                     this.addItem(model);
                 } else {
-                    console.log('Description doesn"t create');
+                    //console.log('Description doesn"t create');
                 }
-    },
+            },
 			
 			
-			addItem: function( desc ) {
-                console.log(this.element);
+			addItem: function( desc ) {                
 				var view = new client.Views.MenuItemDescView( { model: desc } );
 
-//				this.element.append( view.render().$el );
+                // this.element.append( view.render().$el );
 				this.element.html( view.render().$el ); // WARN!!
         }
 

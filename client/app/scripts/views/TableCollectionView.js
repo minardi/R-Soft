@@ -12,6 +12,9 @@ client.Views = client.Views || {};
 
                         this.collection.fetch();
                         this.collection.once("sync", this.render, this);
+                        
+                        //For route
+                        Backbone.Mediator.sub("route-trigger", this.tableTrigger, this);
                     },
         
         template: JST['app/scripts/templates/TableCollectionView.ejs'],
@@ -37,7 +40,11 @@ client.Views = client.Views || {};
                         var view = new client.Views.TableModelView({model: tablemodel});
                         this.$el.append(view.render().el);
                     },
-                             
+
+        //For route            
+        tableTrigger: function(number) {            
+            this.$el.find("#table_"+ number).trigger("click");
+        }        
 
     });
 

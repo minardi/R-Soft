@@ -11,7 +11,6 @@ overflow-x: none;
 }
 
 #order_close{
-	visibility:hidden;
 	float:right;
 	font-family:Comic Sans MS;	
 	font-style:italic;
@@ -31,11 +30,10 @@ p#order_head{
 	margin:6px auto;
 }
 
-.order_box{
-	margin:0px;
-	border:2px solid blue;
-	border-radius: 8px;	
-	display: block;
-	height:690px;	
-	width:390px;	
+.visible_in_order{
+	visibility:visible;		
+}
+
+.hidden_in_order{
+	visibility:hidden;		
 }
