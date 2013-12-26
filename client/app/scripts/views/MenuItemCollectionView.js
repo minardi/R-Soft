@@ -2,21 +2,18 @@
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views, collections, mediator ) {
     'use strict';
 
-    client.Views.MenuItemCollectionView = Backbone.View.extend({
+    views.MenuItemCollectionView = Backbone.View.extend({
         initialize: function() {
-            this.collection = new client.Collections.MenuItemCollection();
-            Backbone.Mediator.subscribeOnce ( 'categories-ready', this.render, this );
+            this.collection = new collections.MenuItemCollection();
+            mediator.subscribeOnce ( 'categories-ready', this.render, this );
             this.elements = {};
-//			console.log(this.collection);
         },
-		
-		
+
         addItem: function( item ) {
-	//	console.log(item);
-            var view = new client.Views.MenuItemView( { model: item } ),
+            var view = new views.MenuItemView( { model: item } ),
                 key = item.get( 'category' ),
                 element = this.elements[ key ];
 				
@@ -27,13 +24,10 @@ client.Views = client.Views || {};
 			}
         },
 
-
         render: function( elements ) {
-//		console.log(elements);
             this.elements = elements;
             this.collection.each( this.addItem, this );
         }
     });
 
-
-})();
+})( client.Views, client.Collections, Backbone.Mediator );

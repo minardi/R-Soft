@@ -2,55 +2,41 @@
 
 client.Collections = client.Collections || {};
 
-(function () {
+(function ( collections, models ) {
     'use strict';
 
-    client.Collections.MenuItemDescCollection = Backbone.Collection.extend({
+    collections.MenuItemDescCollection = Backbone.Collection.extend({
        initialize: function() {		
-		//            this.fetch();
-
-            this.add( new client.Models.MenuItemDescModel( { "id": "1"
+            this.add( new models.MenuItemDescModel( { "id": "1"
 				,"name": "Capuccino"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs." 
+				, "description": "Frothed milk and a shot of espresso, topped with a touch of cinnamon."
 				, "uri_image": "images/1.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "2"
+           this.add( new models.MenuItemDescModel( { "id": "2"
+               , "name": "Esspreso"
+               , "description": "A type of coffee prepared from a blend of coffee beans and produced when pressed through a fine filter under high pressure."
+               , "uri_image": "images/2.jpg"} ) );
+
+            this.add( new models.MenuItemDescModel( { "id": "3"
 				,"name": "Ice Cream"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				,  "uri_image": "images/2.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "3"
-				, "name": "Cream Pie"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "description": "Our delicious traditional vanilla ice cream with a chocolate fudge sauce rippled throughout."
 				,  "uri_image": "images/3.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "4"
-				,  "name": "Soup"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/4.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "5"
-				, "name": "Esspreso"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/5.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "6"
+            this.add( new models.MenuItemDescModel( { "id": "4"
+				, "name": "Cream Pie"
+				, "description": "Using fresh apples, a homemade pie crust recipe, and the perfect blend of spices; this is the apple pie that is true delight in every forkful."
+				,  "uri_image": "images/4.jpg"} ) );
+            this.add( new models.MenuItemDescModel( { "id": "5"
 				,  "name": "Cheese"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/6.jpg"} ) );          
-			this.add( new client.Models.MenuItemDescModel( { "id": "7"
-				,  "name": "Mochitto"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/6.jpg"}));
-            this.add( new client.Models.MenuItemDescModel( { "id": "8"
+				, "description": "Some description, some description, ect.."
+				, "uri_image": "images/5.jpg"} ) );
+
+            this.add( new models.MenuItemDescModel( { "id": "6"
 				,  "name": "Green Mexican"
-				,"description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/7.jpg"}));
-            this.add( new client.Models.MenuItemDescModel( { "id": "9"
-				,  "name": "B-52"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/8.jpg3"})); 
+				, "description": "Some coctails description."
+				, "uri_image": "images/6.jpg"} ) );
         }, 
 		
-
-        model: client.Models.MenuItemDescModel//,
- //       url: 'menu_item_descs.json'
+        model: client.Models.MenuItemDescModel
         });
 
-})();
+})( client.Collections, client.Models );
 

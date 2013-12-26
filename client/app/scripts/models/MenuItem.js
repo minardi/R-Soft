@@ -2,10 +2,10 @@
 
 client.Models = client.Models || {};
 
-(function () {
+(function ( models ) {
     'use strict';
 
-    client.Models.MenuItemModel = Backbone.Model.extend({
+    models.MenuItemModel = Backbone.Model.extend({
         defaults: {
             category : 'N/A',
             name : 'N/A',
@@ -14,4 +14,4 @@ client.Models = client.Models || {};
         }
     });
 
-})();
+})( client.Models );

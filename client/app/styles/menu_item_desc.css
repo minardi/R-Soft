@@ -11,6 +11,6 @@
 	width:394px;
 	cursor: pointer;
 }
-.desc_pic{}
-.desc_name{}
-.desc_description{}
+.desc_name{
+    text-decoration:underline;
+}

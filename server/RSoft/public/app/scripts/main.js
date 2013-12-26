@@ -44,9 +44,9 @@ this["JST"]["app/scripts/templates/CategoryView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'category-name\'>\n\t' +
+__p += '<div class=\'category-name\'>\r\n\t' +
 ((__t = ( category_name )) == null ? '' : __t) +
-'\n</div>\n<div class=\'category-content\'></div>';
+'\r\n</div>\r\n<div class=\'category-content\'></div>';
 
 }
 return __p
@@ -56,11 +56,11 @@ this["JST"]["app/scripts/templates/MenuItem.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = "menu_item_tpl">\n\t<div class = "scale_cont">\n\t\t<div class = "menu_item_name">' +
+__p += '<div class = "menu_item_tpl">\r\n\t<div class = "scale_cont">\r\n\t\t<div class = "menu_item_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\n\t\t<div class = "menu_item_price">' +
+'</div>\r\n\t\t<div class = "menu_item_price">' +
 ((__t = ( price )) == null ? '' : __t) +
-' $</div>\n\t\t</div>\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\n</div>\n\n\n';
+' $</div>\r\n\t\t</div>\r\n\t<div class = "add_to_order"><img src="images/blue_arrow_right.png" alt="add_to_order"></div>\r\n</div>\r\n\r\n\r\n';
 
 }
 return __p
@@ -70,11 +70,11 @@ this["JST"]["app/scripts/templates/MenuItemDesc.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class = \'desc\' >\n\t<div class = "wrap">\n\t\t<div class = "desc_name">' +
+__p += '<div class = \'desc\' >\n    <div class = "desc_name">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\n\t\t<div class = "desc_description">' +
+'</div>\n    <div class = "desc_description">' +
 ((__t = ( description )) == null ? '' : __t) +
-'</div>\n\t</div>\n\t<div class = "desc_pic"><img src="images/' +
+'</div><br>\n\t<div class = "desc_pic"><img src="images/' +
 ((__t = ( id )) == null ? '' : __t) +
 '.jpg"></div>\n</div>\n\n';
 
@@ -86,7 +86,7 @@ this["JST"]["app/scripts/templates/Order.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\n    <p id="order_head"> Order</p>\n\n    <div id="order_items" class="order_items">\n    </div>\n    \n    <input type = "button" id = "order_close" value = "Close order">  </input>\n';
+__p += '\r\n    <p id="order_head"> Order</p>\r\n\r\n    <div id="order_items" class="order_items">\r\n    </div>\r\n    \r\n    <input type = "button" id = "order_close" value = "Close order">  </input>\r\n';
 
 }
 return __p
@@ -98,11 +98,11 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="order_item_name">' +
 ((__t = (name)) == null ? '' : __t) +
-'</div>\n<div id="add_amount" class="add_amount"><br/></div>\n<div id="order_item_amount" class="order_item_amount">' +
+'</div>\r\n<div id="add_amount" class="add_amount"><br/></div>\r\n<div id="order_item_amount" class="order_item_amount">' +
 ((__t = (amount)) == null ? '' : __t) +
-'</div>\n<div id="remove_amount" class="remove_amount"><br/></div>\n<div class="order_item_price">' +
+'</div>\r\n<div id="remove_amount" class="remove_amount"><br/></div>\r\n<div class="order_item_price">' +
 ((__t = (price)) == null ? '' : __t) +
-'</div>\n<span class="order_item_status">' +
+'</div>\r\n<span class="order_item_status">' +
 ((__t = (status)) == null ? '' : __t) +
 '</span>';
 
@@ -114,9 +114,9 @@ this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
+__p += '<div id="block_sum" class="sum">\r\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
-'</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="app/images/preloader2.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
+'</span>\r\n</div>\r\n<div id="loader_block" class="preloader_block">\r\n  \t<img src="app/images/preloader2.gif" class="preloader">\r\n  \t<div class="helper"></div>\r\n</div>';
 
 }
 return __p
@@ -126,7 +126,7 @@ this["JST"]["app/scripts/templates/TableCollectionView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="tablemap-container"></div>\n\n';
+__p += '<div id="tablemap-container"></div>\r\n\r\n';
 
 }
 return __p
@@ -136,7 +136,7 @@ this["JST"]["app/scripts/templates/TableMapModelView.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="bgdark" class="darkbg"></div>\n<div id="tablemap" class="table_map">\n    <input type="button" id="hidetablemap" value="Hide Map">\n</div>';
+__p += '<div id="bgdark" class="darkbg"></div>\r\n<div id="tablemap" class="table_map">\r\n    <input type="button" id="hidetablemap" value="Hide Map">\r\n</div>';
 
 }
 return __p
@@ -148,7 +148,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( id )) == null ? '' : __t) +
-'\n\n';
+'\r\n\r\n';
 
 }
 return __p
@@ -157,12 +157,12 @@ return __p
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views, mediator ) {
     'use strict';
 
-    client.Views.MenuItemView = Backbone.View.extend({
+    views.MenuItemView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/MenuItem.ejs'],
+        template: JST[ 'app/scripts/templates/MenuItem.ejs' ],
         events: {
             'click .add_to_order': 'sendMenuItemToOrder',
 			'click .menu_item_name': 'addDescView'
@@ -174,28 +174,24 @@ client.Views = client.Views || {};
         },
 
         sendMenuItemToOrder : function() {
-//			console.log( this.model.get( 'name' ) + ' sent to Order' );
-            Backbone.Mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
+            mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
         },
 		
-		addDescView: function(){ //sent mediator dlya descr
-//			console.log( 'name: ' + this.model.get( 'name' ) );
-//			console.log( this.el );
-			Backbone.Mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
+		addDescView: function(){
+			mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
 		}
-
     });
 
-})();
+})( client.Views, Backbone.Mediator );
 
 /*global client, Backbone*/
 
 client.Models = client.Models || {};
 
-(function () {
+(function ( models ) {
     'use strict';
 
-    client.Models.MenuItemModel = Backbone.Model.extend({
+    models.MenuItemModel = Backbone.Model.extend({
         defaults: {
             category : 'N/A',
             name : 'N/A',
@@ -204,82 +200,43 @@ client.Models = client.Models || {};
         }
     });
 
-})();
+})( client.Models );
 
 /*global client, Backbone*/
 
 client.Collections = client.Collections || {};
 
-(function () {
+(function ( collections, models ) {
     'use strict';
 
-    client.Collections.MenuItemCollection = Backbone.Collection.extend({
+    collections.MenuItemCollection = Backbone.Collection.extend({
         initialize: function() {
-//            this.fetch( /*{reset: true}*/ );
-
-            this.add( new client.Models.MenuItemModel( { "category": "Drinks"
-				, "name": "Capuccino"
-				, "description": "1" 
-				, "price": "5"} ) );
-            this.add( new client.Models.MenuItemModel( { "category": "Desserts"
-				, "name": "Ice Cream"
-				, "description": "2"
-				,  "price": "4"} ) );
-            this.add( new client.Models.MenuItemModel( { "category": "Desserts"
-				, "name": "Cream Pie"
-				, "description": "3"
-				,  "price": "4"} ) );
-            this.add( new client.Models.MenuItemModel( { "category": "Entrees"
-				, "name": "Soup"
-				, "description": "4"
-				, "price": "10"} ));
-            this.add( new client.Models.MenuItemModel( { "category": "Drinks"
-				, "name": "Esspreso"
-				, "description": "5"
-				, "price": "5"} ) );
-            this.add( new client.Models.MenuItemModel( { "category": "Sides"
-				, "name": "Cheese"
-				, "description": "6"
-				, "price": "10"} ) );          
-			this.add( new client.Models.MenuItemModel( { "category": "Bar"
-				, "name": "Mochitto"
-				, "description": "7"
-				, "price": "3"}));
-            this.add( new client.Models.MenuItemModel( { "category": "Bar"
-				, "name": "Green Mexican"
-				,"description": "8"
-				, "price": "5"}));
-            this.add( new client.Models.MenuItemModel( { "category": "Bar"
-				, "name": "B-52"
-				, "description": "9"
-				, "price": "3"})); 
-        }, 
-
-        model: client.Models.MenuItemModel,
- //       url: 'menu_items.json'
+            this.fetch();
+            console.log("menu_item fetch");
+			},
+			
+		model: models.MenuItemModel,
+		url: 'menu_items.json'
     });
-
-})();
+	
+})( client.Collections, client.Models );
 
 /*global client, Backbone, JST*/
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views, collections, mediator ) {
     'use strict';
 
-    client.Views.MenuItemCollectionView = Backbone.View.extend({
+    views.MenuItemCollectionView = Backbone.View.extend({
         initialize: function() {
-            this.collection = new client.Collections.MenuItemCollection();
-            Backbone.Mediator.subscribeOnce ( 'categories-ready', this.render, this );
+            this.collection = new collections.MenuItemCollection();
+            mediator.subscribeOnce ( 'categories-ready', this.render, this );
             this.elements = {};
-//			console.log(this.collection);
         },
-		
-		
+
         addItem: function( item ) {
-	//	console.log(item);
-            var view = new client.Views.MenuItemView( { model: item } ),
+            var view = new views.MenuItemView( { model: item } ),
                 key = item.get( 'category' ),
                 element = this.elements[ key ];
 				
@@ -290,16 +247,13 @@ client.Views = client.Views || {};
 			}
         },
 
-
         render: function( elements ) {
-//		console.log(elements);
             this.elements = elements;
             this.collection.each( this.addItem, this );
         }
     });
 
-
-})();
+})( client.Views, client.Collections, Backbone.Mediator );
 
 /*global client, Backbone*/
 
@@ -312,7 +266,7 @@ client.Models = client.Models || {};
     
         defaults: {
             category_name: 'noname'
-        },        
+        }
     });
 
 })(client.Models);
@@ -1142,144 +1096,120 @@ client.Views = client.Views || {};
 
 client.Models = client.Models || {};
 
-(function () {
+(function ( models ) {
     'use strict';
 
-    client.Models.MenuItemDescModel = Backbone.Model.extend({
-	       defaults: {
-				name: 'N/A',
-				description : 'N/A',
-				uri_image: 'N/A'
+    models.MenuItemDescModel = Backbone.Model.extend({
+        defaults: {
+            name: 'N/A',
+			description : 'N/A',
+			uri_image: 'N/A'
         }
     });
 
-})();
+})( client.Models );
 
 /*global client, Backbone, JST*/
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views ) {
     'use strict';
 
-    client.Views.MenuItemDescView = Backbone.View.extend({
+    views.MenuItemDescView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/MenuItemDesc.ejs'],
         events: {
-            'click': 'del'
+            'click': 'deleteEl'
         },
 
-        del: function(){
+        deleteEl: function(){
             this.$el.remove();
         },
 
         render: function() {
-            this.$el.html( this.template( this.model.toJSON() ) );
-            return this;
+                this.$el.html( this.template( this.model.toJSON() ) );
+                return this;
         }
 
     });
 
-})();
+})( client.Views );
 
 /*global client, Backbone*/
 
 client.Collections = client.Collections || {};
 
-(function () {
+(function ( collections, models ) {
     'use strict';
 
-    client.Collections.MenuItemDescCollection = Backbone.Collection.extend({
+    collections.MenuItemDescCollection = Backbone.Collection.extend({
        initialize: function() {		
-		//            this.fetch();
-
-            this.add( new client.Models.MenuItemDescModel( { "id": "1"
+            this.add( new models.MenuItemDescModel( { "id": "1"
 				,"name": "Capuccino"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs." 
+				, "description": "Frothed milk and a shot of espresso, topped with a touch of cinnamon."
 				, "uri_image": "images/1.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "2"
+           this.add( new models.MenuItemDescModel( { "id": "2"
+               , "name": "Esspreso"
+               , "description": "A type of coffee prepared from a blend of coffee beans and produced when pressed through a fine filter under high pressure."
+               , "uri_image": "images/2.jpg"} ) );
+
+            this.add( new models.MenuItemDescModel( { "id": "3"
 				,"name": "Ice Cream"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				,  "uri_image": "images/2.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "3"
-				, "name": "Cream Pie"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
+				, "description": "Our delicious traditional vanilla ice cream with a chocolate fudge sauce rippled throughout."
 				,  "uri_image": "images/3.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "4"
-				,  "name": "Soup"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/4.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "5"
-				, "name": "Esspreso"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/5.jpg"} ) );
-            this.add( new client.Models.MenuItemDescModel( { "id": "6"
+            this.add( new models.MenuItemDescModel( { "id": "4"
+				, "name": "Cream Pie"
+				, "description": "Using fresh apples, a homemade pie crust recipe, and the perfect blend of spices; this is the apple pie that is true delight in every forkful."
+				,  "uri_image": "images/4.jpg"} ) );
+            this.add( new models.MenuItemDescModel( { "id": "5"
 				,  "name": "Cheese"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/6.jpg"} ) );          
-			this.add( new client.Models.MenuItemDescModel( { "id": "7"
-				,  "name": "Mochitto"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/6.jpg"}));
-            this.add( new client.Models.MenuItemDescModel( { "id": "8"
+				, "description": "Some description, some description, ect.."
+				, "uri_image": "images/5.jpg"} ) );
+
+            this.add( new models.MenuItemDescModel( { "id": "6"
 				,  "name": "Green Mexican"
-				,"description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/7.jpg"}));
-            this.add( new client.Models.MenuItemDescModel( { "id": "9"
-				,  "name": "B-52"
-				, "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs."
-				, "uri_image": "images/8.jpg3"})); 
+				, "description": "Some coctails description."
+				, "uri_image": "images/6.jpg"} ) );
         }, 
 		
-
-        model: client.Models.MenuItemDescModel//,
- //       url: 'menu_item_descs.json'
+        model: client.Models.MenuItemDescModel
         });
 
-})();
+})( client.Collections, client.Models );
 
 
 /*global client, Backbone, JST*/
 
 client.Views = client.Views || {};
 
-(function () {
+(function (  views, collections, mediator  ) {
     'use strict';
 
-    client.Views.MenuItemDescCollView = Backbone.View.extend({
+
+    views.MenuItemDescCollView = Backbone.View.extend({
 	    initialize: function() {
-//	this.element = $('#test');
-        this.collection = new client.Collections.MenuItemDescCollection();
-	    Backbone.Mediator.sub ( 'addMenuItemDesc', this.render /*createDesc*/, this );
+            this.collection = new collections.MenuItemDescCollection();
+	        mediator.sub( 'addMenuItemDesc', this.render, this );
 		},
 			
 		element: {},
         id: 0,
 
-			
-			render: function( menu_item ) {
-				console.log( menu_item );
-				this.element = $(menu_item.el);
-                this.id = menu_item.id;
-				this.collection.each( this.checkName, this );
-			},
 
-            checkName: function(model){
-                if(model.get('id')== this.id){
-                    this.addItem(model);
-                } else {
-                    console.log('Description doesn"t create');
-                }
-    },
-			
-			
-			addItem: function( desc ) {
-                console.log(this.element);
-				var view = new client.Views.MenuItemDescView( { model: desc } );
+		render: function( menu_item ) {
+            var the_model = this.collection.findWhere( { 'id': menu_item.id } );
+            this.element = $(menu_item.el);
+            console.log(the_model);
+            this.addItem(  the_model );
+		},
 
-//				this.element.append( view.render().$el );
-				this.element.html( view.render().$el ); // WARN!!
+
+		addItem: function( model ) {
+			var view = new client.Views.MenuItemDescView( { "model": model } );
+
+			this.element.prepend( view.render().$el );
         }
-
     });
-})();
+
+})( client.Views, client.Collections, Backbone.Mediator );

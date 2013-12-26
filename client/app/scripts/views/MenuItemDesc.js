@@ -2,25 +2,25 @@
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views ) {
     'use strict';
 
-    client.Views.MenuItemDescView = Backbone.View.extend({
+    views.MenuItemDescView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/MenuItemDesc.ejs'],
         events: {
-            'click': 'del'
+            'click': 'deleteEl'
         },
 
-        del: function(){
+        deleteEl: function(){
             this.$el.remove();
         },
 
         render: function() {
-            this.$el.html( this.template( this.model.toJSON() ) );
-            return this;
+                this.$el.html( this.template( this.model.toJSON() ) );
+                return this;
         }
 
     });
 
-})();
+})( client.Views );

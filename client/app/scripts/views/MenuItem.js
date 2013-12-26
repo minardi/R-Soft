@@ -2,12 +2,12 @@
 
 client.Views = client.Views || {};
 
-(function () {
+(function ( views, mediator ) {
     'use strict';
 
-    client.Views.MenuItemView = Backbone.View.extend({
+    views.MenuItemView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/MenuItem.ejs'],
+        template: JST[ 'app/scripts/templates/MenuItem.ejs' ],
         events: {
             'click .add_to_order': 'sendMenuItemToOrder',
 			'click .menu_item_name': 'addDescView'
@@ -19,16 +19,12 @@ client.Views = client.Views || {};
         },
 
         sendMenuItemToOrder : function() {
-//			console.log( this.model.get( 'name' ) + ' sent to Order' );
-            Backbone.Mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
+            mediator.pub( 'orderitem-add', { 'name': this.model.get( 'name' ), 'price': this.model.get( 'price' ) } );
         },
 		
-		addDescView: function(){ //sent mediator dlya descr
-//			console.log( 'name: ' + this.model.get( 'name' ) );
-//			console.log( this.el );
-			Backbone.Mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
+		addDescView: function(){
+			mediator.pub('addMenuItemDesc', { 'id': this.model.get( 'description' ), 'el': this.el } );
 		}
-
     });
 
-})();
+})( client.Views, Backbone.Mediator );
