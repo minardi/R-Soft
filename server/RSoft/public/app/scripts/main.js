@@ -102,7 +102,7 @@ __p += '<div class="order_item_name">' +
 ((__t = (amount)) == null ? '' : __t) +
 '</div>\n<div id="remove_amount" class="remove_amount"><br/></div>\n<div class="order_item_price">' +
 ((__t = (price)) == null ? '' : __t) +
-'</div>\n<span class="order_item_status">' +
+'</div>\n<span id="order_item_status" class="order_item_status">' +
 ((__t = (status)) == null ? '' : __t) +
 '</span>';
 
@@ -114,7 +114,7 @@ this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
+__p += '<div id="not_ready_items">\n</div>\n<div id="ready_items">\n</div>\n<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
 '</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="images/coffee.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
 
@@ -845,7 +845,7 @@ client.Models = client.Models || {};
         },
         url : "order_items.json",
 
-        saveModel: function(amount_value) {
+        saveModel: function() {
 			this.url = "order_items/" + this.id +".json";       
 			this.save({wait:true}, {silent: true});
         }
@@ -916,19 +916,47 @@ client.Views = client.Views || {};
 
         events: {
                 "click #add_amount": "incrAmount",
-                "click #remove_amount": "decrAmount"
+                "click #remove_amount": "decrAmount",
+                "click #order_item_status": "changeInReady"
         },
 
         render: function() {
             var price = this.model.get('price'),
                 amount = this.model.get('amount'),
-                difference_price = price * amount;
+                difference_price = price * amount,
+                status = this.model.get('status');
 
-            this.$el.html(this.template(this.model.toJSON()));
+            if (status === "Not ready") {
+                this.$el.html(this.template(this.model.toJSON()));
+            } else {
+                this.el = $('#ready_items');
+                this.el.addClass('ready_items');
+                this.el.append(this.template(this.model.toJSON()) + "<br/>");
+                this.el.find('add_amount').hide();
+                this.el.find('remove_amount').hide();
+            }
+            
 
             this.publisher("add", difference_price);
 
             return this;
+        },
+
+        changeInReady: function() {
+            this.model.set('status', "Ready");
+            this.model.saveModel();
+            this.model.once('sync', this.renderInReady, this);
+        },
+
+        renderInReady: function() {
+            var old_view = this;
+
+            this.el = $('#ready_items');
+            this.el.addClass('ready_items');
+            this.el.append(this.template(this.model.toJSON()) + "<br/>");
+            this.el.find('add_amount').hide();
+            this.el.find('remove_amount').hide();
+            old_view.remove();
         },
 
         publisher: function(operation, difference) {
@@ -991,8 +1019,10 @@ client.Views = client.Views || {};
 
         saveAmount: function(amount_value) {
                 this.model.set('amount', amount_value);             
-                this.model.saveModel(amount_value);
-                this.$el.find('#order_item_amount').html(this.model.get('amount'));
+                this.model.saveModel();
+                this.model.once('sync', function() {
+                            this.$el.find('#order_item_amount').html(amount_value);
+                }, this);
         }
 
     });
@@ -1042,12 +1072,7 @@ client.Views = client.Views || {};
         },
 
         addItemFromMenu: function(item_data) {
-            var checking_model = this.collection.findWhere({name: item_data.name});   
-
-            console.log("1 -->");
-            console.log(this.collection);
-            console.log("2 -->");
-            console.log(checking_model);
+            var checking_model = this.collection.findWhere({name: item_data.name, status: "Not ready"});
 
             if (checking_model) {
                 mediator.pub('matching-items', checking_model);

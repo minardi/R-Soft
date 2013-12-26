@@ -16,19 +16,47 @@ client.Views = client.Views || {};
 
         events: {
                 "click #add_amount": "incrAmount",
-                "click #remove_amount": "decrAmount"
+                "click #remove_amount": "decrAmount",
+                "click #order_item_status": "changeInReady"
         },
 
         render: function() {
             var price = this.model.get('price'),
                 amount = this.model.get('amount'),
-                difference_price = price * amount;
+                difference_price = price * amount,
+                status = this.model.get('status');
 
-            this.$el.html(this.template(this.model.toJSON()));
+            if (status === "Not ready") {
+                this.$el.html(this.template(this.model.toJSON()));
+            } else {
+                this.el = $('#ready_items');
+                this.el.addClass('ready_items');
+                this.el.prepend(this.template(this.model.toJSON()) + "<br/>");
+                this.el.find('add_amount').hide();
+                this.el.find('remove_amount').hide();
+            }
+            
 
             this.publisher("add", difference_price);
 
             return this;
+        },
+
+        changeInReady: function() {
+            this.model.set('status', "Ready");
+            this.model.saveModel();
+            this.model.once('sync', this.renderInReady, this);
+        },
+
+        renderInReady: function() {
+            var old_view = this;
+
+            this.el = $('#ready_items');
+            this.el.addClass('ready_items');
+            this.el.prepend(this.template(this.model.toJSON()) + "<br/>");
+            this.el.find('add_amount').hide();
+            this.el.find('remove_amount').hide();
+            old_view.remove();
         },
 
         publisher: function(operation, difference) {
@@ -91,8 +119,10 @@ client.Views = client.Views || {};
 
         saveAmount: function(amount_value) {
                 this.model.set('amount', amount_value);             
-                this.model.saveModel(amount_value);
-                this.$el.find('#order_item_amount').html(this.model.get('amount'));
+                this.model.saveModel();
+                this.model.once('sync', function() {
+                            this.$el.find('#order_item_amount').html(amount_value);
+                }, this);
         }
 
     });

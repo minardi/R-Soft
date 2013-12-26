@@ -62,7 +62,7 @@ __p += '<div class="order_item_name">' +
 ((__t = (amount)) == null ? '' : __t) +
 '</div>\n<div id="remove_amount" class="remove_amount"><br/></div>\n<div class="order_item_price">' +
 ((__t = (price)) == null ? '' : __t) +
-'</div>\n<span class="order_item_status">' +
+'</div>\n<span id="order_item_status" class="order_item_status">' +
 ((__t = (status)) == null ? '' : __t) +
 '</span>';
 
@@ -74,7 +74,7 @@ this["JST"]["app/scripts/templates/OrderItemCollection.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
+__p += '<div id="not_ready_items">\n</div>\n<div id="ready_items">\n</div>\n<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
 '</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="images/coffee.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
 

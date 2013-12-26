@@ -15,7 +15,7 @@ client.Models = client.Models || {};
         },
         url : "order_items.json",
 
-        saveModel: function(amount_value) {
+        saveModel: function() {
 			this.url = "order_items/" + this.id +".json";       
 			this.save({wait:true}, {silent: true});
         }

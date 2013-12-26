@@ -42,12 +42,7 @@ client.Views = client.Views || {};
         },
 
         addItemFromMenu: function(item_data) {
-            var checking_model = this.collection.findWhere({name: item_data.name});   
-
-            console.log("1 -->");
-            console.log(this.collection);
-            console.log("2 -->");
-            console.log(checking_model);
+            var checking_model = this.collection.findWhere({name: item_data.name, status: "Not ready"});
 
             if (checking_model) {
                 mediator.pub('matching-items', checking_model);

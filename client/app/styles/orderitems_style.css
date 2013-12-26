@@ -61,11 +61,15 @@
 }
 .order_item_status{
 	width: 10px;
-	font-size: 8px;
+	font-size: 10px;
+	cursor: pointer;
+}
+.order_item_status:hover{
+	color: red;
 }
 .sum{
 	margin-top: 10px;
-	border-top: 3px solid gray;
+	border-top: 3px solid #696969;
 	padding-top: 5px;
 	font-weight: bold;
 }
@@ -103,4 +107,8 @@
     width:0;
     vertical-align:middle; /*3*/
     zoom:1;
+}
+.ready_items{
+	border-top: 3px solid gray;
+	color: #BEBEBE;
 }
