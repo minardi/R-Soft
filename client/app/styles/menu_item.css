@@ -17,6 +17,7 @@
 
 .menu_item_name:hover{
 	color:red;
+  cursor: pointer;
 }
 
 .menu_item_price{
