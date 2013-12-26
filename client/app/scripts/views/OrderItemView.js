@@ -2,8 +2,8 @@
 
 client.Views = client.Views || {};
 
-(function () {
-    client.Views.OrderitemView = Backbone.View.extend({
+(function (views, mediator) {
+    views.OrderitemView = Backbone.View.extend({
         id: "order_item",
         className: "order_item",
 		
@@ -11,7 +11,7 @@ client.Views = client.Views || {};
 
         initialize: function() {
             this.model.on("destroy", this.removeView, this);
-            Backbone.Mediator.sub('matching-items', this.incrMatchingAmount, this);
+            mediator.sub('matching-items', this.incrMatchingAmount, this);
         },
 
         events: {
@@ -32,7 +32,7 @@ client.Views = client.Views || {};
         },
 
         publisher: function(operation, difference) {
-             Backbone.Mediator.pub("amount", {
+             mediator.pub("amount", {
                                             "operation": operation,
                                             "difference": difference
                                             }
@@ -40,8 +40,10 @@ client.Views = client.Views || {};
         },
 
         incrAmount: function(e) {
-            e.stopPropagation();
-            e.preventDefault();
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
             
             var amount = this.model.get('amount'),
                 price = this.model.get('price'),
@@ -56,17 +58,9 @@ client.Views = client.Views || {};
         },
         
         incrMatchingAmount: function(changing_model) {
-            var amount = changing_model.get('amount'),
-                price = changing_model.get('price'),
-                decr_block = this.$el.find('#remove_amount');
-                
-            amount++;
-
-            this.saveAmount(amount, changing_model);
-            this.publisher("add", price);
-            
-            decr_block.removeClass('close_item');
-            this.$el.find('#order_item_amount').html(this.model.get('amount'));
+            if (this.model === changing_model) {
+                this.incrAmount();
+            }
         },
 		
         decrAmount: function(e) {
@@ -86,8 +80,6 @@ client.Views = client.Views || {};
                     this.publisher("sub", price);
                     decr_block.addClass('close_item');
             } else if (amount < 0){
-                    //this.preloader_block.show();
-                    console.dir(this.model);
                     this.model.url = "order_items/" + this.model.id +".json";
                     this.model.destroy({wait: true});
             }
@@ -95,23 +87,13 @@ client.Views = client.Views || {};
 
         removeView: function() {
             this.remove();
-            //this.preloader_block.hide();
         },
 
-        saveAmount: function(amount_value, changing_model) {
-            //this.preloader_block.show();
-
-            if (!changing_model) {
+        saveAmount: function(amount_value) {
                 this.model.set('amount', amount_value);             
                 this.model.saveModel(amount_value);
                 this.$el.find('#order_item_amount').html(this.model.get('amount'));
-            } else {
-                changing_model.set('amount', amount_value);              
-                changing_model.saveModel(amount_value);
-            }
-            
-            //this.preloader_block.hide();
         }
 
     });
-})();
+})(client.Views, Backbone.Mediator);

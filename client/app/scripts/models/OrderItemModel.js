@@ -2,10 +2,10 @@
 
 client.Models = client.Models || {};
 
-(function () {
+(function (models) {
     'use strict';
 
-    client.Models.OrderitemModel = Backbone.Model.extend({
+    models.OrderitemModel = Backbone.Model.extend({
     	defaults: {
             name: "N/A",
             amount: 1,
@@ -21,4 +21,4 @@ client.Models = client.Models || {};
         }
     });
 
-})();
+})(client.Models);

@@ -26,7 +26,7 @@
 	text-align: left;
 }
 .add_amount{
-	background: url(../images/add.png) no-repeat;
+	background: url(../../images/add.png) no-repeat;
 	background-size: 25px;
 	height: 25px;
 	width: 25px;
@@ -34,7 +34,7 @@
 }
 .add_amount:hover{
 	cursor: pointer;
-	background: url(../images/addhover.png) no-repeat;
+	background: url(../../images/addhover.png) no-repeat;
 	background-size: 25px;
 }
 .order_item_amount{
@@ -43,7 +43,7 @@
 	margin-right: 3px;
 }
 .remove_amount{
-	background: url(../images/remove.png) no-repeat;
+	background: url(../../images/remove.png) no-repeat;
 	background-size: 25px;
 	height: 25px;
 	width: 25px;
@@ -51,7 +51,7 @@
 }
 .remove_amount:hover{
 	cursor: pointer;
-	background: url(../images/removehover.png) no-repeat;
+	background: url(../../images/removehover.png) no-repeat;
 	background-size: 25px;
 }
 .order_item_price{
@@ -70,11 +70,11 @@
 	font-weight: bold;
 }
 .close_item{	
-	background: url(../images/close.png) no-repeat;
+	background: url(../../images/close.png) no-repeat;
 	background-size: 25px;
 }
 .close_item:hover{	
-	background: url(../images/closehover.png) no-repeat;
+	background: url(../../images/closehover.png) no-repeat;
 	background-size: 25px;
 }
 .preloader_block{

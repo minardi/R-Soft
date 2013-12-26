@@ -76,7 +76,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div id="block_sum" class="sum">\n  \tOrder amount: <span id="sum">' +
 ((__t = (sum)) == null ? '' : __t) +
-'</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="app/images/preloader2.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
+'</span>\n</div>\n<div id="loader_block" class="preloader_block">\n  \t<img src="images/coffee.gif" class="preloader">\n  \t<div class="helper"></div>\n</div>';
 
 }
 return __p

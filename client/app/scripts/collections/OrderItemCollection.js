@@ -2,18 +2,18 @@
 
 client.Collections = client.Collections || {};
 
-(function () {
+(function (models, mediator) {
     'use strict';
 
     client.Collections.OrderitemsCollection = Backbone.Collection.extend({
 
-        model: client.Models.OrderitemModel,
+        model: models.OrderitemModel,
         url: "order_items.json",
         order_id: 0,
         sum: 0,
 		
         initialize: function() {
-            Backbone.Mediator.subscribeOnce("order-create", this.changeOrderId, this);
+            mediator.subscribeOnce("order-create", this.changeOrderId, this);
         },
 
         parse: function(response) {
@@ -41,4 +41,4 @@ client.Collections = client.Collections || {};
 
     });
 
-})();
+})(client.Models, Backbone.Mediator);

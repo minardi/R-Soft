@@ -74,6 +74,7 @@ C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `<main>'
 }
 .menu_item_name:hover{
 	color:red;
+  cursor: pointer;
 }
 
 .menu_item_price{
